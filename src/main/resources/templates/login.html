@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lex Meta - Login</title>
+    <style>
+        body{
+            font-family: "Segoe UI", sans-serif;
+            background-color: #061827;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .cartao-login{
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            width: 350px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        h2{
+            color: #004d5a; margin-bottom: 20px;
+        }
+        input{
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        button{
+            width: 100%;
+            padding: 12px;
+            background-color: #004d5a;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover{
+            background-color: #003b45;
+        }
+    </style>
+</head>
+<body>
+
+<div class="cartao-login">
+    <h2>Bem-Vindo de volta!</h2>
+    <p style="color: #666; font-size: 14px">Faça login para acessar sua conta</p>
+
+    <form action="/login" method="post">
+        <input type="email" name="email" placeholder="seu@email.com" required>
+        <input type="password" name="senha" placeholder="Digite sua senha" required>
+        <button type="submit">Entrar</button>
+    </form>
+
+    <p style="font-size: 13px; color: #667085; margin-top: 20px;">
+        Ainda não tem uma conta? Fale com o administrador!
+    </p>
+</div>
+
+</body>
+</html>
