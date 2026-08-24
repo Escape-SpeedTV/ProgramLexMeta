@@ -1,0 +1,297 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Segoe UI', sans-serif;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../imagens/imgFundo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.painel-esquerdo{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    padding: 60px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img{
+    width: 100px;
+    height: auto;
+}
+
+.logo-texto{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-titulo{
+    font-family: 'Times New Roman', serif;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.logo-subtitulo{
+    font-family: 'Arial', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.texto-central{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 40px;
+}
+
+.titulo-destaque{
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.titulo-destaque span{
+    color: #00bcd4;
+}
+
+.subtitulo{
+    font-size: 15px;
+    color: #aabbcc;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+.linha-verde{
+    width: 80px;
+    height: 3px;
+    background-color: #004d5a;
+    margin-bottom: 20px;
+}
+
+.fileira-icones{
+    display: flex;
+    gap: 30px;
+    padding-bottom: 45px;
+}
+
+.card-icone{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 15px 10px;
+    width: 90px;
+}
+
+.cards{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.card-icone img{
+    width: 40px;
+    height: 40px;
+}
+
+.card-icone span{
+    font-size: 13px;
+    color: white;
+    line-height: 1.4;
+}
+
+.painel-direito{
+     position: absolute;
+     top: 0;
+     right: 0;
+     width: 50%;
+     height: 100%;
+     display: flex;
+     align-items: center;
+ }
+
+.cartao-login{
+    background-color: white;
+    padding: 45px 40px;
+    border-radius: 20px;
+    width: 420px;
+    max-width: 90%;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h2{
+    font-size: 26px;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.subtitulo-login{
+    color: #666666;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.campo{
+    margin-bottom: 20px;
+}
+
+label{
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #101820;
+    margin-bottom: 5px;
+}
+
+.input-com-icone {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 5px 10px;
+    background-color: white;
+    /*border: 1px solid black;*/
+}
+
+.input-com-icone img {
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+.input-com-icone input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333333;
+}
+.input-com-icone:focus-within {
+    border-color: #005b63;
+}
+
+
+
+input[type="email"], input[type="password"]{
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333333;
+}
+input:focus{
+    border-color: #005b63;
+    outline: none;
+}
+
+.linha-inferior{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.lembrar{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #667085;
+}
+.lembrar input{
+    accent-color: #005b63;
+}
+.esqueceu-senha{
+    font-size: 13px;
+    color: #005b63;
+    text-decoration: none;
+}
+
+.esqueceu-senha:hover{
+    text-decoration: underline;
+}
+
+button{
+    width: 100%;
+    padding: 15px;
+    background-color: #004d5a;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;;
+}
+
+button:hover{
+    background-color: #003b45;
+}
+
+.rodape-cartao{
+    font-size: 13px;
+    color: #667085;
+    text-align: center;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 20px;
+    margin-top: 25px;
+}
+.rodape-cartao a{
+    color: #005b63;
+    text-decoration: none;
+}
+
+.erro-box{
+    background-color: #ffe4e6;
+    color: #d32f2f;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.rodape-tela {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 80px;
+    font-size: 13px;
+    color: #667085;
+}
+
+.rodape-tela .esquerdo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}

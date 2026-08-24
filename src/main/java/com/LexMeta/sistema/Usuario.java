@@ -1,13 +1,17 @@
 package com.LexMeta.sistema;
 
-public class usuario {
+public class Usuario {
     private String email;
     private String senha;
 
-    public usuario() {}
+    public Usuario() {}
 
     public String getEmail(){
         return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 
     public String getSenha(){
@@ -17,4 +21,5 @@ public class usuario {
     public void setSenha(String senha){
         this.senha = senha;
     }
+
 }

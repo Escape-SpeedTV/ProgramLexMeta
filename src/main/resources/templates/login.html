@@ -3,70 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <title>Lex Meta - Login</title>
-    <style>
-        body{
-            font-family: "Segoe UI", sans-serif;
-            background-color: #061827;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .cartao-login{
-            background-color: white;
-            padding: 40px;
-            border-radius: 20px;
-            width: 350px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-
-        h2{
-            color: #004d5a; margin-bottom: 20px;
-        }
-        input{
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-        button{
-            width: 100%;
-            padding: 12px;
-            background-color: #004d5a;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        button:hover{
-            background-color: #003b45;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
+    <div class="painel-esquerdo">
+        <div class="logo">
+            <img src="/imagens/palatucci.png" alt="Escudo">
+            <div class="logo-texto">
+                <div class="logo-titulo">LexMeta</div>
+                <div class="logo-subtitulo">ADVOCACIA &amp; CONSULTORIA</div>
+            </div>
+        </div>
 
-<div class="cartao-login">
-    <h2>Bem-Vindo de volta!</h2>
-    <p style="color: #666; font-size: 14px">Faça login para acessar sua conta</p>
+        <div class="texto-central">
+            <h1 class="titulo-destaque">
+                <span>Gestão jurídica</span> <br>com inteligência
+            </h1>
 
-    <form action="/login" method="post">
-        <input type="email" name="email" placeholder="seu@email.com" required>
-        <input type="password" name="senha" placeholder="Digite sua senha" required>
-        <button type="submit">Entrar</button>
-    </form>
+            <div class="linha-verde"></div>
+            <p class="subtitulo">
+                Organize processos, acompanhe resultados <br> e impulsione o desempenho do seu escritório.
+            </p>
+        </div>
 
-    <p style="font-size: 13px; color: #667085; margin-top: 20px;">
-        Ainda não tem uma conta? Fale com o administrador!
-    </p>
-</div>
+        <div class="fileira-icones">
 
+            <div class="cards">
+                <div class="card-icone">
+                    <img src="/imagens/315.png" alt="Segurança">
+                </div>
+                <span>Segurança <br> de ponta</span>
+            </div>
+
+            <div class="cards">
+                <div class="card-icone">
+                    <img src="/imagens/grafico.png" alt="Relatórios">
+                </div>
+                <span>Relatórios <br> inteligentes</span>
+            </div>
+
+            <div class="cards">
+                <div class="card-icone">
+                    <img src="/imagens/pessoas.png" alt="Gestão">
+                </div>
+                <span>Gestão da <br>equipe</span>
+            </div>
+
+            <div class="cards">
+                <div class="card-icone">
+                    <img src="/imagens/nuvem.webp" alt="Acesso">
+                </div>
+                <span>Acesso em <br> qualquer lugar</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="painel-direito">
+        <div class="cartao-login">
+            <h2>Bem-Vindo de volta!</h2>
+            <p class="subtitulo-login">Faça login para acessar sua conta</p>
+
+            <div class="erro-box" th:if="${mensagemErro}">
+                <span th:text="${mensagemErro}"></span>
+            </div>
+
+            <form action="/login" method="post">
+                <div class="campo">
+                    <label for="email">E-mail</label>
+                    <div class="input-com-icone">
+                        <img src="/imagens/bonecologin.png" alt="usuario">
+                        <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label for="senha">Senha</label>
+                    <div class="input-com-icone">
+<!--                        <img src="/imagens/cadeado.webp" alt="cadeado">-->
+                        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+<!--                        <img src="/imagens/olho.png" alt="olho" id="icone-olho" onclick="toggleSenha()" style="margin-left: auto; margin-right: 0; cursor: pointer;">-->
+                    </div>
+                </div>
+
+                <div class="linha-inferior">
+                    <div class="lembrar">
+                        <input type="checkbox" id="lembrar">
+                        <label for="lembrar" style="font-size: 13px; font-weight: normal; margin: 0;">Lembrar de mim></label>
+                    </div>
+
+                    <a href="#" class="esqueceu-senha">Esqueceu sua senha?</a>
+                </div>
+
+
+                <button type="submit">Entrar</button>
+
+                <div class="rodape-cartao">
+                    Ainda não tem uma conta? <a href="#">Fale com o nosso administrador</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="rodape-tela">
+            <div class="esquerdo">
+                <img src="/imagens/315.png" alt="Escudo" style="width: 14px;">
+                <span>Sistema seguro e protegido</span>
+            </div>
+            <div>
+                ©2026 LexMeta. Todos os direitos reservados.
+            </div>
+        </div>
+
+    </div>
+    <script th:src="@{/js/login.js}"></script>
 </body>
 </html>
