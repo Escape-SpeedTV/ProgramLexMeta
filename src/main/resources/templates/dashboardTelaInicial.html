@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - DashBoard</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+</head>
+
+
+<body>
+    <div class="menu-lateral">
+        <div class="menu-logo">
+            <img src="/imagens/palatucci.png" alt="Escudo">
+            <div class="logo-texto">
+                <div class="logo-titulo">LexMeta</div>
+            </div>
+        </div>
+
+        <ul class="menu-itens">
+            <li class="ativo"><a href="#">Dashboard</a></li>
+            <li><a href="#">Processos</a></li>
+            <li><a href="#">Novo Processo</a></li>
+            <li><a href="#">Relatórios</a></li>
+            <li><a href="#">Configurações</a></li>
+        </ul>
+
+        <div class="meta-atual">
+            <div class="meta-titulo">Meta Atual</div>
+            <div class="meta-periodo">Agosto / 2026</div>
+            <div class="meta-numero">120 processos</div>
+            <button>Editar Meta</button>
+        </div>
+    </div>
+
+    <div class="conteudo">
+        <div class="cabecalho">
+            <div>
+                <h1>Dashboard</h1>
+                <p>Visão Geral dos Processos e Metas</p>
+            </div>
+            <div class="usuario">
+                <div class="usuario-icone">
+                    <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                </div>
+
+                <div>
+                    <span class="usuario-nome">William Nakano</span>
+                    <span class="usuario-cargo">Administrador</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="boas-vindas">
+            <h2>Bem Vindo, Nakano!</h2>
+            <p>Acompanhe o desempenho do escritório em tempo real.</p>
+        </div>
+
+        <div class="cards-superiores">
+            <div class="card">
+                <div class="card-icone">
+                    <img src="/imagens/meta.png" alt="Meta Total">
+                </div>
+                <div class="card-info">
+                    <span class="card-titulo">Metal Total</span>
+                    <span class="card-valor" th:text="${metaTotal}">120</span>
+                    <span class="card-subtitulo">Processos</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icone-grafico">
+                    <canvas id="graficoPercentual"></canvas>
+                    <div class="grafico-texto">
+                        <span class="card-valor-grafico" th:text="${percentualConcluido}">68%</span>
+                    </div>
+
+                    <div class="card-info">
+                        <span class="card-titulo">Percentual Concluído</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icone">
+                    <img src="/imagens/processos-concluidos.png" alt="Processos Concluídos">
+                </div>
+                <div class="card-info">
+                    <span class="card-titulo">Processos Concluídos</span>
+                    <span class="card-valor" th:text="${processosConcluidos}">82</span>
+                    <span class="card-subtitulo">Processos</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icone">
+                    <img src="/imagens/andamento.png" alt="Em Andamento">
+                </div>
+
+                <div class="card-info">
+                    <span class="card-titulo">Em Andamento</span>
+                    <span class="card-valor" th:text="${emAndamento}">23</span>
+                    <span class="card-subtitulo">Processos</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-icone">
+                    <img src="/imagens/pendentes.png" alt="Pendentes">
+                </div>
+
+                <div class="card-infor">
+                    <span class="card-titulo">Pendentes</span>
+                    <span class="card-valor" th:text="${pendentes}">15</span>
+                    <span class="card-subtitulo">Processos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script th:inline="javascript"> const percentualConcluido = /*[[${percentualConcluido}]]*/ 68; </script>
+    <script th:src="@{/js/dashboard.js}"></script>
+
+</body>
+</html>

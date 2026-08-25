@@ -22,7 +22,7 @@ public class loginController {
 
     public String fazerLogin(Usuario usuario){
         if("admin@a.com".equals(usuario.getEmail()) && "123".equals(usuario.getSenha())){
-            return "redirect:/dashboard";
+            return "redirect:/dashboardTelaInicial";
         } else{
             return "redirect:/?erro=true";
         }
