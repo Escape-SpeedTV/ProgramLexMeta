@@ -32,24 +32,30 @@
         </div>
     </div>
 
-    <div class="conteudo">
-        <div class="cabecalho">
-            <div>
-                <h1>Dashboard</h1>
-                <p>Visão Geral dos Processos e Metas</p>
-            </div>
-            <div class="usuario">
-                <div class="usuario-icone">
-                    <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
-                </div>
-
-                <div>
-                    <span class="usuario-nome">William Nakano</span>
-                    <span class="usuario-cargo">Administrador</span>
-                </div>
-            </div>
+    <div class="cabecalho-conteudo">
+        <div class="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+        <div class="titulo-secao">
+            <h1>Dashboard</h1>
+            <p>Visão Geral dos Processos e Metas</p>
+        </div>
+        <div class="usuario-dropdown">
+            <div class="usuario-icone">
+                <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+            </div>
 
+            <div class="usuario-info">
+                <span class="usuario-nome">William Nakano</span>
+                <span class="usuario-cargo">Administrador</span>
+            </div>
+            <span class="seta">▼</span> <!--Adicionar depois, uma imagem nesse trecho -->
+        </div>
+    </div>
+
+    <div class="conteudo">
         <div class="boas-vindas">
             <h2>Bem Vindo, Nakano!</h2>
             <p>Acompanhe o desempenho do escritório em tempo real.</p>
@@ -67,17 +73,19 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card-grafico">
+                <div class="card-info">
+                    <span class="card-titulo">Percentual Concluído</span>
+                </div>
+
                 <div class="card-icone-grafico">
                     <canvas id="graficoPercentual"></canvas>
                     <div class="grafico-texto">
                         <span class="card-valor-grafico" th:text="${percentualConcluido}">68%</span>
                     </div>
-
-                    <div class="card-info">
-                        <span class="card-titulo">Percentual Concluído</span>
-                    </div>
                 </div>
+
+
             </div>
 
             <div class="card">
@@ -108,18 +116,66 @@
                     <img src="/imagens/pendentes.png" alt="Pendentes">
                 </div>
 
-                <div class="card-infor">
+                <div class="card-info-valor">
                     <span class="card-titulo">Pendentes</span>
                     <span class="card-valor" th:text="${pendentes}">15</span>
                     <span class="card-subtitulo">Processos</span>
                 </div>
             </div>
         </div>
+
+        <div class="linha-valores">
+            <div class="card-resumo">
+                <div class="card-icone-valor">
+                    <img src="/imagens/faltam.png" alt="faltam para meta">
+                </div>
+
+                <div class="card-info-valor">
+                    <span class="card-titulo-valor">Faltam para a meta</span>
+                    <span class="card-numero-valor" th:text="${faltamParaMeta}">38</span>
+                    <span class="card-subtitulo-valor">processos</span>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <div class="card-icone-valor">
+                    <img src="/imagens/valorTotal.png" alt="Valor total Recebido">
+                </div>
+
+                <div class="card-info-valor">
+                    <span class="card-titulo-valor">Valor Total Recebido</span>
+                    <span class="card-numero-valor" th:text="${valorTotalRecebido}">R$248.750,00</span>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <div class="card-icone-valor">
+                    <img src="/imagens/grafico.png" alt="Media por Processo Ganho">
+                </div>
+
+                <div class="card-info-valor">
+                    <span class="card-titulo-valor">Média por Processo Ganho</span>
+                    <span class="card-numero-valor" th:text="${mediaPorProcesso}">R$3.033,54</span>
+                </div>
+            </div>
+
+            <div class="card-resumo">
+                <div class="card-icone-valor">
+                    <img src="/imagens/media.png" alt="Ticket Médio Geral">
+                </div>
+
+                <div class="card-info-valor">
+                    <span class="card-titulo-valor">Ticket Médio Geral</span>
+                    <span class="card-numero-valor" th:text="${ticketMedioGeral}">R$2.281,65/</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script th:inline="javascript"> const percentualConcluido = /*[[${percentualConcluido}]]*/ 68; </script>
+    <script th:inline="javascript"></script>
     <script th:src="@{/js/dashboard.js}"></script>
+    <script th:src="@{/js/chart.js}"></script>
 
 </body>
 </html>
