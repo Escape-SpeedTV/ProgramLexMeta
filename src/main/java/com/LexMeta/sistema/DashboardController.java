@@ -14,9 +14,9 @@ public class DashboardController {
         model.addAttribute("pendentes", 15);
 
         model.addAttribute("faltamParaMeta", 38);
-        model.addAttribute("valorTotalRecebido", 248750.00);
-        model.addAttribute("mediaPorProcesso", 3033.54);
-        model.addAttribute("ticketMedioGeral", 2281.65);
+        model.addAttribute("valorTotalRecebido", "R$248.750,00");
+        model.addAttribute("mediaPorProcesso", "R$3.033,54");
+        model.addAttribute("ticketMedioGeral", "R$2.281,65");
 
         model.addAttribute("meses", new String[]{"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"});
         model.addAttribute("concluidosMensalmente", new int[]{30, 45, 40, 60, 35, 70, 68, 50, 60, 40, 75, 55});

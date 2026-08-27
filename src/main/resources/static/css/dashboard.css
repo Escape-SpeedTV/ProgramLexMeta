@@ -115,8 +115,8 @@ body{
 
 .conteudo{
     margin-left: 260px;
-    margin-top: 90px;
-    padding: 10px 40px;
+    padding: 18px 40px 30px 40px;
+    margin-top: 70px;
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -220,17 +220,20 @@ body{
 }
 
 .boas-vindas{
-    margin-bottom: 40px;
+    margin-bottom: 18px;
 }
 
 .boas-vindas h2{
     font-size: 28px;
     color: #1a1a1a;
+    margin-top: 0;
+    margin-bottom: 4px;
 }
 
 .boas-vindas p{
     font-size: 14px;
     color: #666;
+    margin: 0;
 }
 
 .cards-superiores {
@@ -242,20 +245,20 @@ body{
 
 .card {
     background-color: white;
-    padding: 20px;
+    padding: 14px 16px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    min-height: 140px;
+    gap: 25px;
+    min-height: 98px;
     box-sizing: border-box;
 }
 
 .card-icone{
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     border-radius: 8px;
     font-size: 24px;
     display: flex;
@@ -304,7 +307,7 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 140px;
+    min-height: 98px;
     box-sizing: border-box;
 }
 
@@ -337,22 +340,29 @@ body{
 }
 
 .linha-valores {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+    padding: 0;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     margin-bottom: 30px;
+    min-height: 80px;
 }
 
 .card-resumo {
-    background-color: white;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     display: flex;
     align-items: center;
     gap: 15px;
-    min-height: 105px;
+    width: 25%;
+    padding: 12px 18px;
     box-sizing: border-box;
+
+}
+
+.card-resumo:not(:first-child){
+    border-left: 1px solid #e0e0e0;
 }
 
 .card-resumo .card-icone-valor {
@@ -393,3 +403,23 @@ body{
     color: #999;
 }
 
+.grafico-progresso-mensal{
+    background-color: white;
+    width: 50%;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+}
+
+.grafico-progresso-mensal h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.grafico-area {
+    width: 100%;
+    height: 280px;
+}
