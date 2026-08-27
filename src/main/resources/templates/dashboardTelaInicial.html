@@ -116,7 +116,7 @@
                     <img src="/imagens/pendentes.png" alt="Pendentes">
                 </div>
 
-                <div class="card-info-valor">
+                <div class="card-info">
                     <span class="card-titulo">Pendentes</span>
                     <span class="card-valor" th:text="${pendentes}">15</span>
                     <span class="card-subtitulo">Processos</span>
@@ -170,12 +170,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="grafico-progresso-mensal">
+            <h3>Progresso Mensal</h3>
+            <div class="grafico-area">
+                <canvas id="graficoBarras"></canvas>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script th:inline="javascript"></script>
+<!--    <script th:inline="javascript">-->
+<!--        // const percentualConcluido = /*[[${percentualConcluido}]]*/ 68;-->
+<!--    </script>-->
     <script th:src="@{/js/dashboard.js}"></script>
-    <script th:src="@{/js/chart.js}"></script>
 
 </body>
 </html>
