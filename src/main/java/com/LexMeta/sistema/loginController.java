@@ -11,7 +11,8 @@ public class loginController {
 
     @GetMapping("/")
 
-    public String mostrarTelaLogin(@RequestParam(value = "erro", required = false) String erro, Model model){
+    //Nesse trecho do código, o que está acontecendo, o RequestParam, ele está pegando o valor de erro, e o que significa? Se o usuário digitar a senha ou email inválido, vai aparecer uma mensagem na tela.
+    public String mostrarTelaLogin(@RequestParam(value = "erro", required = false) String erro, Model model){ //O required eu defini que o valor vai ser false, se eu colocar true, o site vai aparecer na tela que a senha ou email estão incorretos, e não queremos isso.
         if (erro != null){
             model.addAttribute("mensagemErro", "E-mail ou senha incorretos.");
         }

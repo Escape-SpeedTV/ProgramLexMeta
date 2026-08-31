@@ -55,3 +55,43 @@ const graficoBarras = new Chart(ctxBarras, {
         }
     }
 });
+
+const ctxLinhas = document.getElementById("graficoLinhas").getContext("2d");
+
+new Chart(ctxLinhas, {
+    type: "line",
+    data: {
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [
+            {
+                label: "Alcançado",
+                data: [20, 25, 40, 55, 70, 65, 80, 85, 90, 75, 95, 100],
+                borderColor: "#005b63",
+                backgroundColor: "rgba(0, 91, 99, 0.1)",
+                fill: true,
+                tension: 0.4,
+                pointRadius: 3
+            },
+            {
+                label: "Meta",
+                data: [40, 40, 50, 60, 70, 70, 85, 90, 95, 95, 100, 105],
+                borderColor: "#e0e0e0",
+                backgroundColor: "transparent",
+                borderDash: [5, 5], // Linha tracejada
+                tension: 0.4,
+                pointRadius: 3
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 125,
+                ticks: { stepSize: 25 }
+            }
+        }
+    }
+});
