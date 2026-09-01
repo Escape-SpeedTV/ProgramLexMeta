@@ -51,7 +51,13 @@
                 <span class="usuario-nome">William Nakano</span>
                 <span class="usuario-cargo">Administrador</span>
             </div>
-            <span class="seta">▼</span> <!--Adicionar depois, uma imagem nesse trecho -->
+            <span class="seta" id="seta-dropdown">▼</span> <!--Adicionar depois, uma imagem nesse trecho -->
+            <div class="dropdown-menu" id="dropdown-menu">
+                <a href="#"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+                <a href="#"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+                <div class="divisoria-dropdown"></div>
+                <a href="/logout" style="color: #d32f2f"> <img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+            </div>
         </div>
     </div>
 
@@ -183,6 +189,66 @@
                 <h3>Evolução da Meta</h3>
                 <div class="grafico-area">
                     <canvas id="graficoLinhas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabela-upload-container">
+            <div class="tabela-card">
+                <h3>Últimos Processos Importados</h3>
+                <div class="tabela-area">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Nº do Processo</th>
+                            <th>Cliente</th>
+                            <th>Status</th>
+                            <th>Valor Recebido</th>
+                            <th>Data do Cadastro</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>0001234-56.2024.8.23.0100</td>
+                            <td>João Silva</td>
+                            <td><span class="status-concluido">Concluído</span></td>
+                            <td>R$ 5.000,00</td>
+                            <td>20/01/2026</td>
+                            <td><span class="mais-opcoes">⋮</span></td>
+                        </tr>
+                        <tr>
+                            <td>0009876-54.2024.8.26.0100</td>
+                            <td>Maria Oliveira</td>
+                            <td><span class="status-andamento">Em Andamento</span></td>
+                            <td>R$ 2.500,00</td>
+                            <td>19/01/2026</td>
+                            <td><span class="mais-opcoes">⋮</span></td>
+                        </tr>
+                        <tr>
+                            <td>0001111-22.2025.8.26.0100</td>
+                            <td>Carlos Souza</td>
+                            <td><span class="status-pendente">Pendente</span></td>
+                            <td>-</td>
+                            <td>18/01/2026</td>
+                            <td><span class="mais-opcoes">⋮</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="ver-todos">
+                    <a href="#">Ver todos os processos</a>
+                </div>
+            </div>
+
+            <div class="upload-card">
+                <h3>Importar PDF</h3>
+                <div class="upload-area">
+                    <img src="/imagens/PDF.png" alt="Upload" class="icone-upload">
+                    <p>Arraste e solte o PDF aqui ou</p>
+                    <button class="botao-upload">Selecionar Arquivo</button>
+                    <p class="texto-limite">Tamanho máximo: 20MB</p>
                 </div>
             </div>
         </div>
