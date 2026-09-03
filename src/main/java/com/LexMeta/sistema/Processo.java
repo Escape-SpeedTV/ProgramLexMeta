@@ -10,7 +10,7 @@ public class Processo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Colomn(nullable = false)
+    @Column(nullable = false)
     private String numeroProcesso;
     private String cliente;
     private String status;
@@ -23,17 +23,43 @@ public class Processo {
     public Long getId(){
         return id;
     }
+    public void setId(Long id){
+        this.id = id;
+    }
 
     public String getNumeroProcesso(){
         return numeroProcesso;
     }
+    public void setNumeroProcesso(String numeroProcesso){
+        this.numeroProcesso = numeroProcesso;
+    }
+
     public String getCliente(){
         return cliente;
     }
+    public void setCliente(String cliente){
+        this.cliente = cliente;
+    }
+
     public String getStatus(){
         return status;
     }
+    public void setStatus(String status){
+        this.status = status;
+    }
+
     public Double getValorRecebido(){
         return valorRecebido;
+    }
+    public void setValorRecebido(Double valorRecebido){
+        this.valorRecebido = valorRecebido;
+    }
+
+    public LocalDate getDataCadastro(){
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro){
+        this.dataCadastro = dataCadastro;
     }
 }

@@ -1,19 +1,33 @@
 package com.LexMeta.sistema;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class DashboardController {
+
+    @Autowired
+    private ProcessoRepository processoRepository;
+
     @GetMapping("/dashboardTelaInicial")
     public String mostrarDashboard(Model model){
-        model.addAttribute("metaTotal", 120);
-        model.addAttribute("percentualConcluido", 68);
-        model.addAttribute("processosConcluidos", 82);
-        model.addAttribute("emAndamento", 23);
-        model.addAttribute("pendentes", 15);
+        long totalProcessos = processoRepository.count();
+        long concluidos = processoRepository.countByStatus("Concluído");
+        long emAndamento = processoRepository.countByStatus("Em Andamento");
+        long pendentes = processoRepository.countByStatus("Pendente");
 
-        model.addAttribute("faltamParaMeta", 38);
+        long percentual = (totalProcessos > 0) ? (concluidos * 100 / totalProcessos) : 0;
+        long faltamParaMeta = (120 - totalProcessos) > 0 ? (120 - totalProcessos) : 0;
+
+        model.addAttribute("metaTotal", totalProcessos);
+        model.addAttribute("percentualConcluido", percentual);
+        model.addAttribute("processosConcluidos", concluidos);
+        model.addAttribute("emAndamento", emAndamento);
+        model.addAttribute("pendentes", pendentes);
+
+        model.addAttribute("faltamParaMeta", faltamParaMeta);
         model.addAttribute("valorTotalRecebido", "R$248.750,00");
         model.addAttribute("mediaPorProcesso", "R$3.033,54");
         model.addAttribute("ticketMedioGeral", "R$2.281,65");
