@@ -1,4 +1,4 @@
-const percentualConcluido = window.percentualConcluido || 68;
+const percentualConcluido = parseInt(document.querySelector('.card-valor-grafico').textContent.replace('%', '')) || 0;
 
 const ctx = document.getElementById("graficoPercentual").getContext("2d");
 
