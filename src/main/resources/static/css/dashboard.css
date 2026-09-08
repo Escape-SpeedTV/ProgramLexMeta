@@ -117,7 +117,8 @@ body{
     margin-left: 260px;
     padding: 18px 40px 30px 40px;
     margin-top: 70px;
-    max-width: 100%;
+    width: calc(100vw - 260px);
+    max-width: none;
     box-sizing: border-box;
 }
 

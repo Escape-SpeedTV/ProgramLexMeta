@@ -65,133 +65,172 @@
         <h2>Começe importando um PDF ou preencha os dados manualmente.</h2>
     </div>
 
-    <div class="stepper">
-        <div class="stepper-item ativo">
-            <span class="stepper-numero">1</span>
-            <span class="stepper-texto">Dados Gerais <br><small>Informações principais</small></span>
-        </div>
-        <div class="stepper-linha"></div>
-        <div class="stepper-item">
-            <span class="stepper-numero">2</span>
-            <span class="stepper-texto">Partes Envolvidos<br><small>Clientes e Advogados</small></span>
-        </div>
-        <div class="stepper-linha"></div>
-        <div class="stepper-item">
-            <span class="stepper-numero">3</span>
-            <span class="stepper-texto">Detalhes do Processo<br><small>Informações processuais</small></span>
-        </div>
-        <div class="stepper-linha"></div>
-        <div class="stepper-item">
-            <span class="stepper-numero">4</span>
-            <span class="stepper-texto">Documentos<br><small>Anexos e arquivos</small></span>
-        </div>
-        <div class="stepper-linha"></div>
-        <div class="stepper-item">
-            <span class="stepper-numero">5</span>
-            <span class="stepper-texto">Revisão<br><small>Confirmar informações</small></span>
-        </div>
-    </div>
-
     <form action="/novo-processo" method="post" th:object="${processo}">
-        <div class="form-container">
-            <div class="form-esquerda">
-                <h3>Informações Principais</h3>
-                <p class="subtitulo-form">Preencha os dados básicos do novo processo.</p>
+        <div class="stepper">
+            <div class="stepper-item ativo" data-etapa="1">
+                <span class="stepper-numero">1</span>
+                <span class="stepper-texto">Dados Gerais<br><small>Informações principais</small></span>
+            </div>
+            <div class="stepper-linha"></div>
+            <div class="stepper-item" data-etapa="2">
+                <span class="stepper-numero">2</span>
+                <span class="stepper-texto">Partes Envolvidos<br><small>Clientes e Advogados</small></span>
+            </div>
+            <div class="stepper-linha"></div>
+            <div class="stepper-item" data-etapa="3">
+                <span class="stepper-numero">3</span>
+                <span class="stepper-texto">Detalhes do Processo<br><small>Informações processuais</small></span>
+            </div>
+            <div class="stepper-linha"></div>
+            <div class="stepper-item" data-etapa="4">
+                <span class="stepper-numero">4</span>
+                <span class="stepper-texto">Documentos<br><small>Anexos e arquivos</small></span>
+            </div>
+            <div class="stepper-linha"></div>
+            <div class="stepper-item" data-etapa="5">
+                <span class="stepper-numero">5</span>
+                <span class="stepper-texto">Revisão<br><small>Confirmar informações</small></span>
+            </div>
+        </div>
 
-                <div class="campo-duplo">
-                    <div class="campo">
-                        <label>Número do Processo <span style="color: red;">*</span></label>
-                        <input type="text" th:field="*{numeroProcesso}" placeholder="Ex: 0001234-56.2024.8.26.0100" required>
-                    </div>
-                    <div class="campo">
-                        <label>Número do Processo (Livre)</label>
-                        <input type="text" placeholder="Ex: 1234567-89.2024.8.26.0100">
-                    </div>
-                </div>
+        <div id="etapa-1" class="etapa-form" style="display: block">
+            <div class="form-container">
+                <div class="form-esquerda">
+                    <h3>Informações Principais</h3>
+                    <p class="subtitulo-form">Preencha os dados básicos do novo processo.</p>
 
-                <div class="campo">
-                    <label>Cliente <span style="color: red;">*</span></label>
-                    <input type="text" th:field="*{cliente}" placeholder="Nome do cliente" required>
-                </div>
-
-                <div class="campo-duplo">
-                    <div class="campo">
-                        <label>Valor da Causa</label>
-                        <div class="campo-valor">
-                            <span>R$</span>
-                            <input type="text" th:field="*{valorRecebido}" placeholder="0,00">
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Número do Processo <span style="color: red;">*</span></label>
+                            <input type="text" th:field="*{numeroProcesso}" placeholder="Ex: 0001234-56.2024.8.26.0100" required>
+                        </div>
+                        <div class="campo">
+                            <label>Número do Processo (Livre)</label>
+                            <input type="text" placeholder="Ex: 1234567-89.2024.8.26.0100">
                         </div>
                     </div>
+
                     <div class="campo">
-                        <label>Data de Distribuição</label>
-                        <input type="date">
+                        <label>Cliente <span style="color: red;">*</span></label>
+                        <input type="text" th:field="*{cliente}" placeholder="Nome do cliente" required>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Valor da Causa</label>
+                            <div class="campo-valor">
+                                <span>R$</span>
+                                <input type="text" th:field="*{valorRecebido}" placeholder="0,00">
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label>Data de Distribuição</label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Vara / Órgão</label>
+                            <input type="text" placeholder="Ex: Vara Cível - Fórum Central">
+                        </div>
+                        <div class="campo">
+                            <label>Data de Cadastro</label>
+                            <input type="date">
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label>Descrição do Caso</label>
+                        <textarea th:field="*{descricao}" rows="5" placeholder="Descreva brevemente o caso, o pedido principal e o contexto do processo..."></textarea>
                     </div>
                 </div>
 
-                <div class="campo-duplo">
-                    <div class="campo">
-                        <label>Vara / Órgão</label>
-                        <input type="text" placeholder="Ex: Vara Cível - Fórum Central">
-                    </div>
-                    <div class="campo">
-                        <label>Data de Cadastro</label>
-                        <input type="date">
-                    </div>
-                </div>
+                <div class="form-direita">
+                    <h3>Classificação</h3>
 
-                <div class="campo">
-                    <label>Descrição do Caso</label>
-                    <textarea th:field="*{descricao}" rows="5" placeholder="Descreva brevemente o caso, o pedido principal e o contexto do processo..."></textarea>
+                    <div class="campo">
+                        <label>Status Inicial <span style="color: red;">*</span></label>
+                        <select th:field="*{status}">
+                            <option value="Em Andamento">Em Andamento</option>
+                            <option value="Concluído">Concluído</option>
+                            <option value="Pendente">Pendente</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Prioridade</label>
+                        <select>
+                            <option value="Média">Média</option>
+                            <option value="Alta">Alta</option>
+                            <option value="Baixa">Baixa</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Responsável <span style="color: red;">*</span></label>
+                        <select th:field="*{responsavel}">
+                            <option value="William Nakano">William Nakano</option>
+                            <option value="Douglas Palatucci">Douglas Palatucci</option>
+                            <option value="Maria Oliveira">Maria Oliveira</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label>Equipe</label>
+                        <input type="text" value="Indisponível no momento" disabled>
+                    </div>
+
+                    <div class="info-box">
+                        <p>Você poderá alterar essas informações posteriormente.</p>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="form-direita">
-                <h3>Classificação</h3>
-
-                <div class="campo">
-                    <label>Status Inicial <span style="color: red;">*</span></label>
-                    <select th:field="*{status}">
-                        <option value="Em Andamento">Em Andamento</option>
-                        <option value="Concluído">Concluído</option>
-                        <option value="Pendente">Pendente</option>
-                    </select>
+        <div id="etapa-2" class="etapa-form" style="display: none;">
+            <div class="form-container">
+                <div class="form-esquerda">
+                    <h3>Autor(es) / Demandante(s)</h3>
                 </div>
-
-                <div class="campo">
-                    <label>Prioridade</label>
-                    <select>
-                        <option value="Média">Média</option>
-                        <option value="Alta">Alta</option>
-                        <option value="Baixa">Baixa</option>
-                    </select>
+                <div class="form-direita">
+                    <h3>Resumo das Partes</h3>
                 </div>
+            </div>
+        </div>
 
-                <div class="campo">
-                    <label>Responsável <span style="color: red;">*</span></label>
-                    <select th:field="*{responsavel}">
-                        <option value="William Nakano">William Nakano</option>
-                        <option value="Douglas Palatucci">Douglas Palatucci</option>
-                        <option value="Maria Oliveira">Maria Oliveira</option>
-                    </select>
+        <div id="etapa-3" class="etapa-form" style="display: none;">
+            <div class="form-container">
+                <div class="form-esquerda">
+                    <h3>Detalhes do Processo</h3>
                 </div>
+            </div>
+        </div>
 
-                <div class="campo">
-                    <label>Equipe</label>
-                    <input type="text" value="Indisponível no momento" disabled>
+        <div id="etapa-4" class="etapa-form" style="display: none;">
+            <div class="form-container">
+                <div class="form-esquerda">
+                    <h3>Documentos</h3>
                 </div>
+            </div>
+        </div>
 
-                <div class="info-box">
-                    <p>Você poderá alterar essas informações posteriormente.</p>
+        <div id="etapa-5" class="etapa-form" style="display: none;">
+            <div class="form-container">
+                <div class="form-esquerda">
+                    <h3>Revisão</h3>
                 </div>
             </div>
         </div>
 
         <div class="form-botoes">
-            <button type="submit" class="botao-salvar">Salvar e continuar →</button>
+            <button type="button" class="botao-voltar" onclick="voltarEtapa()">← Voltar</button>
+            <span id="numero-etapa" style="font-size: 13px; color: #666;">Etapa 1 de 5</span>
+            <button type="button" class="botao-salvar" onclick="proximaEtapa()">Salvar e continuar →</button>
         </div>
     </form>
+
 </div>
 
 <script th:src="@{/js/novo-processo.js}"></script>
 </body>
-</html>
