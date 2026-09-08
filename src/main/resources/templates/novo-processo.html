@@ -190,8 +190,62 @@
 
         <div id="etapa-2" class="etapa-form" style="display: none;">
             <div class="form-container">
-                <div class="form-esquerda">
-                    <h3>Autor(es) / Demandante(s)</h3>
+                <div class="form-esquerda-etapa2">
+                    <div class="bloco-parte">
+                        <h4>Autor(es) / Demandante(s)</h4>
+                        <p class="subtitulo-form">Informe os autores ou demandantes do processo.</p>
+
+                        <div class="campo-duplo">
+                            <div class="campo">
+                                <label>Tipo de Pessoa</label>
+                                <select>
+                                    <option value="Fisica">Física</option>
+                                    <option value="Jurídica">Jurídica</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label>Nome Completo <span style="color: red;">*</span></label>
+                                <input type="text" placeholder="Ex: João da Silva">
+                            </div>
+                            <div class="campo">
+                                <label>CPF</label>
+                                <input type="text" placeholder="Ex: 123.456.789.00">
+                            </div>
+                            <div class="campo-lixeira">
+                                <img src="/imagens/lixeira.webp" alt="Lixeira">
+                            </div>
+                        </div>
+
+                        <button type="button" class="botao-adicionar">+ Adicionar outro autor</button>
+                    </div>
+
+                    <div class="bloco-parte">
+                        <h4>Réu(s) / Demandado(s)</h4>
+                        <p class="subtitulo-form">Informe os réus ou demandados do processo.</p>
+
+                        <div class="campo-duplo">
+                            <div class="campo">
+                                <label>Tipo de Pessoa</label>
+                                <select>
+                                    <option value="Jurídica">Jurídica</option>
+                                    <option value="Física">Física</option>
+                                </select>
+                            </div>
+                            <div class="campo">
+                                <label>Nome / Razão Social <span style="color: red;">*</span></label>
+                                <input type="text" placeholder="Ex: Banco do Brasil S.A.">
+                            </div>
+                            <div class="campo">
+                                <label>CNPJ</label>
+                                <input type="text" placeholder="Ex: 00.000.000/0001-91">
+                            </div>
+                            <div class="campo-lixeira">
+                                <img src="/imagens/lixeira.webp" alt="Lixeira">
+                            </div>
+                        </div>
+
+                        <button type="button" class="botao-adicionar">+ Adicionar outro réu</button>
+                    </div>
                 </div>
                 <div class="form-direita">
                     <h3>Resumo das Partes</h3>
@@ -231,6 +285,6 @@
     </form>
 
 </div>
-
+<script th:src="@{/js/wizard.js}"></script>
 <script th:src="@{/js/novo-processo.js}"></script>
 </body>
