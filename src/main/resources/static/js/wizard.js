@@ -1,5 +1,5 @@
 let etapaAtual = 1;
-const totalEtapas = 5;
+const totalEtapas = 4;
 
 function mostrarEtapa(etapa) {
     document.querySelectorAll('.etapa-form').forEach(div => {
