@@ -115,12 +115,22 @@ textarea:focus {
 }
 
 .campo-duplo {
-    display: flex;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr 40px;
+    gap: 12px;
+    align-items: end;
+    margin-bottom: 15px;
 }
 
 .campo-duplo .campo {
-    flex: 1;
+    margin-bottom: 0;
+}
+
+.campo-duplo .campo-lixeira {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
 }
 
 .campo-valor {
@@ -174,4 +184,337 @@ textarea:focus {
 
 .botao-salvar:hover {
     background-color: #003b45;
+}
+
+.bloco-parte {
+    padding: 0 0 20px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.bloco-parte:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.bloco-parte h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.campo-lixeira {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.icone-excluir {
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+}
+
+.botao-adicionar {
+    background-color: transparent;
+    color: #005b63;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.botao-adicionar:hover {
+    background-color: #f0f7fa;
+}
+
+.resumo-partes {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 30px;
+}
+
+.resumo-partes h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.resumo-item {
+    margin-bottom: 20px;
+}
+
+
+.resumo-item p img {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.campo-lixeira img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.campo-lixeira img:hover {
+    opacity: 1;
+}
+
+.resumo-item p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+}
+
+.resumo-item .resumo-titulo {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.form-container-etapa2 {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: stretch;
+}
+
+.form-esquerda-etapa2 {
+    width: 70%;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form-direita-etapa2 {
+    width: 30%;
+    display: flex;
+}
+
+
+.documentos-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.documentos-esquerda {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.documentos-direita {
+    width: 35%;
+}
+
+.card-upload {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px;
+}
+
+.card-upload h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.card-upload .subtitulo-form {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.area-upload {
+    border: 2px dashed #b0bec5;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fafbfc;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.area-upload:hover {
+    border-color: #005b63;
+    background-color: #f0f7fa;
+}
+
+.area-upload img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.area-upload .titulo-upload {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.area-upload .subtitulo-upload {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.area-upload .info-upload {
+    font-size: 11px;
+    color: #999;
+    margin-top: 15px;
+}
+
+.botao-selecionar-arquivo {
+    background-color: #005b63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.botao-selecionar-arquivo:hover {
+    background-color: #003b45;
+}
+
+.lista-arquivos h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+}
+
+.arquivo-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    background-color: #fafbfc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.arquivo-item .icone-arquivo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.arquivo-item .nome-arquivo {
+    flex: 2;
+    font-size: 13px;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.arquivo-item .tipo-arquivo {
+    flex: 1;
+    font-size: 12px;
+    color: #666;
+}
+
+.arquivo-item .tamanho-arquivo {
+    flex: 1;
+    font-size: 12px;
+    color: #666;
+}
+
+.arquivo-item .data-arquivo {
+    flex: 1;
+    font-size: 12px;
+    color: #666;
+}
+
+.arquivo-item .acoes-arquivo {
+    display: flex;
+    gap: 10px;
+}
+
+.arquivo-item .acoes-arquivo span {
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+}
+
+.arquivo-item .acoes-arquivo span:hover {
+    color: #1a1a1a;
+}
+
+.badge-tipo {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.badge-peticao { background-color: #e3f2fd; color: #1565c0; }
+.badge-comprovante { background-color: #f3e5f5; color: #7b1fa2; }
+.badge-procuracao { background-color: #e8f5e9; color: #2e7d32; }
+.badge-contrato { background-color: #fff3cd; color: #856404; }
+.badge-termo { background-color: #ffebee; color: #c62828; }
+
+.resumo-documentos {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px;
+}
+
+.resumo-documentos h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.resumo-documentos .resumo-item {
+    margin-bottom: 15px;
+}
+
+.resumo-documentos .resumo-titulo {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.resumo-documentos .resumo-valor {
+    font-size: 12px;
+    color: #666;
+    margin-top: 3px;
 }
