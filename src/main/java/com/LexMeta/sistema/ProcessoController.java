@@ -18,12 +18,10 @@ public class ProcessoController {
         return "novo-processo";
     }
 
-    @PostMapping("/noco-processo")
+    @PostMapping("/novo-processo")
     public String salvarProcesso(Processo processo){
         processo.setDataCadastro(java.time.LocalDate.now());
-
         processoRepository.save(processo);
-
         return "redirect:/dashboard";
     }
 }

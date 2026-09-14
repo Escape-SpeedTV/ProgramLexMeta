@@ -91,8 +91,21 @@
         <div id="etapa-1" class="etapa-form" style="display: block">
             <div class="form-container">
                 <div class="form-esquerda">
-                    <h3>Informações Principais</h3>
-                    <p class="subtitulo-form">Preencha os dados básicos do novo processo.</p>
+                    <div class="cabecalho-etapa1">
+                        <div class="titulo-etapa1">
+                            <h3>Informações Principais</h3>
+                            <p class="subtitulo-form">Preencha os dados básicos do novo processo.</p>
+                        </div>
+
+                        <div class="card-importar-pdf">
+                            <img src="/imagens/PDF.png" alt="PDF" class="icone-pdf">
+                            <div class="texto-importar">
+                                <h4>Importar PDF do processo</h4>
+                                <p>Preencha os dados automaticamente a partir do PDF</p>
+                            </div>
+                            <span class="seta-importar">›</span>
+                        </div>
+                    </div>
 
                     <div class="campo-duplo">
                         <div class="campo">
@@ -101,7 +114,7 @@
                         </div>
                         <div class="campo">
                             <label>Número do Processo (Livre)</label>
-                            <input type="text" placeholder="Ex: 1234567-89.2024.8.26.0100">
+                            <input type="text" th:field="*{numeroProcessoLivre}" placeholder="Ex: 1234567-89.2024.8.26.0100">
                         </div>
                     </div>
 
@@ -120,18 +133,18 @@
                         </div>
                         <div class="campo">
                             <label>Data de Distribuição</label>
-                            <input type="date">
+                            <input type="date" th:field="*{dataDistribuicao}">
                         </div>
                     </div>
 
                     <div class="campo-duplo">
                         <div class="campo">
                             <label>Vara / Órgão</label>
-                            <input type="text" placeholder="Ex: Vara Cível - Fórum Central">
+                            <input type="text" th:field="*{varaOrgao}" placeholder="Ex: Vara Cível - Fórum Central">
                         </div>
                         <div class="campo">
                             <label>Data de Cadastro</label>
-                            <input type="date">
+                            <input type="date" th:field="*{dataCadastro}">
                         </div>
                     </div>
 
@@ -147,6 +160,7 @@
                     <div class="campo">
                         <label>Status Inicial <span style="color: red;">*</span></label>
                         <select th:field="*{status}">
+                            <option value="" disabled selected>Selecione o status</option>
                             <option value="Em Andamento">Em Andamento</option>
                             <option value="Concluído">Concluído</option>
                             <option value="Pendente">Pendente</option>
@@ -155,7 +169,8 @@
 
                     <div class="campo">
                         <label>Prioridade</label>
-                        <select>
+                        <select th:field="*{prioridade}">
+                            <option value="" disabled selected>Selecione a prioridade</option>
                             <option value="Média">Média</option>
                             <option value="Alta">Alta</option>
                             <option value="Baixa">Baixa</option>
@@ -165,6 +180,7 @@
                     <div class="campo">
                         <label>Responsável <span style="color: red;">*</span></label>
                         <select th:field="*{responsavel}">
+                            <option value="" disabled selected>Selecione o responsável</option>
                             <option value="William Nakano">William Nakano</option>
                             <option value="Douglas Palatucci">Douglas Palatucci</option>
                             <option value="Maria Oliveira">Maria Oliveira</option>
