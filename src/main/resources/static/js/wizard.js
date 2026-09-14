@@ -37,9 +37,30 @@ function mostrarEtapa(etapa) {
     etapaAtual = etapa;
 }
 
+function validarEtapa(etapa){
+    if(etapa === 1){
+        const numero = document.querySelector('input[name="numeroProcesso"]').value;
+        const cliente = document.querySelector('input[name="cliente"]').value;
+        const status = document.querySelector('select[name="status"]').value;
+        const responsavel = document.querySelector('select[name="responsavel"]').value;
+
+        if(!numero || !cliente || !status ||!responsavel){
+            alert("Preencha todos os campos obrigatórios da Etapa 1 (Número do Processo, Cliente, Status e Responsável).");
+        return false;
+        }
+    }
+
+    if(etapa === 2){
+
+    }
+    return true;
+}
+
 function proximaEtapa() {
-    if (etapaAtual < totalEtapas) {
-        mostrarEtapa(etapaAtual + 1);
+    if(validarEtapa(etapaAtual)){
+        if (etapaAtual < totalEtapas) {
+            mostrarEtapa(etapaAtual + 1);
+        }
     }
 }
 

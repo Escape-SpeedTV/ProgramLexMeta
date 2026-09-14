@@ -12,37 +12,101 @@ public class Processo {
 
     @Column(nullable = false)
     private String numeroProcesso;
+    private String numeroProcessoLivre;
     private String cliente;
     private String status;
+    private String prioridade;
+    private String responsavel;
+    private String varaOrgao;
+    private LocalDate dataDistribuicao;
     private Double valorRecebido;
     private LocalDate dataCadastro;
-    private String descricao;
-    private String responsavel;
 
+    @Column(length = 2000)
+    private String descricao;
     public Processo(){
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId(){
+        return id;
+    }
+    public void setId(Long id){
+        this.id = id;
+    }
 
-    public String getNumeroProcesso() { return numeroProcesso; }
-    public void setNumeroProcesso(String numeroProcesso) { this.numeroProcesso = numeroProcesso; }
+    public String getNumeroProcesso(){
+        return numeroProcesso;
+    }
+    public void setNumeroProcesso(String numeroProcesso){
+        this.numeroProcesso = numeroProcesso;
+    }
 
-    public String getCliente() { return cliente; }
-    public void setCliente(String cliente) { this.cliente = cliente; }
+    public String getNumeroProcessoLivre(){
+        return numeroProcessoLivre;
+    }
+    public void setNumeroProcessoLivre(String numeroProcessoLivre){
+        this.numeroProcessoLivre = numeroProcessoLivre;
+    }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public String getCliente(){
+        return cliente;
+    }
+    public void setCliente(String cliente){
+        this.cliente = cliente;
+    }
 
-    public Double getValorRecebido() { return valorRecebido; }
-    public void setValorRecebido(Double valorRecebido) { this.valorRecebido = valorRecebido; }
+    public String getStatus(){
+        return status;
+    }
+    public void setStatus(String status){
+        this.status = status;
+    }
 
-    public LocalDate getDataCadastro() { return dataCadastro; }
-    public void setDataCadastro(LocalDate dataCadastro) { this.dataCadastro = dataCadastro; }
+    public String getPrioridade(){
+        return prioridade;
+    }
+    public void setPrioridade(String prioridade){
+        this.prioridade = prioridade;
+    }
 
-    public String getDescricao() { return descricao; }
-    public void setDescricao(String descricao) { this.descricao = descricao; }
+    public String getResponsavel(){
+        return responsavel;
+    }
+    public void setResponsavel(String responsavel){
+        this.responsavel = responsavel;
+    }
 
-    public String getResponsavel() { return responsavel; }
-    public void setResponsavel(String responsavel) { this.responsavel = responsavel; }
+    public String getVaraOrgao(){
+        return varaOrgao;
+    }
+    public void setVaraOrgao(String varaOrgao){
+        this.varaOrgao = varaOrgao;}
+
+    public LocalDate getDataDistribuicao(){
+        return dataDistribuicao;
+    }
+    public void setDataDistribuicao(LocalDate dataDistribuicao){
+        this.dataDistribuicao = dataDistribuicao;
+    }
+
+    public Double getValorRecebido(){
+        return valorRecebido;
+    }
+    public void setValorRecebido(Double valorRecebido){
+        this.valorRecebido = valorRecebido;
+    }
+
+    public LocalDate getDataCadastro(){
+        return dataCadastro;
+    }
+    public void setDataCadastro(LocalDate dataCadastro){
+        this.dataCadastro = dataCadastro;
+    }
+
+    public String getDescricao(){
+        return descricao;
+    }
+    public void setDescricao(String descricao){
+        this.descricao = descricao;
+    }
 }

@@ -84,6 +84,66 @@
     margin-bottom: 25px;
 }
 
+.cabecalho-etapa1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.titulo-etapa1 {
+    display: flex;
+    flex-direction: column;
+}
+.card-importar-pdf {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #f0f7fa;
+    border: 1px solid #d0e6ed;
+    border-radius: 12px;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 365px;
+    min-width: 365px;
+    box-sizing: border-box;
+}
+
+.card-importar-pdf:hover {
+    background-color: #e0f2f7;
+    border-color: #005b63;
+}
+
+.card-importar-pdf .icone-pdf {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.card-importar-pdf .texto-importar {
+    flex: 1;
+}
+
+.card-importar-pdf .texto-importar h4 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+}
+
+.card-importar-pdf .texto-importar p {
+    font-size: 13px;
+    color: #666;
+}
+
+.card-importar-pdf .seta-importar {
+    font-size: 20px;
+    color: #005b63;
+    font-weight: bold;
+}
+
 .campo {
     margin-bottom: 20px;
 }
@@ -116,8 +176,8 @@ textarea:focus {
 
 .campo-duplo {
     display: grid;
-    grid-template-columns: 1fr 2fr 1.5fr 40px;
-    gap: 12px;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     align-items: end;
     margin-bottom: 15px;
 }
@@ -517,4 +577,217 @@ textarea:focus {
     font-size: 12px;
     color: #666;
     margin-top: 3px;
+}
+
+
+/*ETAPA 4 - REVISÃO */
+
+.revisao-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.revisao-esquerda {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.revisao-direita {
+    width: 35%;
+}
+
+.card-revisao {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px;
+}
+
+.card-revisao h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.card-revisao .subtitulo-form {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.bloco-revisao {
+    background-color: #fafbfc;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.bloco-revisao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.bloco-revisao-header h4 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.bloco-revisao-header a {
+    font-size: 12px;
+    color: #005b63;
+    text-decoration: none;
+}
+
+.bloco-revisao-header a:hover {
+    text-decoration: underline;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.info-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.info-item .info-titulo {
+    font-size: 11px;
+    color: #999;
+}
+
+.info-item .info-valor {
+    font-size: 13px;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.lista-partes {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-partes li {
+    font-size: 13px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lista-partes li::before {
+    content: "•";
+    color: #005b63;
+    font-weight: bold;
+}
+
+.lista-documentos {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-documentos li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #1a1a1a;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.lista-documentos li img {
+    width: 18px;
+    height: 18px;
+}
+
+.lista-documentos li .tamanho-doc {
+    color: #999;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.resumo-processo {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.resumo-processo h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.resumo-linha {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.resumo-linha .label {
+    color: #666;
+}
+
+.resumo-linha .valor {
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: right;
+}
+
+.status-bolinha {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.status-em-andamento { background-color: #f9a825; }
+.status-concluido { background-color: #2e7d32; }
+.status-pendente { background-color: #c62828; }
+
+.info-box-verde {
+    background-color: #e0f7fa;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.info-box-verde h4 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #006064;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-box-verde p {
+    font-size: 12px;
+    color: #006064;
 }
