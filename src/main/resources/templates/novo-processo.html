@@ -394,9 +394,190 @@
         </div>
 
         <div id="etapa-4" class="etapa-form" style="display: none;">
-            <div class="form-container">
-                <div class="form-esquerda">
-                    <h3>Revisão</h3>
+            <div class="revisao-container">
+                <div class="revisao-esquerda">
+                    <div class="card-revisao">
+                        <h3>Revisão das Informações</h3>
+                        <p class="subtitulo-form">Confira todos os dados antes de finalizar o cadastro do processo.</p>
+
+                        <div class="bloco-revisao">
+                            <div class="bloco-revisao-header">
+                                <h4>Dados Gerais</h4>
+                                <a href="#" onclick="mostrarEtapa(1); return false;">Editar</a>
+                            </div>
+
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-titulo">Número do Processo</span>
+                                    <span class="info-valor">0001234-56.2024.8.26.0100</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Número da Vara</span>
+                                    <span class="info-valor">12345/67</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Prioridade</span>
+                                    <span class="info-valor">Média</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Assunto Principal</span>
+                                    <span class="info-valor">Selecione o assunto principal</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Valor da Causa</span>
+                                    <span class="info-valor">R$ 0,00</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Responsável</span>
+                                    <span class="info-valor">William Nakano</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Vara / Órgão</span>
+                                    <span class="info-valor">Vara Cível - Fórum Central</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Data de Distribuição</span>
+                                    <span class="info-valor">05/09/2026</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Equipe</span>
+                                    <span class="info-valor">Indisponível no momento</span>
+                                </div>
+
+                                <div class="info-item" style="grid-column: span 3;">
+                                    <span class="info-titulo">Descrição do Caso</span>
+                                    <span class="info-valor">Descrição breve do caso aqui...</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Status Inicial</span>
+                                    <span class="info-valor"><span class="status-bolinha status-em-andamento"></span>Em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bloco-revisao">
+                            <div class="bloco-revisao-header">
+                                <h4>Partes e Envolvidos</h4>
+                                <a href="#" onclick="mostrarEtapa(2); return false;">Editar</a>
+                            </div>
+
+                            <div class="info-grid-2">
+                                <div class="info-item">
+                                    <span class="info-titulo">Autor(es) / Demandante(s)</span>
+                                    <ul class="lista-partes">
+                                        <li>João da Silva</li>
+                                    </ul>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Réu(s) / Demandado(s)</span>
+                                    <ul class="lista-partes">
+                                        <li>Banco do Brasil S.A.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="info-item" style="grid-column: span 2;">
+                                    <span class="info-titulo">Advogado(s) Vinculado(s)</span>
+                                    <ul class="lista-partes">
+                                        <li>Maria Oliveira Santos</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="bloco-revisao">
+                            <div class="bloco-revisao-header">
+                                <h4>Documentos</h4>
+                                <a href="#" onclick="mostrarEtapa(3); return false;">Editar</a>
+                            </div>
+
+                            <ul class="lista-documentos">
+                                <li>
+                                    <img src="/imagens/pdf-icon.png" alt="PDF">
+                                    Petição Inicial.pdf
+                                    <span class="tamanho-doc">2.4 MB</span>
+                                </li>
+                                <li>
+                                    <img src="/imagens/pdf.png" alt="PDF">
+                                    Comprovante de Residência.pdf
+                                    <span class="tamanho-doc">1.1 MB</span>
+                                </li>
+                                <li>
+                                    <img src="/imagens/doc.png" alt="DOC">
+                                    Procuração.pdf
+                                    <span class="tamanho-doc">1.8 MB</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="revisao-direita">
+                    <div class="info-box-verde">
+                        <h4>✓ Tudo pronto!</h4>
+                        <p>Revise as informações ao lado. Se estiver tudo correto, clique em <strong>Finalizar e Salvar</strong> para salvar o processo.</p>
+                    </div>
+
+                    <div class="resumo-processo">
+                        <h3>Resumo do Processo</h3>
+
+                        <div class="resumo-linha">
+                            <span class="label">Número do processo</span>
+                            <span class="valor">0001234-56.2024.8.26.0100</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Status</span>
+                            <span class="valor"><span class="status-bolinha status-em-andamento"></span>Em andamento</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Prioridade</span>
+                            <span class="valor">Média</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Última movimentação</span>
+                            <span class="valor">05/09/2026</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Próximo prazo</span>
+                            <span class="valor">15/09/2026</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Próxima audiência</span>
+                            <span class="valor">20/09/2026</span>
+                        </div>
+                    </div>
+
+                    <div class="resumo-processo">
+                        <h3>Documentos e Observações</h3>
+
+                        <div class="info-item">
+                            <span class="info-titulo">Observações</span>
+                            <p style="font-size: 13px; color: #666; margin-top: 5px;">
+                                Adicione informações relevantes sobre o processo, como histórico, detalhes importantes...
+                            </p>
+                        </div>
+
+                        <div class="info-item" style="margin-top: 15px;">
+                            <span class="info-titulo">Última atualização</span>
+                            <p style="font-size: 13px; color: #1a1a1a; font-weight: bold;">05/09/2026 14:32</p>
+                            <p style="font-size: 12px; color: #999;">por William Nakano</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

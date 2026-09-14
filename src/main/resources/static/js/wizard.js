@@ -2,11 +2,17 @@ let etapaAtual = 1;
 const totalEtapas = 4;
 
 function mostrarEtapa(etapa) {
-    document.querySelectorAll('.etapa-form').forEach(div => {
-        div.style.display = 'none';
-    });
+    for (let i = 1; i <= totalEtapas; i++) {
+        const divEtapa = document.getElementById(`etapa-${i}`);
+        if (divEtapa) {
+            divEtapa.style.display = 'none';
+        }
+    }
 
-    document.getElementById(`etapa-${etapa}`).style.display = 'block';
+    const divAtual = document.getElementById(`etapa-${etapa}`);
+    if (divAtual) {
+        divAtual.style.display = 'block';
+    }
 
     document.querySelectorAll('.stepper-item').forEach(item => {
         item.classList.remove('ativo');
@@ -16,6 +22,17 @@ function mostrarEtapa(etapa) {
     });
 
     document.getElementById('numero-etapa').textContent = `Etapa ${etapa} de ${totalEtapas}`;
+
+    const botaoSalvar = document.querySelector('.botao-salvar');
+    if (etapa === totalEtapas) {
+        botaoSalvar.textContent = 'Finalizar e Salvar';
+        botaoSalvar.setAttribute('type', 'submit'); // <- Isso faz o formulário enviar!
+        botaoSalvar.setAttribute('onclick', ''); // Remove o onclick (proximaEtapa)
+    } else {
+        botaoSalvar.textContent = 'Salvar e continuar →';
+        botaoSalvar.setAttribute('type', 'button'); // Volta a ser botão
+        botaoSalvar.setAttribute('onclick', 'proximaEtapa()'); // Volta a avançar
+    }
 
     etapaAtual = etapa;
 }
