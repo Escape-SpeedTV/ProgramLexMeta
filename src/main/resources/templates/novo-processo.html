@@ -128,7 +128,7 @@
                             <label>Valor da Causa</label>
                             <div class="campo-valor">
                                 <span>R$</span>
-                                <input type="text" th:field="*{valorRecebido}" placeholder="0,00">
+                                <input type="text" th:field="*{valorRecebido}" id="valorCausa" placeholder="0,00">
                             </div>
                         </div>
                         <div class="campo">
@@ -160,7 +160,7 @@
                     <div class="campo">
                         <label>Status Inicial <span style="color: red;">*</span></label>
                         <select th:field="*{status}">
-                            <option value="" disabled selected>Selecione o status</option>
+                            <option value="">Selecione o status</option>
                             <option value="Em Andamento">Em Andamento</option>
                             <option value="Concluído">Concluído</option>
                             <option value="Pendente">Pendente</option>
@@ -170,7 +170,7 @@
                     <div class="campo">
                         <label>Prioridade</label>
                         <select th:field="*{prioridade}">
-                            <option value="" disabled selected>Selecione a prioridade</option>
+                            <option value="">Selecione a prioridade</option>
                             <option value="Média">Média</option>
                             <option value="Alta">Alta</option>
                             <option value="Baixa">Baixa</option>
@@ -180,7 +180,7 @@
                     <div class="campo">
                         <label>Responsável <span style="color: red;">*</span></label>
                         <select th:field="*{responsavel}">
-                            <option value="" disabled selected>Selecione o responsável</option>
+                            <option value="">Selecione o responsável</option>
                             <option value="William Nakano">William Nakano</option>
                             <option value="Douglas Palatucci">Douglas Palatucci</option>
                             <option value="Maria Oliveira">Maria Oliveira</option>

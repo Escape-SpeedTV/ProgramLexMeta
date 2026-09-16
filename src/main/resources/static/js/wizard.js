@@ -39,8 +39,8 @@ function mostrarEtapa(etapa) {
 
 function validarEtapa(etapa){
     if(etapa === 1){
-        const numero = document.querySelector('input[name="numeroProcesso"]').value;
-        const cliente = document.querySelector('input[name="cliente"]').value;
+        const numero = document.querySelector('input[name="numeroProcesso"]').value.trim();
+        const cliente = document.querySelector('input[name="cliente"]').value.trim();
         const status = document.querySelector('select[name="status"]').value;
         const responsavel = document.querySelector('select[name="responsavel"]').value;
 
@@ -73,3 +73,24 @@ function voltarEtapa() {
 document.addEventListener('DOMContentLoaded', () => {
     mostrarEtapa(1);
 });
+
+document.addEventListener('DOMContentLoaded', () =>{
+    const campoValor = document.getElementById('valorCausa');
+
+    if (campoValor){
+        campoValor.addEventListener('input', function (e){
+            let valor = e.target.value;
+            valor = valor.replace(/\D/g, '');
+
+            if (valor === ''){
+                e.target.value = '';
+                return;
+            }
+
+            valor = (parseInt(valor, 10) / 100).toFixed(2);
+            valor = valor.replace('.', ',');
+            valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            e.target.value = valor;
+        })
+    }
+})
