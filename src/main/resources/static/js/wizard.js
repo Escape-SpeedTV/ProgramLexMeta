@@ -51,7 +51,71 @@ function validarEtapa(etapa){
     }
 
     if(etapa === 2){
+        const autores = document.querySelectorAll("#lista-autores .autor-item");
+        let autorValido = false;
+        let erroAutor = "";
 
+        autores.forEach((item, index) =>{
+            const nome = item.querySelector(`input[type="text"]`).value.trim();
+            const cpf = item.querySelectorAll(`input[type="text"]`);
+
+            if(!nome){
+                erroAutor = `Preencha o nome do autor ${index + 1}`;
+            }else if (!cpf){
+                erroAutor = `Preencha o CPF do autor ${index + 1}.`;
+            }else {
+                autorValido = true;
+            }
+        });
+
+        if(!autorValido){
+            alert(erroAutor || "Preencha pelo menos um autor.");
+            return false;
+        }
+
+        const reus = document.querySelector("#lista-reus .reu-item");
+        let reuValido = false;
+        let erroReu = "";
+
+        reus.forEach((item, index) =>{
+            const nome = item.querySelector('input[type="text"]').value.trim();
+            const cnpj = item.querySelectorAll('input[type="text"]')[1].value.trim();
+
+            if(!nome){
+                erroReu = `Preencha o nome/razão social do réu ${index + 1}.`;
+            }else if(!cnpj){
+                erroReu = `Preencha o CNPJ do réu ${index + 1}`;
+            }else{
+                reuValido = true;
+            }
+        });
+
+        if(!reuValido){
+            alert(erroReu || "Preencha pelo menos um réu");
+            return false;
+        }
+
+        const advogados = document.querySelector("#lista-advogados, .advogado-item");
+        let advogadoValido = false;
+        let erroAdvogado = '';
+
+        advogados.forEach((item, index) => {
+            const nome = item.querySelector('input[type="text"]').value.trim();
+            const oab = item.querySelectorAll('input[type="text"]')[1].value.trim();
+
+            if(!nome){
+                erroAdvogado = `Preencha o nome do Advogado ${index + 1}.`;
+            }else if (!oab){
+                erroAdvogado = `Preencha o OAB/UF do advogado ${index + 1}`;
+            }else{
+                advogadoValido = true;
+            }
+        });
+
+        if(!advogadoValido){
+            alert(erroAdvogado || "Preencha pelo menos um advogado.");
+            return false;
+        }
     }
     return true;
 }
@@ -94,3 +158,115 @@ document.addEventListener('DOMContentLoaded', () =>{
         })
     }
 })
+
+function adicionarItem(containerId, itemClass, limite, templateHTML){
+    const container = document.getElementById(containerId);
+    if(!container) return;
+
+    const item = container .querySelectorAll("." + itemClass);
+    if(item.length >= limite){
+        alert(`Você já atingiu o limite máximo de ${limite} de pessoas`);
+        return;
+    }
+
+    const novoItem = document.createElement("div");
+    novoItem.classList.add("linha-campos");
+    novoItem.classList.add(itemClass);
+    novoItem.innerHTML = templateHTML;
+
+    container.appendChild(novoItem);
+
+    const lixeira = novoItem.querySelector(".icone-lixeira");
+    if(lixeira){
+        lixeira.style.cursor = "pointer";
+        lixeira.addEventListener("click", () =>{
+            novoItem.remove();
+        });
+    }
+}
+
+const templateAutor = `
+    <div class="campo">
+            <label>Tipo de Pessoa</label>
+            <select>
+                <option value="Física">Física</option>
+                <option value="Jurídica">Jurídica</option>
+            </select>
+        </div>
+        <div class="campo">
+            <label>Nome Completo <span style="color: red;">*</span></label>
+            <input type="text" placeholder="Ex: João da Silva">
+        </div>
+        <div class="campo">
+            <label>CPF</label>
+            <input type="text" placeholder="Ex: 123.456.789.00">
+        </div>
+        <div class="icone-lixeira">
+            <img src="/imagens/lixeira.webp" alt="Lixeira" style="width: 20px; height: 20px; object-fit: contain;">
+        </div>
+    `;
+
+const btnAddAutor = document.getElementById("btn-add-autor");
+if(btnAddAutor){
+    btnAddAutor.addEventListener("click", () => {
+        adicionarItem("lista-autores", "autor-item", 5, templateAutor);
+    });
+}
+
+const templateReu = `
+    <div class="campo">
+        <label>Tipo de Pessoa</label>
+        <select>
+            <option value="Jurídica">Jurídica</option>
+            <option value="Física">Física</option>
+        </select>
+    </div>
+    <div class="campo">
+        <label>Nome / Razão Social <span style="color: red;">*</span></label>
+        <input type="text" placeholder="Ex: Banco do Brasil S.A.">
+    </div>
+    <div class="campo">
+        <label>CNPJ</label>
+        <input type="text" placeholder="Ex: 00.000.000/0001-91">
+    </div>
+    <div class="icone-lixeira">
+        <img src="/imagens/lixeira.webp" alt="Lixeira" style="width: 20px; height: 20px; object-fit: contain;">
+    </div>
+`;
+
+const btnAddReu = document.getElementById("btn-add-reu");
+if(btnAddReu){
+    btnAddReu.addEventListener("click", () =>{
+        adicionarItem("lista-reus", "reu-item", 5, templateReu);
+    })
+}
+
+const templateAdvogado = `
+    <div class="campo">
+            <label>Nome do Advogado <span style="color: red;">*</span></label>
+            <input type="text" placeholder="Ex: Maria Oliveira Santos">
+        </div>
+        <div class="campo">
+            <label>OAB / UF <span style="color: red;">*</span></label>
+            <input type="text" placeholder="Ex: 12345/SP">
+        </div>
+        <div class="campo">
+            <label>Função</label>
+            <select>
+                <option value="">Selecione a função</option>
+                <option value="Procurador">Procurador</option>
+                <option value="Assistente">Assistente</option>
+                <option value="Estagiário">Estagiário</option>
+            </select>
+        </div>
+        <div class="icone-lixeira">
+            <img src="/imagens/lixeira.webp" alt="Lixeira" style="width: 20px; height: 20px; object-fit: contain;">
+        </div>
+`;
+
+const btnAddAdvogado = document.getElementById("btn-add-advogado");
+if(btnAddAdvogado){
+    btnAddAdvogado.addEventListener("click", () =>{
+        adicionarItem("lista-advogados", "advogado-item", 5, templateAdvogado);
+    });
+}

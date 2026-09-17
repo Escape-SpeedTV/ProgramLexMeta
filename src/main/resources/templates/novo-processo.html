@@ -201,92 +201,98 @@
 
         <div id="etapa-2" class="etapa-form" style="display: none;">
             <div class="form-container-etapa2">
-
                 <div class="form-esquerda-etapa2">
-                    <div class="bloco-parte">
+                    <div class="bloco-parte" id="bloco-autores">
                         <h4>Autor(es) / Demandante(s)</h4>
                         <p class="subtitulo-form">Informe os autores ou demandantes do processo.</p>
 
-                        <div class="campo-duplo">
-                            <div class="campo">
-                                <label>Tipo de Pessoa</label>
-                                <select>
-                                    <option value="Fisica">Física</option>
-                                    <option value="Jurídica">Jurídica</option>
-                                </select>
-                            </div>
-                            <div class="campo">
-                                <label>Nome Completo <span style="color: red;">*</span></label>
-                                <input type="text" placeholder="Ex: João da Silva">
-                            </div>
-                            <div class="campo">
-                                <label>CPF</label>
-                                <input type="text" placeholder="Ex: 123.456.789.00">
-                            </div>
-                            <div class="campo-lixeira">
-                                <img src="/imagens/lixeira.webp" alt="Lixeira">
+                        <div id="lista-autores">
+                            <div class="linha-campos autor-item">
+                                <div class="campo">
+                                    <label>Tipo de Pessoa</label>
+                                    <select>
+                                        <option value="Fisica">Física</option>
+                                        <option value="Jurídica">Jurídica</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label>Nome Completo <span style="color: red;">*</span></label>
+                                    <input type="text" placeholder="Ex: João da Silva">
+                                </div>
+                                <div class="campo">
+                                    <label>CPF</label>
+                                    <input type="text" placeholder="Ex: 123.456.789.00">
+                                </div>
+                                <div class="campo-lixeira">
+                                    <img src="/imagens/lixeira.webp" alt="Lixeira">
+                                </div>
                             </div>
                         </div>
 
-                        <button type="button" class="botao-adicionar">+ Adicionar outro autor</button>
+                        <button type="button" class="botao-adicionar" id="btn-add-autor">+ Adicionar outro autor</button>
                     </div>
 
-                    <div class="bloco-parte">
+                    <div class="bloco-parte" id="bloco-reus">
                         <h4>Réu(s) / Demandado(s)</h4>
                         <p class="subtitulo-form">Informe os réus ou demandados do processo.</p>
 
-                        <div class="campo-duplo">
-                            <div class="campo">
-                                <label>Tipo de Pessoa</label>
-                                <select>
-                                    <option value="Jurídica">Jurídica</option>
-                                    <option value="Física">Física</option>
-                                </select>
-                            </div>
-                            <div class="campo">
-                                <label>Nome / Razão Social <span style="color: red;">*</span></label>
-                                <input type="text" placeholder="Ex: Banco do Brasil S.A.">
-                            </div>
-                            <div class="campo">
-                                <label>CNPJ</label>
-                                <input type="text" placeholder="Ex: 00.000.000/0001-91">
-                            </div>
-                            <div class="campo-lixeira">
-                                <img src="/imagens/lixeira.webp" alt="Lixeira">
+                        <div id="lista-reus">
+                            <div class="linha-campos reu-item">
+                                <div class="campo">
+                                    <label>Tipo de Pessoa</label>
+                                    <select>
+                                        <option value="Jurídica">Jurídica</option>
+                                        <option value="Física">Física</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label>Nome / Razão Social <span style="color: red;">*</span></label>
+                                    <input type="text" placeholder="Ex: Banco do Brasil S.A.">
+                                </div>
+                                <div class="campo">
+                                    <label>CNPJ</label>
+                                    <input type="text" placeholder="Ex: 00.000.000/0001-91">
+                                </div>
+                                <div class="campo-lixeira">
+                                    <img src="/imagens/lixeira.webp" alt="Lixeira">
+                                </div>
                             </div>
                         </div>
 
-                        <button type="button" class="botao-adicionar">+ Adicionar outro réu</button>
+                        <button type="button" class="botao-adicionar" id="btn-add-reu">+ Adicionar outro réu</button>
                     </div>
 
-                    <div class="bloco-parte">
-                        <h4>Advogado(s) Vinculado(s)</h4>
+                    <div class="bloco-parte" id="bloco-advogados">
+                        <h4>Advoga
+                            do(s) Vinculado(s)</h4>
                         <p class="subtitulo-form">Informe os advogados responsável pelo processo.</p>
 
-                        <div class="campo-duplo">
-                            <div class="campo">
-                                <label>Nome do Advogado <span style="color: red;">*</span></label>
-                                <input type="text" placeholder="Ex: Maria Oliveira Santos">
-                            </div>
-                            <div class="campo">
-                                <label>OAB / UF <span style="color: red;">*</span></label>
-                                <input type="text" placeholder="Ex: 12345/SP">
-                            </div>
-                            <div class="campo">
-                                <label>Função</label>
-                                <select>
-                                    <option value="">Selecione a função</option>
-                                    <option value="Procurador">Procurador</option>
-                                    <option value="Assistente">Assistente</option>
-                                    <option value="Estagiário">Estagiário</option>
-                                </select>
-                            </div>
-                            <div class="campo-lixeira">
-                                <img src="/imagens/lixeira.webp" alt="Lixeira">
+                        <div id="lista-advogados">
+                            <div class="linha-campos advogado-item">
+                                <div class="campo">
+                                    <label>Nome do Advogado <span style="color: red;">*</span></label>
+                                    <input type="text" placeholder="Ex: Maria Oliveira Santos">
+                                </div>
+                                <div class="campo">
+                                    <label>OAB / UF <span style="color: red;">*</span></label>
+                                    <input type="text" placeholder="Ex: 12345/SP">
+                                </div>
+                                <div class="campo">
+                                    <label>Função</label>
+                                    <select>
+                                        <option value="">Selecione a função</option>
+                                        <option value="Procurador">Procurador</option>
+                                        <option value="Assistente">Assistente</option>
+                                        <option value="Estagiário">Estagiário</option>
+                                    </select>
+                                </div>
+                                <div class="campo-lixeira">
+                                    <img src="/imagens/lixeira.webp" alt="Lixeira">
+                                </div>
                             </div>
                         </div>
 
-                        <button type="button" class="botao-adicionar">+ Adicionar outro advogado</button>
+                        <button type="button" class="botao-adicionar" id="btn-add-advogado">+ Adicionar outro advogado</button>
                     </div>
                 </div>
 
