@@ -19,7 +19,7 @@ public class Processo {
     private String responsavel;
     private String varaOrgao;
     private LocalDate dataDistribuicao;
-    private Double valorRecebido;
+    private String valorRecebido;
     private LocalDate dataCadastro;
 
     @Column(length = 2000)
@@ -89,10 +89,10 @@ public class Processo {
         this.dataDistribuicao = dataDistribuicao;
     }
 
-    public Double getValorRecebido(){
+    public String getValorRecebido(){
         return valorRecebido;
     }
-    public void setValorRecebido(Double valorRecebido){
+    public void setValorRecebido(String valorRecebido){
         this.valorRecebido = valorRecebido;
     }
 
