@@ -335,7 +335,8 @@
                             <img src="/imagens/PDF.png" alt="Upload">
                             <p class="titulo-upload">Arraste e solte os arquivos aqui</p>
                             <p class="subtitulo-upload">ou clique para selecionar</p>
-                            <button type="button" class="botao-selecionar-arquivo">
+                            <input type="file" id="input-arquivo" multiple accept=".pdf, .jpg, .jpeg, .png, .doc, .docx" style="display: none;">
+                            <button type="button" class="botao-selecionar-arquivo" id="btn-selecionar">
                                 <span>⬆</span> Selecionar arquivos
                             </button>
                             <p class="info-upload">Formatos aceitos: PDF, JPG, PNG, DOC, DOCX | Tamanho máximo: 10MB por arquivo</p>
@@ -343,45 +344,8 @@
                     </div>
 
                     <div class="card-upload lista-arquivos">
-                        <h4>Arquivos anexados (3)</h4>
-
-                        <div class="arquivo-item">
-                            <img src="/imagens/pdf-icon.png" alt="PDF" class="icone-arquivo">
-                            <span class="nome-arquivo">Petição Inicial.pdf</span>
-                            <span class="tipo-arquivo"><span class="badge-tipo badge-peticao">Petição</span></span>
-                            <span class="tamanho-arquivo">2.4 MB</span>
-                            <span class="data-arquivo">05/09/2026 14:32</span>
-                            <span class="acoes-arquivo">
-                        <span>👁</span>
-                        <span>⬇</span>
-                        <span>⋮</span>
-                    </span>
-                        </div>
-
-                        <div class="arquivo-item">
-                            <img src="/imagens/pdf-icon.png" alt="PDF" class="icone-arquivo">
-                            <span class="nome-arquivo">Comprovante de Residência.pdf</span>
-                            <span class="tipo-arquivo"><span class="badge-tipo badge-comprovante">Comprovante</span></span>
-                            <span class="tamanho-arquivo">1.1 MB</span>
-                            <span class="data-arquivo">05/09/2026 14:33</span>
-                            <span class="acoes-arquivo">
-                        <span>👁</span>
-                        <span>⬇</span>
-                        <span>⋮</span>
-                    </span>
-                        </div>
-
-                        <div class="arquivo-item">
-                            <img src="/imagens/pendentes.png" alt="DOC" class="icone-arquivo">
-                            <span class="nome-arquivo">Procuração.pdf</span>
-                            <span class="tipo-arquivo"><span class="badge-tipo badge-procuracao">Procuração</span></span>
-                            <span class="tamanho-arquivo">1.8 MB</span>
-                            <span class="data-arquivo">05/09/2026 14:34</span>
-                            <span class="acoes-arquivo">
-                        <span>👁</span>
-                        <span>⬇</span>
-                        <span>⋮</span>
-                    </span>
+                        <h4 id="titulo-arquivos">Arquivos anexados (0)</h4>
+                        <div class="lista-arquivos">
                         </div>
                     </div>
                 </div>
@@ -391,7 +355,7 @@
                         <h3>Resumo dos Documentos</h3>
 
                         <div class="resumo-item">
-                            <p class="resumo-titulo">3 arquivos anexados</p>
+                            <p class="resumo-titulo" id="resumo-contador">0 arquivos anexados</p>
                         </div>
 
                         <div class="resumo-item">

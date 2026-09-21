@@ -174,14 +174,6 @@ textarea:focus {
     outline: none;
 }
 
-/*.campo-duplo {*/
-/*    display: grid;*/
-/*    grid-template-columns: 1fr 1fr;*/
-/*    gap: 15px;*/
-/*    align-items: end;*/
-/*    margin-bottom: 15px;*/
-/*}*/
-
 .autor-item, .reu-item, .advogado-item {
     margin-bottom: 15px;
     padding-bottom: 15px;
@@ -192,26 +184,6 @@ textarea:focus {
     border-bottom: none;
     padding-bottom: 0;
 }
-
-/*.campo-lixeira {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    height: 45px;*/
-/*    cursor: pointer;*/
-/*}*/
-
-/*.campo-lixeira img {*/
-/*    width: 20px;*/
-/*    height: 20px;*/
-/*    object-fit: contain;*/
-/*    opacity: 0.5;*/
-/*    transition: opacity 0.2s;*/
-/*}*/
-
-/*.campo-lixeira img:hover {*/
-/*    opacity: 1;*/
-/*}*/
 
 .campo-duplo .campo {
     margin-bottom: 0;
@@ -579,6 +551,7 @@ textarea:focus {
 .badge-procuracao { background-color: #e8f5e9; color: #2e7d32; }
 .badge-contrato { background-color: #fff3cd; color: #856404; }
 .badge-termo { background-color: #ffebee; color: #c62828; }
+.badge-outro { background-color: #e0e0e0; color: #616161; }
 
 .resumo-documentos {
     background-color: white;
