@@ -22,6 +22,6 @@ public class ProcessoController {
     public String salvarProcesso(Processo processo){
         processo.setDataCadastro(java.time.LocalDate.now());
         processoRepository.save(processo);
-        return "redirect:/dashboard";
+        return "redirect:/dashboardTelaInicial";
     }
 }

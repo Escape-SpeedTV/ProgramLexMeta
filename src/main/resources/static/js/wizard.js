@@ -26,14 +26,13 @@ function mostrarEtapa(etapa) {
     const botaoSalvar = document.querySelector('.botao-salvar');
     if (etapa === totalEtapas) {
         botaoSalvar.textContent = 'Finalizar e Salvar';
-        botaoSalvar.setAttribute('type', 'submit'); // <- Isso faz o formulário enviar!
-        botaoSalvar.setAttribute('onclick', ''); // Remove o onclick (proximaEtapa)
-    } else {
+        // botaoSalvar.setAttribute('type', 'submit'); // <- Isso faz o formulário enviar!
+        // botaoSalvar.removeAttribute('onclick'); // Remove o onclick (proximaEtapa)
+    }else {
         botaoSalvar.textContent = 'Salvar e continuar →';
-        botaoSalvar.setAttribute('type', 'button'); // Volta a ser botão
-        botaoSalvar.setAttribute('onclick', 'proximaEtapa()'); // Volta a avançar
+        // botaoSalvar.setAttribute('type', 'button'); // Volta a ser botão
+        // botaoSalvar.setAttribute('onclick', 'proximaEtapa()'); // Volta a avançar
     }
-
     etapaAtual = etapa;
 }
 
@@ -127,6 +126,8 @@ function proximaEtapa() {
     if(validarEtapa(etapaAtual)){
         if (etapaAtual < totalEtapas) {
             mostrarEtapa(etapaAtual + 1);
+        }else{
+            document.querySelector("form").submit();
         }
     }
 }
@@ -282,11 +283,19 @@ document.addEventListener("DOMContentLoaded", () =>{
     const tituloArquivos = document.getElementById("titulo-arquivos");
     const resumoContador = document.getElementById("resumo-contador");
 
+    if (!areaUpload || !inputArquivo || !listaArquivos) {
+        console.log('Upload não inicializado: elementos não encontrados nesta página.');
+        return;
+    }
+
     let arquivos = [];
 
-    if(areaUpload){
-        areaUpload.addEventListener("click", () => inputArquivo.click());
-    }
+    areaUpload.addEventListener("click", (e) =>{
+        if(e.target.tagName !== "BUTTON"){
+            inputArquivo.click();
+        }
+    });
+
     if(btnSelecionar){
         btnSelecionar.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -294,28 +303,52 @@ document.addEventListener("DOMContentLoaded", () =>{
         });
     }
 
-    if(inputArquivo){
-        inputArquivo.addEventListener("change", (e) =>{
-            const novosArquivos = Array.from(e.target.files);
-
-            novosArquivos.forEach(arquivo =>{
-                if(arquivo.size > 10 * 1024 * 1024){
-                    alert(`O arquivo "${arquivo.name}" excede o tamanho máximo de 10MB.`);
-                    return;
-                }
-
-                arquivos.push(arquivo);
-                adicionarArquivoNaLista(arquivo);
-            });
-
-            atualizarContadores();
-            inputArquivo.value = "";
+    inputArquivo.addEventListener("change", (e) => {
+        const novosArquivos = Array.from(e.target.files);
+        novosArquivos.forEach(arquivo =>{
+            if(arquivo.size > 10 * 1024 * 1024){
+                alert(`O arquivo "${arquivo.name}" excede o tamanho máximo de 10MB.`);
+                return;
+            }
+            arquivos.push(arquivo);
+            adicionarArquivoNaLista(arquivo);
         });
-    }
+        atualizarContadores();
+        inputArquivo.value = "";
+    });
+
+    ["dragenter", "dragover"].forEach(evento =>{
+        areaUpload.addEventListener(evento, (e) => {
+            e.preventDefault();
+            areaUpload.style.backgroundColor = "#e0f2f7";
+        });
+    });
+
+    ["dragleave", "drop"].forEach(evento =>{
+        areaUpload.addEventListener(evento, (e) => {
+            e.preventDefault();
+            areaUpload.style.backgroundColor = "";
+        });
+    });
+
+    areaUpload.addEventListener("drop", (e) =>{
+        const arquivosDrop = Array.from(e.dataTransfer.files);
+        arquivosDrop.forEach(arquivo => {
+            if(arquivo.size > 10 * 1024 * 1024){
+                alert(`O arquivo "${arquivo.name}" excede o tamanho máximo de 10MB.`);
+                return;
+            }
+            arquivos.push(arquivo);
+            adicionarArquivoNaLista(arquivo);
+        });
+        atualizarContadores();
+    });
+
+
 
     function adicionarArquivoNaLista(arquivo){
         const extensao= arquivo.name.split(".").pop().toLocaleLowerCase();
-        const tipo = detectarTipo(arquivo.name, extensao);
+        const tipo = detectarTipo(arquivo.name);
 
         const item = document.createElement("div");
         item.className = "arquivo-item";
@@ -355,16 +388,16 @@ document.addEventListener("DOMContentLoaded", () =>{
         const nomeLower = nome.toLowerCase();
         if(nomeLower.includes("peti")) return { nome: "Petição", classe: "peticao"};
         if(nomeLower.includes("comprovante")) return {nome: "Comprovante", classe: "comprovante"};
-        if(nomeLower.includes("procura")) return {nome: "Procuração", classe: "procura"};
+        if(nomeLower.includes("procura")) return {nome: "Procuração", classe: "procuracao"};
         if(nomeLower.includes("contrato")) return {nome: "Contrato", classe: "contrato"};
         if(nomeLower.includes("termo")) return {nome: "Termo", classe: "termo"};
         return {nome: "Outro", classe: "outro"};
     }
 
     function formatarTamanho(bytes){
-        if(bytes <1024) return bytes + " B";
+        if(bytes < 1024) return bytes + " B";
         if(bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-        return (bytes / 1024 * 1024).toFixed(1) + " MB";
+        return (bytes / (1024 * 1024)).toFixed(1) + " MB";
     }
 
     function atualizarContadores(){

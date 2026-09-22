@@ -65,7 +65,7 @@
         <h2>Começe importando um PDF ou preencha os dados manualmente.</h2>
     </div>
 
-    <form action="/novo-processo" method="post" th:object="${processo}">
+    <form id="form-processo" action="/novo-processo" method="post" th:object="${processo}" enctype="multipart/form-data">
         <div class="stepper">
             <div class="stepper-item ativo" data-etapa="1">
                 <span class="stepper-numero">1</span>
@@ -331,7 +331,7 @@
                         <h3>Documentos</h3>
                         <p class="subtitulo-form">Adicione os arquivos relacionados ao processo. Você pode enviar vários documentos de uma só vez.</p>
 
-                        <div class="area-upload">
+                        <div class="area-upload" id="area-upload">
                             <img src="/imagens/PDF.png" alt="Upload">
                             <p class="titulo-upload">Arraste e solte os arquivos aqui</p>
                             <p class="subtitulo-upload">ou clique para selecionar</p>
@@ -345,7 +345,7 @@
 
                     <div class="card-upload lista-arquivos">
                         <h4 id="titulo-arquivos">Arquivos anexados (0)</h4>
-                        <div class="lista-arquivos">
+                        <div class="lista-arquivos" id="lista-arquivos">
                         </div>
                     </div>
                 </div>
@@ -494,12 +494,12 @@
                                     <span class="tamanho-doc">2.4 MB</span>
                                 </li>
                                 <li>
-                                    <img src="/imagens/pdf.png" alt="PDF">
+                                    <img src="/imagens/PDF.png" alt="PDF">
                                     Comprovante de Residência.pdf
                                     <span class="tamanho-doc">1.1 MB</span>
                                 </li>
                                 <li>
-                                    <img src="/imagens/doc.png" alt="DOC">
+                                    <img src="/imagens/pendentes.png" alt="DOC">
                                     Procuração.pdf
                                     <span class="tamanho-doc">1.8 MB</span>
                                 </li>
