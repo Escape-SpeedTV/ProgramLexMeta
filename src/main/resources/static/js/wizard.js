@@ -9,6 +9,10 @@ function mostrarEtapa(etapa) {
         }
     }
 
+    if (etapa === totalEtapas){
+        popularRevisao();
+    }
+
     const divAtual = document.getElementById(`etapa-${etapa}`);
     if (divAtual) {
         divAtual.style.display = 'block';
@@ -406,3 +410,38 @@ document.addEventListener("DOMContentLoaded", () =>{
         if (resumoContador) resumoContador.textContent = `${total} arquivo${total !== 1 ? "s" : ""} anexado${total !== 1 ? "s" : ""}`;
     }
 });
+
+function popularRevisao(){
+    const numeroProcessos = document.getElementById("campoNumeroProcesso")?.value || '-';
+    const numeroProcessoLivre = document.getElementById("campoNumeroProcessoLivre")?.value || '-';
+    const cliente = document.getElementById("campoCliente")?.value || '-';
+    const valorCausa = document.getElementById("valorCausa")?.value || "R$0.00";
+    const dataDistribuicao = document.getElementById("campoDataDistribuicao")?.value || '-';
+    const varaOrgao = document.getElementById("campoVaraOrgao")?.value || '-';
+    const descricao = document.getElementById("campoDescricao")?.value || '-';
+    const status = document.getElementById("campoStatus")?.value || '-';
+    const prioridade = document.getElementById("campoPrioridade")?.value || '-';
+    const responsavel = document.getElementById("campoResponsavel")?.value || '-';
+
+
+    document.getElementById("revisaoNumeroProcesso").textContent = numeroProcessos;
+    document.getElementById("revisaoCliente").textContent = cliente;
+    document.getElementById("revisaoValorCausa").textContent = "R$" + valorCausa;
+    document.getElementById("revisaoDataDistribuicao").textContent = formatarData(dataDistribuicao);
+    document.getElementById("revisaoVaraOrgao").textContent = varaOrgao;
+    document.getElementById("revisaoDescricao").textContent = descricao;
+    document.getElementById("revisaoPrioridade").textContent = prioridade;
+    document.getElementById("revisaoResponsavel").textContent = responsavel;
+    document.getElementById("revisaoStatus").textContent = status;
+
+    document.getElementById("resumoNumeroProcesso").textContent = numeroProcessos
+    document.getElementById("resumoStatus").textContent = status;
+    document.getElementById("resumoPrioridade").textContent = prioridade;
+    document.getElementById("resumoResponsavel").textContent = responsavel;
+}
+
+function formatarData(dataISO){
+    if(!dataISO) return '-';
+    const [ano, mes, dia] = dataISO.split('-');
+    return `${dia}/${mes}/${ano}`;
+}
