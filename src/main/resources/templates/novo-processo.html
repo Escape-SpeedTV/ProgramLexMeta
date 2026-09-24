@@ -459,22 +459,22 @@
                             <div class="info-grid-2">
                                 <div class="info-item">
                                     <span class="info-titulo">Autor(es) / Demandante(s)</span>
-                                    <ul class="lista-partes">
+                                    <ul class="lista-partes" id="revisaoAutores">
                                         <li id="revisaoCliente">-</li>
                                     </ul>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Réu(s) / Demandado(s)</span>
-                                    <ul class="lista-partes">
-                                        <li>Banco do Brasil S.A.</li>
+                                    <ul class="lista-partes" id="revisaoReus">
+                                        <li>-</li>
                                     </ul>
                                 </div>
 
                                 <div class="info-item" style="grid-column: span 2;">
                                     <span class="info-titulo">Advogado(s) Vinculado(s)</span>
-                                    <ul class="lista-partes">
-                                        <li>Maria Oliveira Santos</li>
+                                    <ul class="lista-partes" id="revisaoAdvogados">
+                                        <li>-</li>
                                     </ul>
                                 </div>
 
@@ -487,7 +487,7 @@
                                 <a href="#" onclick="mostrarEtapa(3); return false;">Editar</a>
                             </div>
 
-                            <ul class="lista-documentos">
+                            <ul class="lista-documentos" id="revisaoDocumentos">
                                 <li>
                                     <img src="/imagens/pdf-icon.png" alt="PDF">
                                     Petição Inicial.pdf
