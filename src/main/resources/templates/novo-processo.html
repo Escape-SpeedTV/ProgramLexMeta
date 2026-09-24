@@ -110,17 +110,17 @@
                     <div class="campo-duplo">
                         <div class="campo">
                             <label>Número do Processo <span style="color: red;">*</span></label>
-                            <input type="text" th:field="*{numeroProcesso}" placeholder="Ex: 0001234-56.2024.8.26.0100" required>
+                            <input type="text" th:field="*{numeroProcesso}" id="campoNumeroProcesso" placeholder="Ex: 0001234-56.2024.8.26.0100" required>
                         </div>
                         <div class="campo">
                             <label>Número do Processo (Livre)</label>
-                            <input type="text" th:field="*{numeroProcessoLivre}" placeholder="Ex: 1234567-89.2024.8.26.0100">
+                            <input type="text" th:field="*{numeroProcessoLivre}" id="campoNumeroProcessoLivre" placeholder="Ex: 1234567-89.2024.8.26.0100">
                         </div>
                     </div>
 
                     <div class="campo">
                         <label>Cliente <span style="color: red;">*</span></label>
-                        <input type="text" th:field="*{cliente}" placeholder="Nome do cliente" required>
+                        <input type="text" th:field="*{cliente}" id="campoCliente" placeholder="Nome do cliente" required>
                     </div>
 
                     <div class="campo-duplo">
@@ -133,14 +133,14 @@
                         </div>
                         <div class="campo">
                             <label>Data de Distribuição</label>
-                            <input type="date" th:field="*{dataDistribuicao}">
+                            <input type="date" th:field="*{dataDistribuicao}" id="campoDataDistribuicao">
                         </div>
                     </div>
 
                     <div class="campo-duplo">
                         <div class="campo">
                             <label>Vara / Órgão</label>
-                            <input type="text" th:field="*{varaOrgao}" placeholder="Ex: Vara Cível - Fórum Central">
+                            <input type="text" th:field="*{varaOrgao}" id="campoVaraOrgao" placeholder="Ex: Vara Cível - Fórum Central">
                         </div>
                         <div class="campo">
                             <label>Data de Cadastro</label>
@@ -150,7 +150,7 @@
 
                     <div class="campo">
                         <label>Descrição do Caso</label>
-                        <textarea th:field="*{descricao}" rows="5" placeholder="Descreva brevemente o caso, o pedido principal e o contexto do processo..."></textarea>
+                        <textarea th:field="*{descricao}" rows="5" id="campoDescricao" placeholder="Descreva brevemente o caso, o pedido principal e o contexto do processo..."></textarea>
                     </div>
                 </div>
 
@@ -159,7 +159,7 @@
 
                     <div class="campo">
                         <label>Status Inicial <span style="color: red;">*</span></label>
-                        <select th:field="*{status}">
+                        <select th:field="*{status}" id="campoStatus">
                             <option value="">Selecione o status</option>
                             <option value="Em Andamento">Em Andamento</option>
                             <option value="Concluído">Concluído</option>
@@ -169,7 +169,7 @@
 
                     <div class="campo">
                         <label>Prioridade</label>
-                        <select th:field="*{prioridade}">
+                        <select th:field="*{prioridade}" id="campoPrioridade">
                             <option value="">Selecione a prioridade</option>
                             <option value="Média">Média</option>
                             <option value="Alta">Alta</option>
@@ -179,7 +179,7 @@
 
                     <div class="campo">
                         <label>Responsável <span style="color: red;">*</span></label>
-                        <select th:field="*{responsavel}">
+                        <select th:field="*{responsavel}" id="campoResponsavel">
                             <option value="">Selecione o responsável</option>
                             <option value="William Nakano">William Nakano</option>
                             <option value="Douglas Palatucci">Douglas Palatucci</option>
@@ -395,7 +395,7 @@
                             <div class="info-grid">
                                 <div class="info-item">
                                     <span class="info-titulo">Número do Processo</span>
-                                    <span class="info-valor">0001234-56.2024.8.26.0100</span>
+                                    <span class="info-valor" id="revisaoNumeroProcesso">-</span>
                                 </div>
 
                                 <div class="info-item">
@@ -405,7 +405,7 @@
 
                                 <div class="info-item">
                                     <span class="info-titulo">Prioridade</span>
-                                    <span class="info-valor">Média</span>
+                                    <span class="info-valor" id="revisaoPrioridade">-</span>
                                 </div>
 
                                 <div class="info-item">
@@ -415,22 +415,22 @@
 
                                 <div class="info-item">
                                     <span class="info-titulo">Valor da Causa</span>
-                                    <span class="info-valor">R$ 0,00</span>
+                                    <span class="info-valor" id="revisaoValorCausa">-</span>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Responsável</span>
-                                    <span class="info-valor">William Nakano</span>
+                                    <span class="info-valor" id="revisaoResponsavel">-</span>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Vara / Órgão</span>
-                                    <span class="info-valor">Vara Cível - Fórum Central</span>
+                                    <span class="info-valor" id="revisaoVaraOrgao">-</span>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Data de Distribuição</span>
-                                    <span class="info-valor">05/09/2026</span>
+                                    <span class="info-valor" id="revisaoDataDistribuicao">-</span>
                                 </div>
 
                                 <div class="info-item">
@@ -440,12 +440,12 @@
 
                                 <div class="info-item" style="grid-column: span 3;">
                                     <span class="info-titulo">Descrição do Caso</span>
-                                    <span class="info-valor">Descrição breve do caso aqui...</span>
+                                    <span class="info-valor" id="revisaoDescricao">-</span>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Status Inicial</span>
-                                    <span class="info-valor"><span class="status-bolinha status-em-andamento"></span>Em andamento</span>
+                                    <span class="info-valor"><span class="status-bolinha status-em-andamento"></span><span id="revisaoStatus">-</span></span>
                                 </div>
                             </div>
                         </div>
@@ -459,22 +459,22 @@
                             <div class="info-grid-2">
                                 <div class="info-item">
                                     <span class="info-titulo">Autor(es) / Demandante(s)</span>
-                                    <ul class="lista-partes">
-                                        <li>João da Silva</li>
+                                    <ul class="lista-partes" id="revisaoAutores">
+                                        <li id="revisaoCliente">-</li>
                                     </ul>
                                 </div>
 
                                 <div class="info-item">
                                     <span class="info-titulo">Réu(s) / Demandado(s)</span>
-                                    <ul class="lista-partes">
-                                        <li>Banco do Brasil S.A.</li>
+                                    <ul class="lista-partes" id="revisaoReus">
+                                        <li>-</li>
                                     </ul>
                                 </div>
 
                                 <div class="info-item" style="grid-column: span 2;">
                                     <span class="info-titulo">Advogado(s) Vinculado(s)</span>
-                                    <ul class="lista-partes">
-                                        <li>Maria Oliveira Santos</li>
+                                    <ul class="lista-partes" id="revisaoAdvogados">
+                                        <li>-</li>
                                     </ul>
                                 </div>
 
@@ -487,7 +487,7 @@
                                 <a href="#" onclick="mostrarEtapa(3); return false;">Editar</a>
                             </div>
 
-                            <ul class="lista-documentos">
+                            <ul class="lista-documentos" id="revisaoDocumentos">
                                 <li>
                                     <img src="/imagens/pdf-icon.png" alt="PDF">
                                     Petição Inicial.pdf
@@ -519,17 +519,22 @@
 
                         <div class="resumo-linha">
                             <span class="label">Número do processo</span>
-                            <span class="valor">0001234-56.2024.8.26.0100</span>
+                            <span class="valor" id="resumoNumeroProcesso">-</span>
                         </div>
 
                         <div class="resumo-linha">
                             <span class="label">Status</span>
-                            <span class="valor"><span class="status-bolinha status-em-andamento"></span>Em andamento</span>
+                            <span class="valor"><span class="status-bolinha status-em-andamento"></span><span id="resumoStatus">-</span></span>
                         </div>
 
                         <div class="resumo-linha">
                             <span class="label">Prioridade</span>
-                            <span class="valor">Média</span>
+                            <span class="valor" id="resumoPrioridade">-</span>
+                        </div>
+
+                        <div class="resumo-linha">
+                            <span class="label">Responsável</span>
+                            <span class="valor" id="resumoResponsavel">-</span>
                         </div>
 
                         <div class="resumo-linha">
