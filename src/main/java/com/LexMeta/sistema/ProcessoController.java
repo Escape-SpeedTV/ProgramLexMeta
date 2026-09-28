@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import java.util.List;
 
 @Controller
 public class ProcessoController {
@@ -23,5 +24,12 @@ public class ProcessoController {
         processo.setDataCadastro(java.time.LocalDate.now());
         processoRepository.save(processo);
         return "redirect:/dashboardTelaInicial";
+    }
+
+    @GetMapping("/processos")
+    public String listarProcessos(Model model){
+        List<Processo> processos = processoRepository.findAll();
+        model.addAttribute("processos", processos);
+        return "processos";
     }
 }
