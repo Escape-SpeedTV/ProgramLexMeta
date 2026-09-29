@@ -68,28 +68,28 @@
             <div class="card-processo">
                 <div class="card-processo-info">
                     <span class="card-processo-titulo">Total de Processos</span>
-                    <span class="card-processo-numero" th:text="${processos.size()}">0</span>
+                    <span class="card-processo-numero" th:text="${totalProcessos}">0</span>
                     <span class="card-processo-subtitulo">Todos os processos</span>
                 </div>
             </div>
             <div class="card-processo">
                 <div class="card-processo-info">
                     <span class="card-processo-titulo">Em Andamento</span>
-                    <span class="card-processo-numero">82</span>
+                    <span class="card-processo-numero" th:text="${emAndamento}">0</span>
                     <span class="card-processo-subtitulo">Em andamento</span>
                 </div>
             </div>
             <div class="card-processo">
                 <div class="card-processo-info">
                     <span class="card-processo-titulo">Pendentes</span>
-                    <span class="card-processo-numero">15</span>
+                    <span class="card-processo-numero" th:text="${pendentes}">0</span>
                     <span class="card-processo-subtitulo">Pendentes</span>
                 </div>
             </div>
             <div class="card-processo">
                 <div class="card-processo-info">
                     <span class="card-processo-titulo">Concluídos</span>
-                    <span class="card-processo-numero">23</span>
+                    <span class="card-processo-numero" th:text="${concluidos}">0</span>
                     <span class="card-processo-subtitulo">Concluídos</span>
                 </div>
             </div>
@@ -165,6 +165,48 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="paginacao">
+            <div class="paginacao-info">
+                Mostrando
+                <strong th:text="${(paginaAtual - 1) * itensPorPagina + 1}">1</strong>
+                a
+                <strong th:text="${paginaAtual * itensPorPagina > totalProcessos ? totalProcessos : paginaAtual * itensPorPagina}">7</strong>
+                de
+                <strong th:text="${totalProcessos}">18</strong>
+                processos
+            </div>
+
+            <div class="paginacao-controles">
+                <a th:href="@{/processos(pagina=${paginaAtual - 1}, itensPorPagina=${itensPorPagina})}"
+                   th:classappend="${paginaAtual == 1} ? 'desabilitado'"
+                   class="botao-pagina">
+                    ‹
+                </a>
+
+                <a th:each="i : ${#numbers.sequence(1, totalPaginas)}"
+                   th:href="@{/processos(pagina=${i}, itensPorPagina=${itensPorPagina})}"
+                   th:text="${i}"
+                   th:classappend="${i == paginaAtual} ? 'ativo'"
+                   class="botao-pagina">
+                </a>
+
+                <a th:href="@{/processos(pagina=${paginaAtual + 1}, itensPorPagina=${itensPorPagina})}"
+                   th:classappend="${paginaAtual == totalPaginas} ? 'desabilitado'"
+                   class="botao-pagina">
+                    ›
+                </a>
+            </div>
+
+            <div class="paginacao-itens">
+                Itens por página:
+                <select id="select-itens-por-pagina">
+                    <option value="7" th:selected="${itensPorPagina == 7}">7</option>
+                    <option value="14" th:selected="${itensPorPagina == 14}">14</option>
+                    <option value="21" th:selected="${itensPorPagina == 21}">21</option>
+                </select>
+            </div>
         </div>
     </div>
 
