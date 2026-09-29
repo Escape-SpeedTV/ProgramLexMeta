@@ -85,3 +85,12 @@ const dropdownMenu = document.getElementById("dropdown-menu");
 setaDropdown.addEventListener("click", function () {
     dropdownMenu.classList.toggle("aberto");
 });
+
+document.addEventListener("DOMContentLoaded", function(){
+    const select = document.getElementById("select-itens-por-pagina");
+    if(select){
+        select.addEventListener("change", function (){
+            window.location.href = '/processos?pagina=1&itensPorPagina=' + this.value;
+        });
+    }
+});

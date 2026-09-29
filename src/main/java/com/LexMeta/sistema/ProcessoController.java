@@ -5,6 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 @Controller
@@ -27,9 +32,27 @@ public class ProcessoController {
     }
 
     @GetMapping("/processos")
-    public String listarProcessos(Model model){
-        List<Processo> processos = processoRepository.findAll();
-        model.addAttribute("processos", processos);
+    public String listarProcessos
+            (@RequestParam(value = "pagina", defaultValue = "1") int pagina,
+             @RequestParam(value = "itensPorPagina", defaultValue = "7") int itensPorPagina, Model model){
+        Page<Processo> paginaProcessos = processoRepository.findAll(
+                PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataCadastro").descending())
+        );
+
+        long totalProcessos = processoRepository.count();
+        long emAndamento = processoRepository.countByStatus("Em Andamento");
+        long pendentes = processoRepository.countByStatus("Pendente");
+        long concluidos = processoRepository.countByStatus("Concluído");
+
+        model.addAttribute("processos", paginaProcessos.getContent());
+        model.addAttribute("paginaAtual", pagina);
+        model.addAttribute("totalPaginas", paginaProcessos.getTotalPages());
+        model.addAttribute("totalProcessos", totalProcessos);
+        model.addAttribute("emAndamento", emAndamento);
+        model.addAttribute("pendentes", pendentes);
+        model.addAttribute("concluidos", concluidos);
+        model.addAttribute("itensPorPagina", itensPorPagina);
+
         return "processos";
     }
 }
