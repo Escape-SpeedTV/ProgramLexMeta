@@ -103,7 +103,12 @@
         </div>
 
         <div class="filtros">
-            <select><option>Todos os status</option></select>
+            <select id="filtro-status">
+                <option value="">Todos os status</option>
+                <option value="Em Andamento" th:selected="${statusFiltro == 'Em Andamento'}">Em Andamento</option>
+                <option value="Concluído" th:selected="${statusFiltro == 'Concluído'}">Concluído</option>
+                <option value="Pendente" th:selected="${statusFiltro == 'Pendente'}">Pendente</option>
+            </select>
             <select><option>Todas as áreas</option></select>
             <select><option>Todos os responsáveis</option></select>
             <select><option>Data de cadastro</option></select>
@@ -210,6 +215,6 @@
         </div>
     </div>
 
-    <script th:src="@{/js/dashboard.js}"></script>
+    <script th:href="@{/processos(pagina=${paginaAtual - 1}, itensPorPagina=${itensPorPagina}, status=${statusFiltro})}"></script>
 </body>
 </html>
