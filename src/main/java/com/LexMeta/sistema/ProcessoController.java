@@ -34,10 +34,17 @@ public class ProcessoController {
     @GetMapping("/processos")
     public String listarProcessos
             (@RequestParam(value = "pagina", defaultValue = "1") int pagina,
-             @RequestParam(value = "itensPorPagina", defaultValue = "7") int itensPorPagina, Model model){
-        Page<Processo> paginaProcessos = processoRepository.findAll(
-                PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataCadastro").descending())
-        );
+             @RequestParam(value = "itensPorPagina", defaultValue = "7") int itensPorPagina,
+             @RequestParam(value = "status", required = false) String status, Model model){
+        Page<Processo> paginaProcessos;
+
+        if (status != null && !status.isEmpty()) {
+            paginaProcessos = processoRepository.findByStatus(status, PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataCadastro").descending())
+            );
+        } else {
+            paginaProcessos = processoRepository.findAll(PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataCadastro").descending())
+            );
+        }
 
         long totalProcessos = processoRepository.count();
         long emAndamento = processoRepository.countByStatus("Em Andamento");
@@ -52,6 +59,7 @@ public class ProcessoController {
         model.addAttribute("pendentes", pendentes);
         model.addAttribute("concluidos", concluidos);
         model.addAttribute("itensPorPagina", itensPorPagina);
+        model.addAttribute("statusFiltro", status);
 
         return "processos";
     }
