@@ -12,6 +12,12 @@ public interface ProcessoRepository extends JpaRepository<Processo, Long> {
     long countByStatusContaining(String status);
 
     Page<Processo> findByStatus(String status, Pageable pageable);
+
+    Page<Processo> findByResponsavel(String responsavel, Pageable pageable);
+
+    Page<Processo> findByStatusAndResponsavel(String status, String responsavel, Pageable pageable);
+
+    Page<Processo> findByNumeroProcessoContainingIgnoreCaseOrClienteContainingIgnoreCase(String numeroProcesso, String cliente, Pageable pageable);
 }
 
 

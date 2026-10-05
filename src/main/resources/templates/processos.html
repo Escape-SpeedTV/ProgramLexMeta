@@ -60,8 +60,12 @@
     </div>
 
     <div class="conteudo">
+
         <div class="barra-busca">
-            <input type="text" placeholder="Buscar Processos, Clientes, Números..." id="campoBusca">
+            <input type="text"
+                   placeholder="Buscar Processos, Clientes, Números..."
+                   id="campoBusca"
+                   th:value="${buscaFiltro}">
         </div>
 
         <div class="cards-processos">
@@ -108,6 +112,7 @@
                 <option value="Em Andamento" th:selected="${statusFiltro == 'Em Andamento'}">Em Andamento</option>
                 <option value="Concluído" th:selected="${statusFiltro == 'Concluído'}">Concluído</option>
                 <option value="Pendente" th:selected="${statusFiltro == 'Pendente'}">Pendente</option>
+                <option value="Arquivado" th:selected="${statusFiltro == 'Arquivado'}">Arquivado</option>
             </select>
             <select><option>Todas as áreas</option></select>
             <select><option>Todos os responsáveis</option></select>
@@ -184,20 +189,20 @@
             </div>
 
             <div class="paginacao-controles">
-                <a th:href="@{/processos(pagina=${paginaAtual - 1}, itensPorPagina=${itensPorPagina})}"
+                <a th:href="@{/processos(pagina=${paginaAtual - 1}, itensPorPagina=${itensPorPagina}, status=${statusFiltro}, responsavel=${responsavelFiltro}, busca=${buscaFiltro})}"
                    th:classappend="${paginaAtual == 1} ? 'desabilitado'"
                    class="botao-pagina">
                     ‹
                 </a>
 
                 <a th:each="i : ${#numbers.sequence(1, totalPaginas)}"
-                   th:href="@{/processos(pagina=${i}, itensPorPagina=${itensPorPagina})}"
+                   th:href="@{/processos(pagina=${i}, itensPorPagina=${itensPorPagina}, status=${statusFiltro}, responsavel=${responsavelFiltro}, busca=${buscaFiltro})}"
                    th:text="${i}"
                    th:classappend="${i == paginaAtual} ? 'ativo'"
                    class="botao-pagina">
                 </a>
 
-                <a th:href="@{/processos(pagina=${paginaAtual + 1}, itensPorPagina=${itensPorPagina})}"
+                <a th:href="@{/processos(pagina=${paginaAtual + 1}, itensPorPagina=${itensPorPagina}, status=${statusFiltro}, responsavel=${responsavelFiltro}, busca=${buscaFiltro})}"
                    th:classappend="${paginaAtual == totalPaginas} ? 'desabilitado'"
                    class="botao-pagina">
                     ›
@@ -215,6 +220,5 @@
         </div>
     </div>
 
-    <script th:href="@{/processos(pagina=${paginaAtual - 1}, itensPorPagina=${itensPorPagina}, status=${statusFiltro})}"></script>
-</body>
+    <script th:src="@{/js/processos.js}"></script></body>
 </html>
