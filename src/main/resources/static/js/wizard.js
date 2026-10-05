@@ -10,15 +10,17 @@ function mostrarEtapa(etapa) {
     }
 
     if (etapa === totalEtapas){
-        popularRevisao();
+        popularRevisao(); //Nesse trecho, eu chamo a "popularRevisao" para mostrar no final da pagina, no caso, a revisão.
     }
 
+
+    //Esse trecho, ele vai atualizar a interface do usuário.
     const divAtual = document.getElementById(`etapa-${etapa}`);
     if (divAtual) {
-        divAtual.style.display = 'block';
+        divAtual.style.display = 'block'; //Aqui é para mostrar o elemento na tela.
     }
 
-    document.querySelectorAll('.stepper-item').forEach(item => {
+    document.querySelectorAll('.stepper-item').forEach(item => { //O stepper-item, ele  é um indicador de progresso, no caso, ele vai mostrar quantas etapas tem.
         item.classList.remove('ativo');
         if (parseInt(item.dataset.etapa) === etapa) {
             item.classList.add('ativo');
@@ -41,26 +43,26 @@ function mostrarEtapa(etapa) {
 }
 
 function validarEtapa(etapa){
-    if(etapa === 1){
-        const numero = document.querySelector('input[name="numeroProcesso"]').value.trim();
+    if(etapa === 1){ //Apartir daqui, todas as informações no processo, elas possuem validade, se algum estiver vazio, o usuário não consegue avançar.
+        const numero = document.querySelector('input[name="numeroProcesso"]').value.trim(); //QuerySelector, eu estou pegando o elemento pelo o nome dele! Esse trim, ele serve para remover espaços em branco, facilitando o programa a entender o que o usuário digitou.
         const cliente = document.querySelector('input[name="cliente"]').value.trim();
         const status = document.querySelector('select[name="status"]').value;
         const responsavel = document.querySelector('select[name="responsavel"]').value;
 
-        if(!numero || !cliente || !status ||!responsavel){
+        if(!numero || !cliente || !status ||!responsavel){ //Aqui é um pouco diferente do que conhecemos, se alguma condição dessa for verdadeira (se estiver vazio), ele entra no if, se retornar falsa (todas as condições estarem preenchidas) ele pula o if.
             alert("Preencha todos os campos obrigatórios da Etapa 1 (Número do Processo, Cliente, Status e Responsável).");
-        return false;
+        return false; //Aqui, eu estou fazendo com que o código se repita naquele trecho especifico.
         }
     }
 
     if(etapa === 2){
-        const autores = Array.from(document.querySelectorAll('#lista-autores .autor-item'));
+        const autores = Array.from(document.querySelectorAll('#lista-autores .autor-item')); //Esse trecho, estou transformando tudo que o usuário digitar em uma array. Por que isso? Se eu não colocar, ele vai me retornar uma NodeList, assim, eu não consigo usar um map, filter, find e sort...
         let autorValido = false;
-        let erroAutor = '';
+        let erroAutor = ''; //Eu criei essa variável, para que quando der algum erro, eu jogar nela, e apresentar ao usuário.
 
-        autores.forEach((item, index) => {
+        autores.forEach((item, index) => { //Nesse trecho, eu estou percorrendo cada elemento dentro da array. E alem, estou usando um arrowFunction, Obs: Só não usamos arrow Function, quando precisamos do "this" do próprio elemento.
             const inputs = item.querySelectorAll('input[type="text"]');
-            const nome = inputs[0] ? inputs[0].value.trim() : '';
+            const nome = inputs[0] ? inputs[0].value.trim() : ''; //Nesse trecho, eu estou
             const cpf = inputs[1] ? inputs[1].value.trim() : '';
 
             if (!nome) {
