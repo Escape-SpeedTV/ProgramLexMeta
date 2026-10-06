@@ -47,6 +47,30 @@ document.addEventListener('DOMContentLoaded', function() { //Esse trecho, eu est
             }, 500);
         });
     }
+
+    function fecharTodosMenus(){
+        document.querySelectorAll(".dropdown-acoes").forEach(menu =>{
+            menu.classList.remove('aberto');
+        });
+    }
+
+    window.toggleMenuAcoes = function (elemento){
+        const menu = elemento.nextElementSibling;
+        const estaAberto = menu.classList.contains("aberto");
+        fecharTodosMenus();
+
+        if(!estaAberto){
+            menu.classList.add("aberto");
+        }
+
+    };
+
+
+    document.addEventListener("click", function (event){
+        if(!event.target.closest(".menu-acoes")){
+            fecharTodosMenus();
+        }
+    })
 });
 
 

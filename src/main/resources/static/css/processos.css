@@ -258,3 +258,67 @@ tr:hover {
     font-size: 13px;
     cursor: pointer;
 }
+
+.menu-acoes {
+    position: relative;
+    display: inline-block;
+}
+
+.mais-opcoes {
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    user-select: none;
+}
+
+.mais-opcoes:hover {
+    background-color: #f0f0f0;
+    color: #1a1a1a;
+}
+
+.dropdown-acoes {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    padding: 8px;
+    min-width: 200px;
+    z-index: 100;
+    text-align: left;
+}
+
+.dropdown-acoes.aberto {
+    display: block;
+}
+
+.dropdown-acoes a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.dropdown-acoes a:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-acoes a span {
+    font-size: 14px;
+    width: 16px;
+    text-align: center;
+}
+
+.divisoria-acoes {
+    border-top: 1px solid #e5e7eb;
+    margin: 5px 0;
+}
