@@ -3,12 +3,11 @@ package com.LexMeta.sistema;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -81,5 +80,15 @@ public class ProcessoController {
         model.addAttribute("buscaFiltro", busca);
 
         return "processos";
+    }
+
+    @GetMapping("/processos/{id}")
+    public String visualizarProcesso(@PathVariable Long id, Model model) {
+        Processo processo = processoRepository.findById(id).orElse(null);
+        if (processo == null) {
+            return "redirect:/processos";
+        }
+        model.addAttribute("processo", processo);
+        return "visualizar-processo";
     }
 }
