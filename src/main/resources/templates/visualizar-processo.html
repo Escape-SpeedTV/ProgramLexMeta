@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Visualizar Processo</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/visualizar-processo.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img src="/imagens/palatucci.png" alt="Escudo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li class="ativo"><a href="/processos">Processos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/configuracoes">Configurações</a></li>
+    </ul>
+
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo">Agosto / 2026</div>
+        <div class="meta-numero">120 Processos</div>
+        <button>Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="titulo-secao">
+        <h1>Visualizar Processo</h1>
+        <p>Detalhes completos do processo.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome">William Nakano</span>
+            <span class="usuario-cargo">Administrador</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a href="#"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a href="#"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+
+    <div class="processo-header">
+        <div>
+            <h2 th:text="${processo.numeroProcesso}">0001234-56.2024.8.26.0100</h2>
+            <p th:text="${processo.varaOrgao} ?: 'Vara não informada'">Vara Cível - Fórum Central</p>
+        </div>
+        <div class="processo-acoes">
+            <a th:href="@{/processos}" class="botao-voltar">← Voltar</a>
+            <a th:href="@{/processos/editar/{id}(id=${processo.id})}" class="botao-editar">✏️ Editar</a>
+        </div>
+    </div>
+
+    <div class="card-processo">
+        <h3>Dados Gerais</h3>
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-titulo">Cliente</span>
+                <span class="info-valor" th:text="${processo.cliente}">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Status</span>
+                <span class="info-valor" th:text="${processo.status}">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Prioridade</span>
+                <span class="info-valor" th:text="${processo.prioridade} ?: 'Não informada'">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Responsável</span>
+                <span class="info-valor" th:text="${processo.responsavel}">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Vara / Órgão</span>
+                <span class="info-valor" th:text="${processo.varaOrgao} ?: 'Não informado'">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Data de Distribuição</span>
+                <span class="info-valor" th:text="${processo.dataDistribuicao != null ? #temporals.format(processo.dataDistribuicao, 'dd/MM/yyyy') : 'Não informada'}">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Valor da Causa</span>
+                <span class="info-valor" th:text="${processo.valorRecebido} ?: 'R$ 0,00'">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Data de Cadastro</span>
+                <span class="info-valor" th:text="${processo.dataCadastro != null ? #temporals.format(processo.dataCadastro, 'dd/MM/yyyy') : '-'}">-</span>
+            </div>
+        </div>
+
+        <div class="info-item" style="margin-top: 20px;">
+            <span class="info-titulo">Descrição do Caso</span>
+            <span class="info-valor" th:text="${processo.descricao} ?: 'Sem descrição'">-</span>
+        </div>
+    </div>
+
+    <div class="card-processo">
+        <h3>Partes Envolvidas</h3>
+        <div class="info-grid-2">
+            <div class="info-item">
+                <span class="info-titulo">Autor(es) / Demandante(s)</span>
+                <ul class="lista-partes">
+                    <li th:each="doc : ${processo.documentos}" th:if="${doc.tipo == 'Autor'}">-</li>
+                    <li>-</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Réu(s) / Demandado(s)</span>
+                <ul class="lista-partes">
+                    <li>-</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-processo">
+        <h3>Documentos Anexados</h3>
+        <ul class="lista-documentos">
+            <li th:each="doc : ${processo.documentos}">
+                <img src="/imagens/pdf-icon.png" alt="Documento">
+                <span th:text="${doc.nomeArquivo}">-</span>
+                <span class="tamanho-doc" th:text="${doc.tamanho}">-</span>
+            </li>
+            <li th:if="${processo.documentos == null or processo.documentos.isEmpty()}">
+                Nenhum documento anexado.
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script th:src="@{/js/processos.js}"></script>
+</body>
+</html>

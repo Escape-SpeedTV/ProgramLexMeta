@@ -1,0 +1,149 @@
+.processo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 20px 25px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.processo-header h2 {
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.processo-header p {
+    font-size: 13px;
+    color: #666;
+}
+
+.processo-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.botao-voltar,
+.botao-editar {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.botao-voltar {
+    background-color: white;
+    color: #1a1a1a;
+    border: 1px solid #e0e0e0;
+}
+
+.botao-voltar:hover {
+    background-color: #f0f0f0;
+}
+
+.botao-editar {
+    background-color: #005b63;
+    color: white;
+    border: none;
+}
+
+.botao-editar:hover {
+    background-color: #003b45;
+}
+
+.card-processo {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card-processo h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.info-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-titulo {
+    font-size: 12px;
+    color: #999;
+}
+
+.info-valor {
+    font-size: 14px;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.lista-partes {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-partes li {
+    font-size: 13px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.lista-partes li::before {
+    content: "•";
+    color: #005b63;
+    font-weight: bold;
+}
+
+.lista-documentos {
+    list-style: none;
+    padding-left: 0;
+}
+
+.lista-documentos li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #1a1a1a;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.lista-documentos li img {
+    width: 18px;
+    height: 18px;
+}
+
+.lista-documentos li .tamanho-doc {
+    margin-left: auto;
+    color: #999;
+    font-size: 12px;
+}
