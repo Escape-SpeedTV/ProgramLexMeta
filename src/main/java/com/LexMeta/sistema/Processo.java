@@ -2,6 +2,8 @@ package com.LexMeta.sistema;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "processos")
@@ -24,6 +26,11 @@ public class Processo {
 
     @Column(length = 2000)
     private String descricao;
+
+    @OneToMany(mappedBy = "processo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Documento> documentos = new ArrayList<>();
+
+
     public Processo(){
     }
 
@@ -108,5 +115,13 @@ public class Processo {
     }
     public void setDescricao(String descricao){
         this.descricao = descricao;
+    }
+
+    public List<Documento> getDocumentos() {
+        return documentos;
+    }
+
+    public void setDocumentos(List<Documento> documentos) {
+        this.documentos = documentos;
     }
 }

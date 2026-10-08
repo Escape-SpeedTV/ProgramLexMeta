@@ -120,8 +120,10 @@
             <div class="info-item">
                 <span class="info-titulo">Autor(es) / Demandante(s)</span>
                 <ul class="lista-partes">
-                    <li th:each="doc : ${processo.documentos}" th:if="${doc.tipo == 'Autor'}">-</li>
-                    <li>-</li>
+                    <li th:if="${processo.documentos == null or processo.documentos.isEmpty()}">-</li>
+                    <li th:each="doc : ${processo.documentos}"
+                        th:if="${processo.documentos != null and doc.tipo == 'Autor'}"
+                        th:text="${doc.nomeArquivo}">-</li>
                 </ul>
             </div>
             <div class="info-item">
@@ -136,13 +138,14 @@
     <div class="card-processo">
         <h3>Documentos Anexados</h3>
         <ul class="lista-documentos">
-            <li th:each="doc : ${processo.documentos}">
+            <li th:if="${processo.documentos == null or processo.documentos.isEmpty()}">
+                Nenhum documento anexado.
+            </li>
+            <li th:each="doc : ${processo.documentos}"
+                th:if="${processo.documentos != null}">
                 <img src="/imagens/pdf-icon.png" alt="Documento">
                 <span th:text="${doc.nomeArquivo}">-</span>
                 <span class="tamanho-doc" th:text="${doc.tamanho}">-</span>
-            </li>
-            <li th:if="${processo.documentos == null or processo.documentos.isEmpty()}">
-                Nenhum documento anexado.
             </li>
         </ul>
     </div>
