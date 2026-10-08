@@ -167,12 +167,8 @@
                         <div class="menu-acoes">
                             <span class="mais-opcoes" onclick="toggleMenuAcoes(this)">⋮</span>
                             <div class="dropdown-acoes">
-                                <a href="@{/processos/{id}(id=${processo.id})}">
-                                    <span>👁</span> Visualizar processo
-                                </a>
-
-                                <a href="#">
-                                    <span>✏️</span> Editar Processo
+                                <a th:href="@{/processos/{id}(id=${processo.id})}">
+                                    <span>👁</span> Visualizar/Editar processo
                                 </a>
                                 <div class="divisoria-acoes"></div>
                                 <a href="#" onclick="return confirm('Tem certeza que deseja excluir este processo?')" style="color: #d32f2f;">

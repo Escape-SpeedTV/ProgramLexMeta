@@ -65,6 +65,16 @@ document.addEventListener('DOMContentLoaded', function() { //Esse trecho, eu est
 
     };
 
+    document.querySelectorAll('.link-excluir').forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const id = this.getAttribute('data-id');
+            if (confirm('Tem certeza que deseja excluir este processo?')) {
+                window.location.href = '/processos/excluir/' + id;
+            }
+        });
+    });
+
 
     document.addEventListener("click", function (event){
         if(!event.target.closest(".menu-acoes")){

@@ -91,4 +91,10 @@ public class ProcessoController {
         model.addAttribute("processo", processo);
         return "visualizar-processo";
     }
+
+    @GetMapping("/processos/excluir/{id}")
+    public String excluirProcesso(@PathVariable Long id){
+        processoRepository.deleteById(id);
+        return "redirect:/processos";
+    }
 }
