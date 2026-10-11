@@ -45,12 +45,12 @@ function mostrarEtapa(etapa) {
 function validarEtapa(etapa){
     if(etapa === 1){ //Apartir daqui, todas as informações no processo, elas possuem validade, se algum estiver vazio, o usuário não consegue avançar.
         const numero = document.querySelector('input[name="numeroProcesso"]').value.trim(); //QuerySelector, eu estou pegando o elemento pelo o nome dele! Esse trim, ele serve para remover espaços em branco, facilitando o programa a entender o que o usuário digitou.
-        const cliente = document.querySelector('input[name="cliente"]').value.trim();
+        const assunto = document.querySelector('input[name="assuntoPrincipal"]').value;
         const status = document.querySelector('select[name="status"]').value;
         const responsavel = document.querySelector('select[name="responsavel"]').value;
 
-        if(!numero || !cliente || !status ||!responsavel){ //Aqui é um pouco diferente do que conhecemos, se alguma condição dessa for verdadeira (se estiver vazio), ele entra no if, se retornar falsa (todas as condições estarem preenchidas) ele pula o if.
-            alert("Preencha todos os campos obrigatórios da Etapa 1 (Número do Processo, Cliente, Status e Responsável).");
+        if(!numero || !assunto || !status ||!responsavel){ //Aqui é um pouco diferente do que conhecemos, se alguma condição dessa for verdadeira (se estiver vazio), ele entra no if, se retornar falsa (todas as condições estarem preenchidas) ele pula o if.
+            alert("Preencha todos os campos obrigatórios da Etapa 1 (Número do Processo, Assunto Principal, Status e Responsável).");
         return false; //Aqui, eu estou fazendo com que o código se repita naquele trecho especifico.
         }
     }
@@ -498,7 +498,7 @@ function popularDocumentoRevisao(){
 function popularRevisao(){
     const numeroProcessos = document.getElementById("campoNumeroProcesso")?.value || '-';
     const numeroProcessoLivre = document.getElementById("campoNumeroProcessoLivre")?.value || '-';
-    const cliente = document.getElementById("campoCliente")?.value || '-';
+    const assuntoPrincipal = document.getElementById("campoAssuntoPrincipal")?.value || '-';
     const valorCausa = document.getElementById("valorCausa")?.value || "R$0.00";
     const dataDistribuicao = document.getElementById("campoDataDistribuicao")?.value || '-';
     const varaOrgao = document.getElementById("campoVaraOrgao")?.value || '-';
@@ -509,7 +509,7 @@ function popularRevisao(){
 
 
     document.getElementById("revisaoNumeroProcesso").textContent = numeroProcessos;
-    document.getElementById("revisaoCliente").textContent = cliente;
+    document.getElementById("revisaoAssuntoPrincipal").textContent = assuntoPrincipal;
     document.getElementById("revisaoValorCausa").textContent = "R$" + valorCausa;
     document.getElementById("revisaoDataDistribuicao").textContent = formatarData(dataDistribuicao);
     document.getElementById("revisaoVaraOrgao").textContent = varaOrgao;

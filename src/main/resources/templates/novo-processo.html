@@ -119,8 +119,13 @@
                     </div>
 
                     <div class="campo">
-                        <label>Cliente <span style="color: red;">*</span></label>
-                        <input type="text" th:field="*{cliente}" id="campoCliente" placeholder="Nome do cliente" required>
+                        <label>Assunto Principal <span style="color: red;">*</span></label>
+                        <select th:field="*{assuntoPrincipal}" id="campoAssuntoPrincipal" required>
+                            <option value="" >Selecione o assunto principal</option>
+                            <option value="Direito do Consumidor">Direito do Consumidor</option>
+                            <option value="Direito Imobiliário">Direito Imobiliário</option>
+                            <option value="Outros">Outros</option>
+                        </select>
                     </div>
 
                     <div class="campo-duplo">
@@ -410,7 +415,7 @@
 
                                 <div class="info-item">
                                     <span class="info-titulo">Assunto Principal</span>
-                                    <span class="info-valor">Selecione o assunto principal</span>
+                                    <span class="info-valor" id="revisaoAssuntoPrincipal">-</span>
                                 </div>
 
                                 <div class="info-item">
@@ -582,5 +587,5 @@
 
 </div>
 <script th:src="@{/js/wizard.js}"></script>
-<script th:src="@{/js/novo-processos.js}"></script>
+<script th:src="@{/js/novo-processo.js}"></script>
 </body>
