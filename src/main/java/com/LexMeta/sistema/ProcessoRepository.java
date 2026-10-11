@@ -17,7 +17,9 @@ public interface ProcessoRepository extends JpaRepository<Processo, Long> {
 
     Page<Processo> findByStatusAndResponsavel(String status, String responsavel, Pageable pageable);
 
-    Page<Processo> findByNumeroProcessoContainingIgnoreCaseOrClienteContainingIgnoreCase(String numeroProcesso, String cliente, Pageable pageable);
+    Page<Processo> findByNumeroProcessoContainingIgnoreCaseOrClienteContainingIgnoreCase(
+            String numeroProcesso, String AssuntoPrincipal, Pageable pageable
+    );
 }
 
 

@@ -171,7 +171,7 @@
                                     <span>👁</span> Visualizar/Editar processo
                                 </a>
                                 <div class="divisoria-acoes"></div>
-                                <a href="#" onclick="return confirm('Tem certeza que deseja excluir este processo?')" style="color: #d32f2f;">
+                                <a href="#" class="link-excluir" th:attr="data-id=${processo.id}" onclick="return confirm('Tem certeza que deseja excluir este processo?')" style="color: #d32f2f;">
                                     <span>🗑️</span> Excluir Processo
                                 </a>
                             </div>

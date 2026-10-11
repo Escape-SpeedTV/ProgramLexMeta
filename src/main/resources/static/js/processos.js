@@ -81,23 +81,24 @@ document.addEventListener('DOMContentLoaded', function() { //Esse trecho, eu est
             fecharTodosMenus();
         }
     })
+
+    const filtroStatus = document.getElementById("filtro-status");
+    if(filtroStatus){
+        filtroStatus.addEventListener("change", function (){
+            const status = this.value;
+            const url= new URL(window.location.href);
+
+            if (status){
+                url.searchParams.set("status", status);
+            } else{
+                url.searchParams.delete("status");
+            }
+
+            url.searchParams.set("pagina", "1");
+
+            window.location.href = url.toString();
+        })
+    }
 });
 
 
-const filtroStatus = document.getElementById("filtro-status");
-if(filtroStatus){
-    filtroStatus.addEventListener("change", function (){
-        const status = this.value;
-        const url= new URL(window.location.href);
-
-        if (status){
-            url.searchParams.set("status", status);
-        } else{
-            url.searchParams.delete("status");
-        }
-
-        url.searchParams.set("pagina", "1");
-
-        window.location.href = url.toString();
-    })
-}

@@ -16,6 +16,7 @@ public class Processo {
     private String numeroProcesso;
     private String numeroProcessoLivre;
     private String cliente;
+    private String assuntoPrincipal;
     private String status;
     private String prioridade;
     private String responsavel;
@@ -58,7 +59,8 @@ public class Processo {
     public String getCliente(){
         return cliente;
     }
-    public void setCliente(String cliente){
+
+    public void setCliente(String Cliente){
         this.cliente = cliente;
     }
 
@@ -119,6 +121,13 @@ public class Processo {
 
     public List<Documento> getDocumentos() {
         return documentos;
+    }
+
+    public String getAssuntoPrincipal(){
+        return assuntoPrincipal;
+    }
+    public void setAssuntoPrincipal(){
+        this.assuntoPrincipal = assuntoPrincipal;
     }
 
     public void setDocumentos(List<Documento> documentos) {
