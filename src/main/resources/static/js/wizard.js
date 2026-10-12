@@ -45,7 +45,7 @@ function mostrarEtapa(etapa) {
 function validarEtapa(etapa){
     if(etapa === 1){ //Apartir daqui, todas as informações no processo, elas possuem validade, se algum estiver vazio, o usuário não consegue avançar.
         const numero = document.querySelector('input[name="numeroProcesso"]').value.trim(); //QuerySelector, eu estou pegando o elemento pelo o nome dele! Esse trim, ele serve para remover espaços em branco, facilitando o programa a entender o que o usuário digitou.
-        const assunto = document.querySelector('input[name="assuntoPrincipal"]').value;
+        const assunto = document.querySelector('select[name="assuntoPrincipal"]').value;
         const status = document.querySelector('select[name="status"]').value;
         const responsavel = document.querySelector('select[name="responsavel"]').value;
 
@@ -133,6 +133,7 @@ function proximaEtapa() {
         if (etapaAtual < totalEtapas) {
             mostrarEtapa(etapaAtual + 1);
         }else{
+            preencherClienteComAutor();
             document.querySelector("form").submit();
         }
     }
@@ -531,4 +532,26 @@ function formatarData(dataISO){
     if(!dataISO) return '-';
     const [ano, mes, dia] = dataISO.split('-');
     return `${dia}/${mes}/${ano}`;
+}
+
+function preencherClienteComAutor(){
+    const primeiroAutor = document.querySelector("#lista-autores .autor-item input[type='text']");
+
+    if(primeiroAutor){
+        const nomeAutor = primeiroAutor.value.trim();
+
+        if (nomeAutor){
+            const campoCliente = document.getElementById("campoCliente");
+            if(campoCliente){
+                campoCliente.value = nomeAutor;
+                console.log("Cliente definido como: ", nomeAutor);
+            } else{
+                console.log("Campo cliente não encontrado no HTML.");
+            }
+        } else {
+            console.log("Nome do autor está vazio.");
+        }
+    } else {
+        console.log("Elemento do autor não encontrado.");
+    }
 }

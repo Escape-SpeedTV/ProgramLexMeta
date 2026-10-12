@@ -97,4 +97,36 @@ public class ProcessoController {
         processoRepository.deleteById(id);
         return "redirect:/processos";
     }
+
+    @GetMapping("/processos/editar/{id}")
+    public String mostrarFormularioEdicao(@PathVariable Long id, Model model) {
+        Processo processo = processoRepository.findById(id).orElse(null);
+        if (processo == null) {
+            return "redirect:/processos";
+        }
+        model.addAttribute("processo", processo);
+        return "editar-processo";
+    }
+
+    @PostMapping("/processos/editar/{id}")
+    public String salvarEdicao(@PathVariable Long id, Processo processoAtualizado) {
+        Processo processo = processoRepository.findById(id).orElse(null);
+        if (processo == null) {
+            return "redirect:/processos";
+        }
+
+        processo.setNumeroProcesso(processoAtualizado.getNumeroProcesso());
+        processo.setNumeroProcessoLivre(processoAtualizado.getNumeroProcessoLivre());
+        processo.setAssuntoPrincipal(processoAtualizado.getAssuntoPrincipal());
+        processo.setStatus(processoAtualizado.getStatus());
+        processo.setPrioridade(processoAtualizado.getPrioridade());
+        processo.setResponsavel(processoAtualizado.getResponsavel());
+        processo.setVaraOrgao(processoAtualizado.getVaraOrgao());
+        processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
+        processo.setValorRecebido(processoAtualizado.getValorRecebido());
+        processo.setDescricao(processoAtualizado.getDescricao());
+
+        processoRepository.save(processo);
+        return "redirect:/processos";
+    }
 }
