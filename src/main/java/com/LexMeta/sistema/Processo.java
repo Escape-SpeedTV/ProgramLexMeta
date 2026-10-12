@@ -59,8 +59,7 @@ public class Processo {
     public String getCliente(){
         return cliente;
     }
-
-    public void setCliente(String Cliente){
+    public void setCliente(String cliente){
         this.cliente = cliente;
     }
 
@@ -126,7 +125,7 @@ public class Processo {
     public String getAssuntoPrincipal(){
         return assuntoPrincipal;
     }
-    public void setAssuntoPrincipal(){
+    public void setAssuntoPrincipal(String assuntoPrincipal){
         this.assuntoPrincipal = assuntoPrincipal;
     }
 
