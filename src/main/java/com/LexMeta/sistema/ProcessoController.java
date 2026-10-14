@@ -8,14 +8,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.io.File;
 
 @Controller
 public class ProcessoController {
 
     @Autowired
     private ProcessoRepository processoRepository;
+
+    @Autowired
+    private DocumentoRepository documentoRepository;
 
     @GetMapping("/novo-processo")
     public String mostrarFormulario(Model model){
@@ -24,10 +28,58 @@ public class ProcessoController {
     }
 
     @PostMapping("/novo-processo")
-    public String salvarProcesso(Processo processo){
-        processo.setDataCadastro(java.time.LocalDate.now());
-        processoRepository.save(processo);
-        return "redirect:/dashboardTelaInicial";
+    public String salvarProcesso(Processo processo, @RequestParam(value = "arquivos", required = false)MultipartFile[] arquivos){
+        try{
+            processo.setDataCadastro(java.time.LocalDate.now());
+
+            Processo processoSalvo = processoRepository.save(processo);
+
+            if(arquivos != null && arquivos.length > 0){
+                String pastaUpload = "uploads/";
+                File pasta = new File(pastaUpload);
+                if(!pasta.exists()) pasta.mkdirs();
+
+                for(MultipartFile arquivo : arquivos){
+                    if(!arquivo.isEmpty()){
+                        String nomeOriginal = arquivo.getOriginalFilename();
+                        String nomeUnico = System.currentTimeMillis() + "_" + nomeOriginal;
+                        String caminhoCompleto = pastaUpload + nomeUnico;
+
+                        arquivo.transferTo(new File(caminhoCompleto));
+
+                        Documento doc = new Documento();
+                        doc.setNomeArquivo(nomeOriginal);
+                        doc.setCaminhoArquivo(caminhoCompleto);
+                        doc.setTipo(detectarTipoDocumento(nomeOriginal));
+                        doc.setTamanho(formatarTamanho(arquivo.getSize()));
+                        doc.setDataEnvio(java.time.LocalDateTime.now().toString());
+                        doc.setProcesso(processoSalvo);
+
+                        documentoRepository.save(doc);
+                    }
+                }
+            }
+            return "redirect:/dashboardTelaInicial";
+        }catch(Exception e){
+            e.printStackTrace();
+            return "redirect:/novo-processo?erro=true";
+        }
+    }
+
+    private String detectarTipoDocumento(String nome){
+        String n = nome.toLowerCase();
+        if(n.contains("peti")) return "Petição";
+        if(n.contains("comprovante")) return "Comprovante";
+        if(n.contains("procura")) return "Procuração";
+        if(n.contains("contrato")) return "Contrato";
+        if(n.contains("termo")) return "Termo";
+        return "Outro";
+    }
+
+    private String formatarTamanho(Long bytes){
+        if (bytes < 1024) return bytes + " B";
+        if (bytes < 1024 * 1024) return (bytes / 1024) + " KB";
+        return (bytes / (1024 * 1024)) + " MB";
     }
 
     @GetMapping("/processos")

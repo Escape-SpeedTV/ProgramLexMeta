@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Meu Perfil</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/perfil.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img src="/imagens/palatucci.png" alt="Escudo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo">Agosto / 2026</div>
+        <div class="meta-numero">120 Processos</div>
+        <button>Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="titulo-secao">
+        <h1>Meu Perfil</h1>
+        <p>Gerencie suas informações pessoais e de acesso.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a href="#"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+
+    <form th:action="@{/perfil/salvar}" method="post" th:object="${usuario}">
+
+        <div class="perfil-container">
+
+            <div class="perfil-esquerda">
+
+                <div class="card-perfil">
+                    <div class="card-header">
+                        <div class="icone-card">👤</div>
+                        <div>
+                            <h3>Informações Pessoais</h3>
+                            <p class="subtitulo-form">Atualize seus dados de perfil e mantenha suas informações sempre em dia.</p>
+                        </div>
+                    </div>
+
+                    <div class="info-pessoais-grid">
+                        <!-- Foto -->
+                        <div class="foto-area">
+                            <div class="foto-usuario">
+                                <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário">
+                            </div>
+                            <button type="button" class="botao-alterar-foto">📷 Alterar foto</button>
+                            <p class="texto-ajuda">Formatos aceitos: JPG, PNG<br>Tamanho máximo: 2MB</p>
+                        </div>
+
+                        <div class="campos-area">
+                            <div class="campo">
+                                <label>Nome completo <span style="color: red;">*</span></label>
+                                <div class="input-com-icone">
+                                    <span class="icone-input">👤</span>
+                                    <input type="text" th:field="*{nome}" required>
+                                </div>
+                            </div>
+
+                            <div class="campo">
+                                <label>E-mail <span style="color: red;">*</span></label>
+                                <div class="input-com-icone">
+                                    <span class="icone-input">✉️</span>
+                                    <input type="email" th:field="*{email}" required>
+                                </div>
+                            </div>
+
+                            <div class="campo-duplo">
+                                <div class="campo">
+                                    <label>Cargo <span style="color: red;">*</span></label>
+                                    <select th:field="*{cargo}">
+                                        <option value="Administrador">Administrador</option>
+                                        <option value="Advogado">Advogado</option>
+                                        <option value="Estagiário">Estagiário</option>
+                                    </select>
+                                </div>
+                                <div class="campo">
+                                    <label>Área de atuação</label>
+                                    <select th:field="*{areaAtuacao}">
+                                        <option value="">Selecione</option>
+                                        <option value="Direito Imobiliário">Direito Imobiliário</option>
+                                        <option value="Direito do Consumidor">Direito do Consumidor</option>
+                                        <option value="Direito Trabalhista">Direito Trabalhista</option>
+                                        <option value="Outros">Outros</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="campo">
+                                <label>Telefone</label>
+                                <div class="input-com-icone">
+                                    <span class="icone-input">📞</span>
+                                    <input type="text" th:field="*{telefone}" placeholder="(11) 98765-4321">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-perfil">
+                    <div class="card-header">
+                        <div class="icone-card">🔒</div>
+                        <div>
+                            <h3>Alterar Senha</h3>
+                            <p class="subtitulo-form">Mantenha sua conta segura. Use uma senha forte e única.</p>
+                        </div>
+                    </div>
+
+                    <div class="campo-triplo">
+                        <div class="campo">
+                            <label>Senha atual</label>
+                            <div class="input-com-icone">
+                                <input type="password" placeholder="Digite sua senha atual">
+                                <span class="icone-olho">👁</span>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label>Nova senha</label>
+                            <div class="input-com-icone">
+                                <input type="password" placeholder="Digite a nova senha">
+                                <span class="icone-olho">👁</span>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <label>Confirmar nova senha</label>
+                            <div class="input-com-icone">
+                                <input type="password" placeholder="Confirme a nova senha">
+                                <span class="icone-olho">👁</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="botao-direita">
+                        <button type="button" class="botao-alterar-senha">🔒 Alterar senha</button>
+                    </div>
+                </div>
+
+                <div class="card-perfil">
+                    <div class="card-header">
+                        <div class="icone-card">⚙️</div>
+                        <div>
+                            <h3>Preferências</h3>
+                            <p class="subtitulo-form">Personalize sua experiência no sistema.</p>
+                        </div>
+                    </div>
+
+                    <div class="preferencias-grid">
+                        <div class="campo">
+                            <label>Idioma</label>
+                            <select>
+                                <option>Português (Brasil)</option>
+                                <option>English</option>
+                                <option>Español</option>
+                            </select>
+                        </div>
+                        <div class="campo">
+                            <label>Tema</label>
+                            <select>
+                                <option>Claro</option>
+                                <option>Escuro</option>
+                            </select>
+                        </div>
+                        <div class="campo-toggle">
+                            <label>Receber notificações por e-mail</label>
+                            <div class="toggle">
+                                <input type="checkbox" id="toggle-notificacoes" checked>
+                                <label for="toggle-notificacoes" class="toggle-slider"></label>
+                            </div>
+                            <p class="texto-ajuda">Receba alertas sobre prazos, movimentações e atualizações.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="perfil-direita">
+
+                <div class="card-resumo">
+                    <h3>Resumo do Perfil</h3>
+
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">👤</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">Nome</span>
+                            <span class="perfil-valor" th:text="${usuario.nome}">-</span>
+                        </div>
+                    </div>
+                    <div class="resumo-item">
+                        <span class="icone-resumo">✉️</span>
+                        <div>
+                            <span class="label">E-mail</span>
+                            <span class="valor" th:text="${usuario.email}">-</span>
+                        </div>
+                    </div>
+                    <div class="resumo-item">
+                        <span class="icone-resumo">💼</span>
+                        <div>
+                            <span class="label">Cargo</span>
+                            <span class="valor" th:text="${usuario.cargo}">-</span>
+                        </div>
+                    </div>
+                    <div class="resumo-item">
+                        <span class="icone-resumo">📁</span>
+                        <div>
+                            <span class="label">Área de atuação</span>
+                            <span class="valor" th:text="${usuario.areaAtuacao} ?: 'Direito Imobiliário'">-</span>
+                        </div>
+                    </div>
+                    <div class="resumo-item">
+                        <span class="icone-resumo">📞</span>
+                        <div>
+                            <span class="label">Telefone</span>
+                            <span class="valor" th:text="${usuario.telefone} ?: '(11) 98765-4321'">-</span>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <span>ℹ️</span>
+                        <p>Mantenha seus dados atualizados para receber notificações importantes e garantir o bom funcionamento do sistema.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-botoes">
+            <a href="/dashboardTelaInicial" class="botao-voltar">← Voltar</a>
+            <button type="submit" class="botao-salvar">💾 Salvar alterações</button>
+        </div>
+    </form>
+
+</div>
+
+<script th:src="@{/js/processos.js}"></script>
+</body>
+</html>

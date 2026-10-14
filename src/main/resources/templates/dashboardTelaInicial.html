@@ -48,12 +48,12 @@
             </div>
 
             <div class="usuario-info">
-                <span class="usuario-nome">William Nakano</span>
-                <span class="usuario-cargo">Administrador</span>
+                <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+                <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
             </div>
             <span class="seta" id="seta-dropdown">▼</span> <!--Adicionar depois, uma imagem nesse trecho -->
             <div class="dropdown-menu" id="dropdown-menu">
-                <a href="#"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+                <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
                 <a href="#"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
                 <div class="divisoria-dropdown"></div>
                 <a href="/logout" style="color: #d32f2f"> <img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
