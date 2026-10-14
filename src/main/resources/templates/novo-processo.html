@@ -47,12 +47,12 @@
         </div>
 
         <div class="usuario-info">
-            <span class="usuario-nome">William Nakano</span>
-            <span class="usuario-cargo">Administrador</span>
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
         </div>
         <span class="seta" id="seta-dropdown">▼</span> <!--Adicionar depois, uma imagem nesse trecho -->
         <div class="dropdown-menu" id="dropdown-menu">
-            <a href="#"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
             <a href="#"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
             <div class="divisoria-dropdown"></div>
             <a href="/logout" style="color: #d32f2f"> <img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
@@ -340,7 +340,7 @@
                             <img src="/imagens/PDF.png" alt="Upload">
                             <p class="titulo-upload">Arraste e solte os arquivos aqui</p>
                             <p class="subtitulo-upload">ou clique para selecionar</p>
-                            <input type="file" id="input-arquivo" multiple accept=".pdf, .jpg, .jpeg, .png, .doc, .docx" style="display: none;">
+                            <input type="file" id="input-arquivo" name="arquivos" multiple accept=".pdf, .jpg, .jpeg, .png, .doc, .docx" style="display: none;">
                             <button type="button" class="botao-selecionar-arquivo" id="btn-selecionar">
                                 <span>⬆</span> Selecionar arquivos
                             </button>
