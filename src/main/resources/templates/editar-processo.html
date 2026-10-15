@@ -40,7 +40,7 @@
     </div>
     <div class="usuario-dropdown">
         <div class="usuario-icone">
-            <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
         </div>
         <div class="usuario-info">
             <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>

@@ -38,7 +38,7 @@
     </div>
     <div class="usuario-dropdown">
         <div class="usuario-icone">
-            <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
         </div>
         <div class="usuario-info">
             <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
@@ -56,6 +56,10 @@
 
 <div class="conteudo">
 
+    <div th:if="${param.sucesso}" class="alerta-sucesso">
+        ✅ Dados atualizados com sucesso!
+    </div>
+
     <form th:action="@{/perfil/salvar}" method="post" th:object="${usuario}">
 
         <div class="perfil-container">
@@ -72,12 +76,15 @@
                     </div>
 
                     <div class="info-pessoais-grid">
-                        <!-- Foto -->
+
                         <div class="foto-area">
                             <div class="foto-usuario">
-                                <img src="/imagens/takumi-fujiwara.png" alt="Foto do usuário">
+                                <img th:src="${usuario.caminhoFoto != null ? '/' + usuario.caminhoFoto : '/imagens/takumi-fujiwara.png'}"
+                                     alt="Foto do usuário">
                             </div>
-                            <button type="button" class="botao-alterar-foto">📷 Alterar foto</button>
+                            <button type="button" class="botao-alterar-foto" onclick="document.getElementById('input-foto').click()">
+                                📷 Alterar foto
+                            </button>
                             <p class="texto-ajuda">Formatos aceitos: JPG, PNG<br>Tamanho máximo: 2MB</p>
                         </div>
 
@@ -105,6 +112,7 @@
                                         <option value="Administrador">Administrador</option>
                                         <option value="Advogado">Advogado</option>
                                         <option value="Estagiário">Estagiário</option>
+                                        <option value="T.I">T.I</option>
                                     </select>
                                 </div>
                                 <div class="campo">
@@ -182,8 +190,6 @@
                             <label>Idioma</label>
                             <select>
                                 <option>Português (Brasil)</option>
-                                <option>English</option>
-                                <option>Español</option>
                             </select>
                         </div>
                         <div class="campo">
@@ -264,8 +270,29 @@
         </div>
     </form>
 
+    <form th:action="@{/perfil/alterar-foto}" method="post" enctype="multipart/form-data" id="form-foto" style="display: none;">
+        <input type="file" name="foto" id="input-foto" accept="image/*">
+    </form>
 </div>
 
 <script th:src="@{/js/processos.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputFoto = document.getElementById('input-foto');
+        const formFoto = document.getElementById('form-foto');
+
+        if (inputFoto && formFoto) {
+            inputFoto.addEventListener('change', function() {
+                console.log('Arquivo selecionado:', this.files[0]?.name);
+                if (this.files.length > 0) {
+                    console.log('Enviando formulário...');
+                    formFoto.submit();
+                }
+            });
+        }else {
+            console.log('Input ou Form não encontrado.');
+        }
+    });
+</script>
 </body>
 </html>
