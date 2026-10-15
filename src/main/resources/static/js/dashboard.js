@@ -1,8 +1,10 @@
-const percentualConcluido = parseInt(document.querySelector('.card-valor-grafico').textContent.replace('%', '')) || 0;
+const percentualConcluido = parseInt(
+    document.querySelector('.card-valor-grafico')?.textContent.replace('%', '')
+) || 0;
 
 const ctx = document.getElementById("graficoPercentual").getContext("2d");
 
-const graficoPercentual = new Chart(ctx, {
+new Chart(ctx, {
     type: "doughnut",
     data: {
         labels: ["Concluído", "Restante"],
@@ -18,6 +20,56 @@ const graficoPercentual = new Chart(ctx, {
         maintainAspectRatio: false,
         plugins: {
             legend: { display: false }
+        }
+    }
+});
+
+const ctxBarras = document.getElementById("graficoBarras").getContext("2d");
+
+new Chart(ctxBarras, {
+    type: "bar",
+    data: {
+        labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+        datasets: [
+            {
+                label: "Concluídos",
+                data: [3, 2, 4, 6, 3, 7, 6, 5, 6, 4, 7, 5],
+                backgroundColor: "#3b82f6",
+                borderRadius: 4
+            },
+            {
+                label: "Meta",
+                data: [4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9],
+                backgroundColor: "#e0e0e0",
+                borderRadius: 4
+            }
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 10,
+                ticks: { stepSize: 2 },
+                grid: { display: true }
+            },
+            x: {
+                grid: { display: false }
+            }
+        },
+        plugins: {
+            legend: {
+                position: "bottom",
+                align: "center",
+                labels: {
+                    usePointStyle: true,
+                    boxWidth: 8,
+                    boxHeight: 8,
+                    color: "#666"
+                }
+            }
         }
     }
 });
@@ -63,7 +115,6 @@ new Chart(ctxLinhas, {
                 grid: { display: false }
             }
         },
-
         plugins: {
             legend: {
                 position: "top",
@@ -79,18 +130,18 @@ new Chart(ctxLinhas, {
     }
 });
 
-// const setaDropdown = document.getElementById("seta-dropdown");
-// const dropdownMenu = document.getElementById("dropdown-menu");
-//
-// setaDropdown.addEventListener("click", function () {
-//     dropdownMenu.classList.toggle("aberto");
-// });
-//
-// document.addEventListener("DOMContentLoaded", function(){
-//     const select = document.getElementById("select-itens-por-pagina");
-//     if(select){
-//         select.addEventListener("change", function (){
-//             window.location.href = '/processos?pagina=1&itensPorPagina=' + this.value;
-//         });
-//     }
-// });
+document.addEventListener('DOMContentLoaded', function() {
+    const setaDropdown = document.getElementById("seta-dropdown");
+    const dropdownMenu = document.getElementById("dropdown-menu");
+
+    if (setaDropdown && dropdownMenu) {
+        setaDropdown.addEventListener("click", function (event) {
+            event.stopPropagation();
+            dropdownMenu.classList.toggle("aberto");
+        });
+
+        document.addEventListener("click", function () {
+            dropdownMenu.classList.remove("aberto");
+        });
+    }
+});

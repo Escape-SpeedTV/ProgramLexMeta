@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 public class  DashboardController {
 
@@ -18,19 +20,46 @@ public class  DashboardController {
         long emAndamento = processoRepository.countByStatus("Em Andamento");
         long pendentes = processoRepository.countByStatus("Pendente");
 
-        long percentual = (totalProcessos > 0) ? (concluidos * 100 / totalProcessos) : 0;
-        long faltamParaMeta = (120 - totalProcessos) > 0 ? (120 - totalProcessos) : 0;
+        long meta = 120;
+        long percentual = (meta > 0) ? (concluidos * 100 / meta) : 0;
+        long faltamParaMeta = (meta - totalProcessos) > 0 ? (meta - totalProcessos) : 0;
 
-        model.addAttribute("metaTotal", totalProcessos);
+        List<Processo> processosConcluidosList = processoRepository.findAllByStatus("Concluído");
+        double valorTotal = 0.0;
+        int processoscomValor = 0;
+
+        for(Processo p : processosConcluidosList){
+            if(p.getValorRecebido() != null && !p.getValorRecebido().isEmpty()){
+                try{
+                    String valorLimpo = p.getValorRecebido().replace("R$","").replace(".", "").replace(",", ".").trim();
+
+                    double valor = Double.parseDouble(valorLimpo);
+                    valorTotal += valor;
+                    processoscomValor++;
+                }catch (NumberFormatException e){
+                    System.out.println(e);
+                }
+            }
+        }
+
+        long processosConcluidos = processoRepository.countByStatus("Concluído");
+        double mediaPorProcesso = (processosConcluidos > 0) ? (valorTotal / processosConcluidos) : 0.0;
+
+        double ticketMedioGeral = (totalProcessos > 0) ? (valorTotal / totalProcessos) : 0.0;
+
+        java.text.NumberFormat formatoBR = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR"));
+
+
+        model.addAttribute("metaTotal", meta);
         model.addAttribute("percentualConcluido", percentual);
         model.addAttribute("processosConcluidos", concluidos);
         model.addAttribute("emAndamento", emAndamento);
         model.addAttribute("pendentes", pendentes);
 
         model.addAttribute("faltamParaMeta", faltamParaMeta);
-        model.addAttribute("valorTotalRecebido", "R$248.750,00");
-        model.addAttribute("mediaPorProcesso", "R$3.033,54");
-        model.addAttribute("ticketMedioGeral", "R$2.281,65");
+        model.addAttribute("valorTotalRecebido", formatoBR.format(valorTotal));
+        model.addAttribute("mediaPorProcesso", formatoBR.format(mediaPorProcesso));
+        model.addAttribute("ticketMedioGeral", formatoBR.format(ticketMedioGeral));
 
         model.addAttribute("meses", new String[]{"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"});
         model.addAttribute("concluidosMensalmente", new int[]{30, 45, 40, 60, 35, 70, 68, 50, 60, 40, 75, 55});

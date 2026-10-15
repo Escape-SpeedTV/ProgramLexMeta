@@ -453,6 +453,12 @@ body{
     position: relative;
 }
 
+.grafico-area canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+}
+
 .grafico-progresso-mensal, .grafico-evolucao-meta {
     background-color: white;
     flex: 1;
