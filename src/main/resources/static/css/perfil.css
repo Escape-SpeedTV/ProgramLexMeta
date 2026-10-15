@@ -255,12 +255,12 @@
 }
 
 .card-resumo {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    padding: 25px;
-    width: 100%;
-    box-sizing: border-box;
+    display: block !important;
+    background-color: white !important;
+    border-radius: 12px !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
+    padding: 25px !important;
+    width: 100% !important;
 }
 
 .card-resumo h3 {
@@ -403,7 +403,7 @@
     background-color: #003b45;
 }
 
-.info-box {
+.perfil-info-box {
     display: flex;
     gap: 10px;
     background-color: #e0f7fa;
@@ -414,22 +414,22 @@
     color: #006064;
 }
 
-.info-box span {
+.perfil-info-box span {
     font-size: 16px;
 }
 
-.info-box p {
+.perfil-info-box p {
     margin: 0;
     line-height: 1.4;
 }
 
 .perfil-resumo-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-    width: 100%;
+    display: flex !important;
+    align-items: center !important;
+    gap: 15px !important;
+    padding: 12px 0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    width: 100% !important;
 }
 
 .perfil-resumo-item:last-child {

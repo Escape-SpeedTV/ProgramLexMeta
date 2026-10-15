@@ -217,36 +217,40 @@
                             <span class="perfil-valor" th:text="${usuario.nome}">-</span>
                         </div>
                     </div>
-                    <div class="resumo-item">
-                        <span class="icone-resumo">✉️</span>
-                        <div>
-                            <span class="label">E-mail</span>
-                            <span class="valor" th:text="${usuario.email}">-</span>
-                        </div>
-                    </div>
-                    <div class="resumo-item">
-                        <span class="icone-resumo">💼</span>
-                        <div>
-                            <span class="label">Cargo</span>
-                            <span class="valor" th:text="${usuario.cargo}">-</span>
-                        </div>
-                    </div>
-                    <div class="resumo-item">
-                        <span class="icone-resumo">📁</span>
-                        <div>
-                            <span class="label">Área de Atuação</span>
-                            <span class="valor" th:text="${usuario.areaAtuacao} ?: 'Direito Imobiliário'">-</span>
-                        </div>
-                    </div>
-                    <div class="resumo-item">
-                        <span class="icone-resumo">📞</span>
-                        <div>
-                            <span class="label">Telefone</span>
-                            <span class="valor" th:text="${usuario.telefone} ?: '(11) 98765-4321'">-</span>
+
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">✉️</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">E-mail</span>
+                            <span class="perfil-valor" th:text="${usuario.email}">-</span>
                         </div>
                     </div>
 
-                    <div class="info-box">
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">💼</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">Cargo</span>
+                            <span class="perfil-valor" th:text="${usuario.cargo}">-</span>
+                        </div>
+                    </div>
+
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">📁</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">Área de Atuação</span>
+                            <span class="perfil-valor" th:text="${usuario.areaAtuacao} ?: 'Direito Imobiliário'">-</span>
+                        </div>
+                    </div>
+
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">📞</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">Telefone</span>
+                            <span class="perfil-valor" th:text="${usuario.telefone} ?: '(11) 98765-4321'">-</span>
+                        </div>
+                    </div>
+
+                    <div class="perfil-info-box">
                         <span>ℹ️</span>
                         <p>Mantenha seus dados atualizados para receber notificações importantes e garantir o bom funcionamento do sistema.</p>
                     </div>
