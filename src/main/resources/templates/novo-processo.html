@@ -23,9 +23,9 @@
 
     <div class="meta-atual">
         <div class="meta-titulo">Meta Atual</div>
-        <div class="meta-periodo">Agosto / 2026</div>
-        <div class="meta-numero">120 processos</div>
-        <button>Editar Meta</button>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
     </div>
 </div>
 
