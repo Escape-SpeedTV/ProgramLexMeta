@@ -33,13 +33,13 @@ new Chart(ctxBarras, {
         datasets: [
             {
                 label: "Concluídos",
-                data: [3, 2, 4, 6, 3, 7, 6, 5, 6, 4, 7, 5],
+                data: concluidosMensal,
                 backgroundColor: "#3b82f6",
                 borderRadius: 4
             },
             {
                 label: "Meta",
-                data: [4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9],
+                data: metaMensal,
                 backgroundColor: "#e0e0e0",
                 borderRadius: 4
             }

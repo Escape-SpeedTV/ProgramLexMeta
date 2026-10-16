@@ -26,9 +26,9 @@
 
         <div class="meta-atual">
             <div class="meta-titulo">Meta Atual</div>
-            <div class="meta-periodo">Agosto / 2026</div>
-            <div class="meta-numero">120 processos</div>
-            <button>Editar Meta</button>
+            <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+            <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+            <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
         </div>
     </div>
 
@@ -253,8 +253,59 @@
             </div>
         </div>
     </div>
+
+    <div class="modal-overlay" id="modal-meta">
+        <div class="modal-box">
+            <h3>Editar Meta do Mês</h3>
+            <p class="modal-subtitulo" th:text="'Defina a meta para ' + ${nomeMesAtual} + ' de ' + ${anoAtualModal}">
+                Defina a meta para Outubro de 2026
+            </p>
+
+            <form th:action="@{/metas/salvar}" method="post">
+                <input type="hidden" name="mes" th:value="${mesAtual}">
+                <input type="hidden" name="ano" th:value="${anoAtualModal}">
+
+                <div class="campo">
+                    <label>Quantidade de processos</label>
+                    <input type="number" name="quantidade" th:value="${quantidadeMetaAtual}" min="0" required autofocus>
+                </div>
+
+                <div class="modal-botoes">
+                    <button type="button" class="botao-cancelar" onclick="fecharModalMeta()">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <script th:src="@{/js/chart.js}"></script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        const concluidosMensal = /*[[${concluidosMensal}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
+        const metaMensal = /*[[${metaMensal}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
+        /*]]>*/
+    </script>
+
     <script th:src="@{/js/dashboard.js}"></script>
+
+    <script>
+        function abrirModalMeta() {
+            document.getElementById('modal-meta').style.display = 'flex';
+        }
+
+        function fecharModalMeta() {
+            document.getElementById('modal-meta').style.display = 'none';
+        }
+
+        // Fecha o modal ao clicar fora dele
+        document.getElementById('modal-meta')?.addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModalMeta();
+            }
+        });
+    </script>
+
+
 
 
 </body>

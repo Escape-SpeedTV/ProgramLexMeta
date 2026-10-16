@@ -6,12 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class  DashboardController {
 
     @Autowired
     private ProcessoRepository processoRepository;
+
+    @Autowired
+    private MetaRepository metaRepository;
 
     @GetMapping("/dashboardTelaInicial")
     public String mostrarDashboard(Model model){
@@ -20,14 +24,39 @@ public class  DashboardController {
         long emAndamento = processoRepository.countByStatus("Em Andamento");
         long pendentes = processoRepository.countByStatus("Pendente");
 
-        long meta = 120;
+        int mesAtual = java.time.LocalDate.now().getMonthValue();
+        int anoAtual = java.time.LocalDate.now().getYear();
+
+        int[] metaMensal = new int[12];
+        List<Meta> metasdoAno = metaRepository.findByAnoOrderByMesAsc(anoAtual);
+        for(Meta m : metasdoAno){
+            metaMensal[m.getMes() - 1] = m.getQuantidade();
+        }
+
+        int metaTotalAno = 0;
+        for(int m : metaMensal){
+            metaTotalAno += m;
+        }
+        long meta = metaTotalAno;
         long percentual = (meta > 0) ? (concluidos * 100 / meta) : 0;
         long faltamParaMeta = (meta - totalProcessos) > 0 ? (meta - totalProcessos) : 0;
 
+        Optional<Meta> metaDoMes = metaRepository.findByMesAndAno(mesAtual, anoAtual);
+        int quantidadeMetaAtual = metaDoMes.map(Meta::getQuantidade).orElse(0);
+
+
         List<Processo> processosConcluidosList = processoRepository.findAllByStatus("Concluído");
+        int[] concluidosMensal = new int[12];
+
+        for(Processo p : processosConcluidosList){
+            if (p.getDataCadastro() != null) {
+                int mes = p.getDataCadastro().getMonthValue() - 1;
+                concluidosMensal[mes]++;
+            }
+        }
+
         double valorTotal = 0.0;
         int processoscomValor = 0;
-
         for(Processo p : processosConcluidosList){
             if(p.getValorRecebido() != null && !p.getValorRecebido().isEmpty()){
                 try{
@@ -55,15 +84,23 @@ public class  DashboardController {
         model.addAttribute("processosConcluidos", concluidos);
         model.addAttribute("emAndamento", emAndamento);
         model.addAttribute("pendentes", pendentes);
-
         model.addAttribute("faltamParaMeta", faltamParaMeta);
+
         model.addAttribute("valorTotalRecebido", formatoBR.format(valorTotal));
         model.addAttribute("mediaPorProcesso", formatoBR.format(mediaPorProcesso));
         model.addAttribute("ticketMedioGeral", formatoBR.format(ticketMedioGeral));
 
         model.addAttribute("meses", new String[]{"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"});
-        model.addAttribute("concluidosMensalmente", new int[]{30, 45, 40, 60, 35, 70, 68, 50, 60, 40, 75, 55});
-        model.addAttribute("metaMensal", new int[]{25, 35, 50, 45, 55, 50, 65, 70, 40, 60, 50, 45});
+        model.addAttribute("concluidosMensal", concluidosMensal);
+        model.addAttribute("metaMensal", metaMensal);
+
+        model.addAttribute("mesAtual", mesAtual);
+        model.addAttribute("anoAtualModal", anoAtual);
+        model.addAttribute("quantidadeMetaAtual", quantidadeMetaAtual);
+
+        String[] nomesMeses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
+
+        model.addAttribute("nomeMesAtual", nomesMeses[mesAtual - 1]);
 
         model.addAttribute("alcancado", new int[]{20, 25, 40, 55, 70, 65, 80, 85, 90, 75, 95, 100});
         model.addAttribute("metaEvolucao", new int[]{40, 40, 50, 60, 70, 70, 85, 90, 95, 95, 100, 105});

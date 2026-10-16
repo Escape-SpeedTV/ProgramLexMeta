@@ -177,6 +177,7 @@ public class ProcessoController {
         processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
         processo.setValorRecebido(processoAtualizado.getValorRecebido());
         processo.setDescricao(processoAtualizado.getDescricao());
+        processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
 
         processoRepository.save(processo);
         return "redirect:/processos";
