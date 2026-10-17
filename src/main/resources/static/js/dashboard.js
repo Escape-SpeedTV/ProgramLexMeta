@@ -83,7 +83,7 @@ new Chart(ctxLinhas, {
         datasets: [
             {
                 label: "Alcançado",
-                data: [20, 25, 40, 55, 70, 65, 80, 85, 90, 75, 95, 100],
+                data: alcancado,
                 borderColor: "#005b63",
                 backgroundColor: "rgba(0, 91, 99, 0.05)",
                 fill: true,
@@ -92,7 +92,7 @@ new Chart(ctxLinhas, {
             },
             {
                 label: "Meta",
-                data: [40, 40, 50, 60, 70, 70, 85, 90, 95, 95, 100, 105],
+                data: metaEvolucao,
                 borderColor: "#e0e0e0",
                 backgroundColor: "transparent",
                 borderDash: [5, 5],

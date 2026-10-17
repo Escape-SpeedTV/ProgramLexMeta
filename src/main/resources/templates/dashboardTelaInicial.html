@@ -20,7 +20,7 @@
             <li class="ativo"><a href="/dashboardTelaInicial">Dashboard</a></li>
             <li><a href="/processos">Processos</a></li>
             <li><a href="/novo-processo">Novo Processo</a></li>
-            <li><a href="/relatorios">Relatórios</a></li>
+            <li><a href="#">Relatórios</a></li>
             <li><a href="/configuracoes">Configurações</a></li>
         </ul>
 
@@ -283,10 +283,13 @@
         /*<![CDATA[*/
         const concluidosMensal = /*[[${concluidosMensal}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
         const metaMensal = /*[[${metaMensal}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
+        const alcancado = /*[[${alcancado}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
+        const metaEvolucao = /*[[${metaEvolucao}]]*/ [0,0,0,0,0,0,0,0,0,0,0,0];
         /*]]>*/
     </script>
 
     <script th:src="@{/js/dashboard.js}"></script>
+    <script th:src="@{/js/global.js}"></script>
 
     <script>
         function abrirModalMeta() {
