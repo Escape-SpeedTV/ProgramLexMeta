@@ -33,27 +33,45 @@ public class  DashboardController {
             metaMensal[m.getMes() - 1] = m.getQuantidade();
         }
 
+        Optional<Meta> metaDoMes = metaRepository.findByMesAndAno(mesAtual, anoAtual);
+        int quantidadeMetaAtual = metaDoMes.map(Meta::getQuantidade).orElse(0);
+
+        List<Processo> processosConcluidosList = processoRepository.findAllByStatus("Concluído");
+        int[] concluidosMensal = new int[12];
+        for(Processo p : processosConcluidosList) {
+            if (p.getDataCadastro() != null) {
+                int mes = p.getDataDistribuicao().getMonthValue() - 1;
+                concluidosMensal[mes]++;
+            }
+        }
+        int concluidosMesAtual = concluidosMensal[mesAtual - 1];
+        long percentual = (quantidadeMetaAtual > 0) ? (concluidosMesAtual * 100 / quantidadeMetaAtual) : 0;
+        long faltamParaMeta = (quantidadeMetaAtual - concluidosMesAtual) > 0 ? (quantidadeMetaAtual - concluidosMesAtual) : 0;
+
+        int[] alcancado = new int[12];
+        int[] metaEvolucao = new int[12];
+
+        int somaConcluidos = 0;
+        int somaMetas = 0;
+
+        for(int i = 0; i < 12; i++){
+            somaConcluidos += concluidosMensal[i];
+            somaMetas += metaMensal[i];
+
+            if(i <= (mesAtual - 1)){
+                alcancado[i] += somaConcluidos;
+                metaEvolucao[i] += somaMetas;
+            }else{
+                alcancado[i] = 0;
+                metaEvolucao[i] = 0;
+            }
+        }
+
         int metaTotalAno = 0;
         for(int m : metaMensal){
             metaTotalAno += m;
         }
         long meta = metaTotalAno;
-        long percentual = (meta > 0) ? (concluidos * 100 / meta) : 0;
-        long faltamParaMeta = (meta - totalProcessos) > 0 ? (meta - totalProcessos) : 0;
-
-        Optional<Meta> metaDoMes = metaRepository.findByMesAndAno(mesAtual, anoAtual);
-        int quantidadeMetaAtual = metaDoMes.map(Meta::getQuantidade).orElse(0);
-
-
-        List<Processo> processosConcluidosList = processoRepository.findAllByStatus("Concluído");
-        int[] concluidosMensal = new int[12];
-
-        for(Processo p : processosConcluidosList){
-            if (p.getDataCadastro() != null) {
-                int mes = p.getDataCadastro().getMonthValue() - 1;
-                concluidosMensal[mes]++;
-            }
-        }
 
         double valorTotal = 0.0;
         int processoscomValor = 0;
@@ -94,16 +112,10 @@ public class  DashboardController {
         model.addAttribute("concluidosMensal", concluidosMensal);
         model.addAttribute("metaMensal", metaMensal);
 
-        model.addAttribute("mesAtual", mesAtual);
-        model.addAttribute("anoAtualModal", anoAtual);
-        model.addAttribute("quantidadeMetaAtual", quantidadeMetaAtual);
-
         String[] nomesMeses = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
 
-        model.addAttribute("nomeMesAtual", nomesMeses[mesAtual - 1]);
-
-        model.addAttribute("alcancado", new int[]{20, 25, 40, 55, 70, 65, 80, 85, 90, 75, 95, 100});
-        model.addAttribute("metaEvolucao", new int[]{40, 40, 50, 60, 70, 70, 85, 90, 95, 95, 100, 105});
+        model.addAttribute("alcancado", alcancado);
+        model.addAttribute("metaEvolucao", metaEvolucao);
         return "dashboardTelaInicial";
     }
 }

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Configurações</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/configuracoes.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img src="/imagens/palatucci.png" alt="Escudo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <<li class="ativo"><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer"><span></span><span></span><span></span></div>
+    <div class="titulo-secao">
+        <h1>Configurações</h1>
+        <p>Gerencie os dados do escritório e preferências do sistema.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/configuracoes}"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+
+    <div th:if="${param.sucesso}" class="alerta-sucesso">
+        ✅ Configurações salvas com sucesso!
+    </div>
+
+    <form th:action="@{/configuracoes/salvar}" method="post" th:object="${config}">
+
+        <div class="config-container">
+
+            <!-- COLUNA ESQUERDA (LOGO) -->
+            <div class="config-esquerda">
+                <div class="card-config">
+                    <h3>Logo do Escritório</h3>
+                    <div class="logo-preview">
+                        <img src="/imagens/palatucci.png" alt="Logo">
+                    </div>
+                    <button type="button" class="botao-alterar-foto">📷 Alterar logo</button>
+                    <p class="texto-ajuda">JPG ou PNG. Tamanho máximo: 2MB.</p>
+                </div>
+
+                <div class="card-config">
+                    <h3>Ações Rápidas</h3>
+                    <a href="/configuracoes/colaboradores" class="acao-rapida">
+                        <span>👥</span>
+                        <div>
+                            <span class="titulo-acao">Gerenciar Colaboradores</span>
+                            <span class="descricao-acao">Adicione ou edite usuários</span>
+                        </div>
+                        <span class="seta">›</span>
+                    </a>
+                    <a href="#" class="acao-rapida">
+                        <span>💾</span>
+                        <div>
+                            <span class="titulo-acao">Backup do Sistema</span>
+                            <span class="descricao-acao">Exportar dados</span>
+                        </div>
+                        <span class="seta">›</span>
+                    </a>
+                    <a href="#" class="acao-rapida">
+                        <span>ℹ️</span>
+                        <div>
+                            <span class="titulo-acao">Sobre o Sistema</span>
+                            <span class="descricao-acao">Versão e informações</span>
+                        </div>
+                        <span class="seta">›</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="config-direita">
+
+                <div class="card-config">
+                    <h3>Informações da Empresa</h3>
+                    <p class="subtitulo-form">Preencha os dados do escritório.</p>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Nome do Escritório</label>
+                            <input type="text" th:field="*{nome}" placeholder="Ex: LexMeta Advocacia">
+                        </div>
+                        <div class="campo">
+                            <label>Razão Social</label>
+                            <input type="text" th:field="*{razaoSocial}" placeholder="Ex: LexMeta LTDA">
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label>Descrição</label>
+                        <textarea th:field="*{descricao}" rows="3" placeholder="Descreva o escritório..."></textarea>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Telefone 1</label>
+                            <input type="text" th:field="*{telefone1}" placeholder="(11) 3456-7890">
+                        </div>
+                        <div class="campo">
+                            <label>Telefone 2</label>
+                            <input type="text" th:field="*{telefone2}" placeholder="(11) 98765-4321">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>CNPJ</label>
+                            <input type="text" th:field="*{cnpj}" placeholder="00.000.000/0000-00">
+                        </div>
+                        <div class="campo">
+                            <label>E-mail</label>
+                            <input type="email" th:field="*{email}" placeholder="contato@lexmeta.com">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>CEP</label>
+                            <input type="text" th:field="*{cep}" placeholder="00000-000">
+                        </div>
+                        <div class="campo">
+                            <label>Instagram</label>
+                            <input type="text" th:field="*{instagram}" placeholder="@lexmeta">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Endereço</label>
+                            <input type="text" th:field="*{endereco}" placeholder="Rua, Avenida...">
+                        </div>
+                        <div class="campo">
+                            <label>Número</label>
+                            <input type="text" th:field="*{numero}" placeholder="123">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>Bairro</label>
+                            <input type="text" th:field="*{bairro}" placeholder="Centro">
+                        </div>
+                        <div class="campo">
+                            <label>Cidade</label>
+                            <input type="text" th:field="*{cidade}" placeholder="São Paulo">
+                        </div>
+                    </div>
+
+                    <div class="campo-duplo">
+                        <div class="campo">
+                            <label>UF</label>
+                            <input type="text" th:field="*{uf}" placeholder="SP" maxlength="2">
+                        </div>
+                        <div class="campo">
+                            <label>Complemento</label>
+                            <input type="text" th:field="*{complemento}" placeholder="Sala 101">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-botoes">
+            <a href="/dashboardTelaInicial" class="botao-voltar">← Voltar</a>
+            <button type="submit" class="botao-salvar">💾 Salvar Configurações</button>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{/js/global.js}"></script>
+<script>
+    function abrirModalMeta() {
+        alert('Modal de meta - em breve!');
+    }
+</script>
+
+</body>
+</html>
