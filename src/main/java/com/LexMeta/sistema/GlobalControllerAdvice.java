@@ -10,6 +10,9 @@ public class GlobalControllerAdvice {
     @Autowired
     private MetaRepository metaRepository;
 
+    @Autowired
+    private ConfiguracaoRepository configuracaoRepository;
+
     @ModelAttribute("mesAtual")
     public Integer getMesAtual() {
         return LocalDate.now().getMonthValue();
@@ -34,5 +37,10 @@ public class GlobalControllerAdvice {
         Optional<Meta> metaDoMes = metaRepository.findByMesAndAno(mesAtual, anoAtual);
         return metaDoMes.map(Meta::getQuantidade).orElse(0);
 
+    }
+
+    @ModelAttribute("configGlobal")
+    public Configuracao getConfigGlobal(){
+        return configuracaoRepository.findAll().stream().findFirst().orElse(new Configuracao());
     }
 }

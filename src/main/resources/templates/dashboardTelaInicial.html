@@ -10,10 +10,8 @@
 <body>
     <div class="menu-lateral">
         <div class="menu-logo">
-            <img src="/imagens/palatucci.png" alt="Escudo">
-            <div class="logo-texto">
-                <div class="logo-titulo">LexMeta</div>
-            </div>
+            <img th:src="${configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Escudo">
+            <div class="logo-titulo">LexMeta</div>
         </div>
 
         <ul class="menu-itens">

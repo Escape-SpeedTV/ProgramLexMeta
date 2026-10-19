@@ -10,7 +10,7 @@
 
 <div class="menu-lateral">
     <div class="menu-logo">
-        <img src="/imagens/palatucci.png" alt="Escudo">
+        <img th:src="${configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Escudo">
         <div class="logo-titulo">LexMeta</div>
     </div>
     <ul class="menu-itens">
@@ -57,20 +57,25 @@
     <div th:if="${param.sucesso}" class="alerta-sucesso">
         ✅ Configurações salvas com sucesso!
     </div>
+    <div th:if="${param.erroTipo}" class="alerta-erro">
+        ❌ Apenas imagens PNG são aceitas.
+    </div>
 
     <form th:action="@{/configuracoes/salvar}" method="post" th:object="${config}">
 
         <div class="config-container">
 
-            <!-- COLUNA ESQUERDA (LOGO) -->
             <div class="config-esquerda">
                 <div class="card-config">
                     <h3>Logo do Escritório</h3>
                     <div class="logo-preview">
-                        <img src="/imagens/palatucci.png" alt="Logo">
+                        <img th:src="${config.caminhoLogo != null ? '/' + config.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo">
                     </div>
-                    <button type="button" class="botao-alterar-foto">📷 Alterar logo</button>
-                    <p class="texto-ajuda">JPG ou PNG. Tamanho máximo: 2MB.</p>
+                    <p class="texto-ajuda">Apenas PNG (com fundo transparente). Tamanho máximo: 2MB.</p>
+
+                    <button type="button" class="botao-alterar-foto" onclick="document.getElementById('input-logo').click()">
+                        📷 Alterar logo
+                    </button>
                 </div>
 
                 <div class="card-config">
@@ -198,6 +203,14 @@
             <button type="submit" class="botao-salvar">💾 Salvar Configurações</button>
         </div>
     </form>
+
+    <form th:action="@{/configuracoes/alterar-logo}"
+          method="post"
+          enctype="multipart/form-data"
+          id="form-logo"
+          style="display: none;">
+        <input type="file" name="logo" id="input-logo" accept="image/png" style="display: none;">
+    </form>
 </div>
 
 <script th:src="@{/js/global.js}"></script>
@@ -205,6 +218,21 @@
     function abrirModalMeta() {
         alert('Modal de meta - em breve!');
     }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const inputLogo = document.getElementById('input-logo');
+        const formLogo = document.getElementById('form-logo');
+
+        if (inputLogo && formLogo) {
+            inputLogo.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    formLogo.submit();
+                }
+            });
+        }
+    });
 </script>
 
 </body>
