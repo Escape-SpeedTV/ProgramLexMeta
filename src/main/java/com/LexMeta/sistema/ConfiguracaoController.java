@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
 
 @Controller
 public class ConfiguracaoController {
@@ -48,6 +51,51 @@ public class ConfiguracaoController {
             configuracaoRepository.save(configAtualizada);
         }
 
-        return "redirect:/configuracaoes?sucesso=true";
+        return "redirect:/configuracoes?sucesso=true";
+    }
+
+    @PostMapping("/configuracoes/alterar-logo")
+    public String alterarLogo(@RequestParam("logo") MultipartFile logo){
+        try{
+            if(logo.isEmpty()){
+                return "redirect:/configuracoes?erro=true";
+            }
+
+            String tipo = logo.getContentType();
+            if (tipo == null || !tipo.equals("image/png")) {
+                return "redirect:/configuracoes?erroTipo=true";
+            }
+
+            if (logo.getSize() > 2 * 1024 * 1024){
+                return "redirect:/configuracoes?erro=true";
+            }
+
+            String pastaUpload = System.getProperty("user.dir") + "/uploads/logos/";
+            File pasta = new File(pastaUpload);
+            if(!pasta.exists()) pasta.mkdirs();
+
+            String nomeOriginal = logo.getOriginalFilename();
+            String extensao = nomeOriginal.substring(nomeOriginal.lastIndexOf("."));
+            String nomeUnico = "logo_" + System.currentTimeMillis() + extensao;
+
+            File arquivoDestino = new File(pasta, nomeUnico);
+            logo.transferTo(arquivoDestino);
+
+            Optional<Configuracao> existente = configuracaoRepository.findAll().stream().findFirst();
+
+            if(existente.isPresent()){
+                Configuracao config = existente.get();
+                config.setCaminhoLogo("uploads/logos/" + nomeUnico);
+                configuracaoRepository.save(config);
+            }else{
+                Configuracao nova = new Configuracao();
+                nova.setCaminhoLogo("uploads/logos/" + nomeUnico);
+                configuracaoRepository.save(nova);
+            }
+            return "redirect:/configuracoes?sucesso=true";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "redirect:/configuracoes?erro=true";
+        }
     }
 }

@@ -25,6 +25,8 @@ public class Usuario {
     private String areaAtuacao;
     private String telefone;
     private String caminhoFoto;
+    private Boolean ativo = true;
+    private String oab;
 
     public Usuario(){};
 
@@ -82,6 +84,20 @@ public class Usuario {
     }
     public void setCaminhoFoto(String caminhoFoto){
         this.caminhoFoto = caminhoFoto;
+    }
+
+    public Boolean getAtivo(){
+        return ativo;
+    }
+    public void setAtivo(Boolean ativo){
+        this.ativo = ativo;
+    }
+
+    public String getOab(){
+        return oab;
+    }
+    public void setOab(String oab){
+        this.oab = oab;
     }
 
 

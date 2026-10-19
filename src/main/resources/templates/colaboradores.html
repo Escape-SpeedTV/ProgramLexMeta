@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Gerenciar Colaboradores</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/colaboradores.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <li class="ativo"><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer"><span></span><span></span><span></span></div>
+    <div class="titulo-secao">
+        <h1>Gerenciar Colaboradores</h1>
+        <p>Adicione, edite ou desative usuários do sistema.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/configuracoes}"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+
+    <div class="colab-header">
+        <div>
+            <h2>Colaboradores</h2>
+            <p>Gerencie os usuários do sistema, adicione novos colaboradores e defina seus cargos.</p>
+        </div>
+        <button class="botao-novo" onclick="abrirModalNovo()">+ Novo Colaborador</button>
+    </div>
+
+    <div class="colab-filtros">
+        <input type="text" id="campoBusca" placeholder="Buscar colaborador..." onkeyup="filtrarColaboradores()">
+        <select id="filtroCargo" onchange="filtrarColaboradores()">
+            <option value="">Todos os cargos</option>
+            <option value="T.I">T.I</option>
+            <option value="ADM Geral">ADM Geral</option>
+            <option value="ADM">ADM</option>
+            <option value="Advogado">Advogado</option>
+            <option value="Estagiário">Estagiário</option>
+        </select>
+    </div>
+
+    <div class="tabela-colaboradores">
+        <table>
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>OAB</th>
+                <th>Cargo</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody id="corpoTabela">
+            <tr th:each="colab : ${colaboradores}" th:attr="data-nome=${colab.nome}, data-cargo=${colab.cargo}">
+                <td>
+                    <div class="celula-nome">
+                        <img th:src="${colab.caminhoFoto != null ? '/' + colab.caminhoFoto : '/imagens/takumi-fujiwara.png'}" class="foto-colab">
+                        <div>
+                            <span class="nome-colab" th:text="${colab.nome}">-</span>
+                            <span class="cargo-colab" th:text="${colab.cargo}">-</span>
+                        </div>
+                    </div>
+                </td>
+                <td th:text="${colab.email}">-</td>
+                <td th:text="${colab.oab} ?: '-'">-</td>
+                <td>
+                    <select class="select-cargo" th:attr="data-id=${colab.id}" onchange="alterarCargo(this)">
+                        <option value="T.I" th:selected="${colab.cargo == 'T.I'}">T.I</option>
+                        <option value="ADM Geral" th:selected="${colab.cargo == 'ADM Geral'}">ADM Geral</option>
+                        <option value="ADM" th:selected="${colab.cargo == 'ADM'}">ADM</option>
+                        <option value="Advogado" th:selected="${colab.cargo == 'Advogado'}">Advogado</option>
+                        <option value="Estagiário" th:selected="${colab.cargo == 'Estagiário'}">Estagiário</option>
+                    </select>
+                </td>
+                <td>
+                    <span class="status-ativo" th:if="${colab.ativo}">● Ativo</span>
+                    <span class="status-inativo" th:unless="${colab.ativo}">● Inativo</span>
+                </td>
+                <td>
+                    <div class="menu-acoes">
+                        <span class="mais-opcoes" onclick="toggleMenuColab(this)">⋮</span>
+                        <div class="dropdown-acoes">
+                            <a href="#" th:onclick="'abrirModalEditar(' + ${colab.id} + ')'">
+                                <span>✏️</span> Editar
+                            </a>
+                            <a href="#" th:onclick="'toggleAtivo(' + ${colab.id} + ')'" th:text="${colab.ativo ? '🚫 Desativar' : '✅ Ativar'}">Desativar</a>
+                            <div class="divisoria-acoes"></div>
+                            <a href="#" th:onclick="'excluirColaborador(' + ${colab.id} + ')'" style="color: #d32f2f;">
+                                <span>🗑️</span> Excluir
+                            </a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="modal-overlay" id="modal-novo">
+    <div class="modal-box">
+        <h3>Novo Colaborador</h3>
+        <form th:action="@{/configuracoes/colaboradores/novo}" method="post">
+            <div class="campo">
+                <label>Nome</label>
+                <input type="text" name="nome" required>
+            </div>
+            <div class="campo">
+                <label>E-mail</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="campo">
+                <label>Senha</label>
+                <input type="password" name="senha" required>
+            </div>
+
+            <div class="campo">
+                <label>OAB</label>
+                <input type="text" name="oab" placeholder="Ex: 12345/DF">
+            </div>
+
+            <div class="campo">
+                <label>Cargo</label>
+                <select name="cargo">
+                    <option value="ADM">ADM</option>
+                    <option value="Advogado">Advogado</option>
+                    <option value="Estagiário">Estagiário</option>
+                </select>
+            </div>
+            <div class="modal-botoes">
+                <button type="button" class="botao-cancelar" onclick="fecharModalNovo()">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script th:src="@{/js/global.js}"></script>
+<script th:src="@{/js/colaboradores.js}"></script>
+</body>
+</html>

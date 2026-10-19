@@ -27,6 +27,7 @@ public class Configuracao {
     private String uf;
     private String complemento;
     private String instagram;
+    private String caminhoLogo;
 
     public Configuracao(){}
 
@@ -139,5 +140,12 @@ public class Configuracao {
     }
     public void setInstagram(String instagram){
         this.instagram = instagram;
+    }
+
+    public String getCaminhoLogo(){
+        return caminhoLogo;
+    }
+    public void setCaminhoLogo(String caminhoLogo){
+        this.caminhoLogo = caminhoLogo;
     }
 }
