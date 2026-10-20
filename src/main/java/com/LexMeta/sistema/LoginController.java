@@ -31,6 +31,11 @@ public class LoginController {
         if (usuarioOpt.isPresent()) {
             Usuario usuario = usuarioOpt.get();
             if (usuario.getSenha().equals(usuarioDigitado.getSenha())) {
+
+                if (usuario.getAtivo() == null || !usuario.getAtivo()) {
+                    return "redirect:/?erro=inativo";
+                }
+
                 session.setAttribute("usuarioLogado", usuario);
                 return "redirect:/dashboardTelaInicial";
             }

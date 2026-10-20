@@ -100,12 +100,23 @@
                 <td th:text="${colab.email}">-</td>
                 <td th:text="${colab.oab} ?: '-'">-</td>
                 <td>
-                    <select class="select-cargo" th:attr="data-id=${colab.id}" onchange="alterarCargo(this)">
-                        <option value="T.I" th:selected="${colab.cargo == 'T.I'}">T.I</option>
-                        <option value="ADM Geral" th:selected="${colab.cargo == 'ADM Geral'}">ADM Geral</option>
+                    <select class="select-cargo"
+                            th:attr="data-id=${colab.id}"
+                            onchange="alterarCargo(this)"
+                            th:disabled="${colab.cargo == 'T.I'
+                     or (colab.cargo == 'ADM Geral' and session.usuarioLogado.cargo == 'ADM Geral')
+                     or colab.id == session.usuarioLogado.id}">
+
                         <option value="ADM" th:selected="${colab.cargo == 'ADM'}">ADM</option>
                         <option value="Advogado" th:selected="${colab.cargo == 'Advogado'}">Advogado</option>
                         <option value="Estagiário" th:selected="${colab.cargo == 'Estagiário'}">Estagiário</option>
+
+                        <option value="T.I"
+                                th:selected="${colab.cargo == 'T.I'}"
+                                th:if="${session.usuarioLogado.cargo == 'T.I'}">T.I</option>
+                        <option value="ADM Geral"
+                                th:selected="${colab.cargo == 'ADM Geral'}"
+                                th:if="${session.usuarioLogado.cargo == 'T.I'}">ADM Geral</option>
                     </select>
                 </td>
                 <td>
