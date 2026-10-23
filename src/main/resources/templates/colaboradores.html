@@ -82,6 +82,7 @@
                 <th>E-mail</th>
                 <th>OAB</th>
                 <th>Cargo</th>
+                <th>Area de Atuação</th>
                 <th>Status</th>
                 <th>Ações</th>
             </tr>
@@ -103,10 +104,7 @@
                     <select class="select-cargo"
                             th:attr="data-id=${colab.id}"
                             onchange="alterarCargo(this)"
-                            th:disabled="${colab.cargo == 'T.I'
-                     or (colab.cargo == 'ADM Geral' and session.usuarioLogado.cargo == 'ADM Geral')
-                     or colab.id == session.usuarioLogado.id}">
-
+                            th:disabled="${colab.cargo == 'T.I' or (colab.cargo == 'ADM Geral' and session.usuarioLogado.cargo == 'ADM Geral') or colab.id == session.usuarioLogado.id}">
                         <option value="ADM" th:selected="${colab.cargo == 'ADM'}">ADM</option>
                         <option value="Advogado" th:selected="${colab.cargo == 'Advogado'}">Advogado</option>
                         <option value="Estagiário" th:selected="${colab.cargo == 'Estagiário'}">Estagiário</option>
@@ -119,6 +117,9 @@
                                 th:if="${session.usuarioLogado.cargo == 'T.I'}">ADM Geral</option>
                     </select>
                 </td>
+
+
+                <td th:text="${colab.areaAtuacao}?: '-'">-</td>
                 <td>
                     <span class="status-ativo" th:if="${colab.ativo}">● Ativo</span>
                     <span class="status-inativo" th:unless="${colab.ativo}">● Inativo</span>
@@ -127,7 +128,8 @@
                     <div class="menu-acoes">
                         <span class="mais-opcoes" onclick="toggleMenuColab(this)">⋮</span>
                         <div class="dropdown-acoes">
-                            <a href="#" th:onclick="'abrirModalEditar(' + ${colab.id} + ')'">
+                            <a href="#" onclick="abrirModalEditar(this)"
+                               th:attr="data-id=${colab.id}, data-nome=${colab.nome}, data-email=${colab.email}, data-oab=${colab.oab}, data-area=${colab.areaAtuacao}, data-telefone=${colab.telefone}">
                                 <span>✏️</span> Editar
                             </a>
                             <a href="#" th:onclick="'toggleAtivo(' + ${colab.id} + ')'" th:text="${colab.ativo ? '🚫 Desativar' : '✅ Ativar'}">Desativar</a>
@@ -174,9 +176,64 @@
                     <option value="Advogado">Advogado</option>
                     <option value="Estagiário">Estagiário</option>
                 </select>
+
+                <label>Área de Atuação</label>
+                <select name="areaAtuacao">
+                    <option value="">Selecione</option>
+                    <option value="Direito Imobiliário">Direito Imobiliário</option>
+                    <option value="Direito do Consumidor">Direito do Consumidor</option>
+                    <option value="Direito Trabalhista">Direito Trabalhista</option>
+                    <option value="Outros">Outros</option>
+                </select>
+
             </div>
             <div class="modal-botoes">
                 <button type="button" class="botao-cancelar" onclick="fecharModalNovo()">Cancelar</button>
+                <button type="submit" class="botao-salvar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="modal-editar">
+    <div class="modal-box">
+        <h3>Editar Colaborador</h3>
+        <form th:action="@{/configuracoes/colaboradores/editar}" method="post">
+            <input type="hidden" name="id" id="edit-id">
+
+            <div class="campo">
+                <label>Nome</label>
+                <input type="text" name="nome" id="edit-nome" required>
+            </div>
+            <div class="campo">
+                <label>E-mail</label>
+                <input type="email" name="email" id="edit-email" required>
+            </div>
+            <div class="campo">
+                <label>OAB</label>
+                <input type="text" name="oab" id="edit-oab" placeholder="Ex: 12345/SP">
+            </div>
+            <div class="campo">
+                <label>Área de Atuação</label>
+                <select name="areaAtuacao" id="edit-area">
+                    <option value="">Selecione</option>
+                    <option value="Direito Imobiliário">Direito Imobiliário</option>
+                    <option value="Direito do Consumidor">Direito do Consumidor</option>
+                    <option value="Direito Trabalhista">Direito Trabalhista</option>
+                    <option value="Outros">Outros</option>
+                </select>
+            </div>
+            <div class="campo">
+                <label>Telefone</label>
+                <input type="text" name="telefone" id="edit-telefone" placeholder="(11) 98765-4321">
+            </div>
+            <div class="campo">
+                <label>Nova Senha (deixe em branco para manter)</label>
+                <input type="password" name="novaSenha" id="edit-senha" placeholder="Digite a nova senha">
+            </div>
+
+            <div class="modal-botoes">
+                <button type="button" class="botao-cancelar" onclick="fecharModalEditar()">Cancelar</button>
                 <button type="submit" class="botao-salvar">Salvar</button>
             </div>
         </form>

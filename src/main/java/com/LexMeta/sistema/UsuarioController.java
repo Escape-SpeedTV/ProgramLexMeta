@@ -148,4 +148,40 @@ public class UsuarioController {
 
         return "redirect:/configuracoes/colaboradores?sucesso=true";
     }
+
+    @PostMapping("/configuracoes/colabodores/editar")
+    public String editarColaborador (@RequestParam Long id, @RequestParam String nome, @RequestParam String email, @RequestParam(required = false) String oab, @RequestParam(required = false) String areaAtuacao, @RequestParam(required = false) String telefone, @RequestParam(required = false) String novaSenha, HttpSession session){
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+
+        if(!temPermissao(usuarioLogado)){
+            return "redirect:/dashboardTelaInicial";
+        }
+
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if(usuario == null){
+            return "redirect:/configuracoes/colaboradores?erro=naoEncontrado";
+        }
+
+        if(usuario.getCargo().equals("T.I") && !usuarioLogado.getCargo().equals("T.I")){
+            return "redirect:/configuracoes/colaboradores?erro=protegido";
+        }
+
+        if(usuario.getCargo().equals("ADM Geral") && !usuarioLogado.getCargo().equals("ADM Geral")){
+            return "redirect:/configuracoes/colaboradores?erro=protegido";
+        }
+
+        usuario.setNome(nome);
+        usuario.setEmail(email);
+        usuario.setOab(oab);
+        usuario.setAreaAtuacao(areaAtuacao);
+        usuario.setTelefone(telefone);
+
+        if(novaSenha != null && !novaSenha.isEmpty()){
+            usuario.setSenha(novaSenha);
+        }
+
+        usuarioRepository.save(usuario);
+
+        return"redirect:/configuracoes/colaboradores?sucesso=true";
+    }
 }
