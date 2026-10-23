@@ -72,6 +72,33 @@ function excluirColaborador(id){
     }
 }
 
-function abrirModalEditar(){
-    alert('Editar colaborador: ' + id + ' (em breve');
+function abrirModalEditar(id, nome, email, oab, areaAtuacao, telefone){
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.link-editar').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const id = this.getAttribute('data-id');
+                const nome = this.getAttribute('data-nome');
+                const email = this.getAttribute('data-email');
+                const oab = this.getAttribute('data-oab') || '';
+                const area = this.getAttribute('data-area') || '';
+                const telefone = this.getAttribute('data-telefone') || '';
+
+                document.getElementById('edit-id').value = id;
+                document.getElementById('edit-nome').value = nome;
+                document.getElementById('edit-email').value = email;
+                document.getElementById('edit-oab').value = oab;
+                document.getElementById('edit-area').value = area;
+                document.getElementById('edit-telefone').value = telefone;
+                document.getElementById('edit-senha').value = '';
+
+                document.getElementById('modal-editar').classList.add('aberto');
+            });
+        });
+    });
+}
+
+function fecharModal(){
+    document.getElementById('modal-editar').classList.remove('aberto');
 }
