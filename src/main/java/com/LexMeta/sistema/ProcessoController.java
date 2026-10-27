@@ -30,7 +30,7 @@ public class ProcessoController {
     @PostMapping("/novo-processo")
     public String salvarProcesso(Processo processo, @RequestParam(value = "arquivos", required = false)MultipartFile[] arquivos){
         try{
-            processo.setDataCadastro(java.time.LocalDate.now());
+            processo.setDataDistribuicao(java.time.LocalDate.now());
 
             Processo processoSalvo = processoRepository.save(processo);
 
@@ -90,7 +90,7 @@ public class ProcessoController {
              @RequestParam(value = "responsavel", required = false) String responsavel,
              @RequestParam(value = "busca", required = false) String busca, Model model){
         Page<Processo> paginaProcessos;
-        PageRequest pageRequest = PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataCadastro").descending());
+        PageRequest pageRequest = PageRequest.of(pagina - 1, itensPorPagina, Sort.by("dataAudiencia").descending());
 
         if (busca != null && !busca.isEmpty()) {
             paginaProcessos = processoRepository.findByNumeroProcessoContainingIgnoreCaseOrClienteContainingIgnoreCase(
@@ -177,7 +177,7 @@ public class ProcessoController {
         processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
         processo.setValorRecebido(processoAtualizado.getValorRecebido());
         processo.setDescricao(processoAtualizado.getDescricao());
-        processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
+        processo.setDataAudiencia(processoAtualizado.getDataAudiencia());
 
         processoRepository.save(processo);
         return "redirect:/processos";

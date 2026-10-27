@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Sobre o Sistema</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/sobre.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="#">Relatórios</a></li>
+        <li class="ativo"><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer"><span></span><span></span><span></span></div>
+    <div class="titulo-secao">
+        <h1>Sobre o Sistema</h1>
+        <p>Informações sobre o LexMeta.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/configuracoes}"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+    <div class="sobre-container">
+        <div class="card-sobre">
+            <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo" class="logo-sobre">
+            <h2>LexMeta</h2>
+            <p class="versao">Versão 1.0</p>
+        </div>
+
+        <div class="card-sobre">
+            <h3>Sobre o Sistema</h3>
+            <p>O LexMeta é um sistema de gestão jurídica desenvolvido para automatizar o controle de processos, metas e relatórios de escritórios de advocacia.</p>
+            <p>O sistema substitui o processo manual de geração de dashboards e centraliza as informações em um único ambiente.</p>
+        </div>
+
+        <div class="card-sobre">
+            <h3>Desenvolvedor</h3>
+            <p><strong>William Oliveira Nakano</strong></p>
+            <p>Estudante de Análise e Desenvolvimento de Sistemas (ADS)</p>
+            <p>Projeto de portfólio e prática profissional.</p>
+        </div>
+
+        <div class="card-sobre">
+            <h3>Tecnologias Utilizadas</h3>
+            <ul class="lista-tech">
+                <li><strong>Back-end:</strong> Java 21 + Spring Boot</li>
+                <li><strong>Front-end:</strong> HTML5, CSS3, JavaScript</li>
+                <li><strong>Banco de Dados:</strong> MySQL</li>
+                <li><strong>Gráficos:</strong> Chart.js</li>
+                <li><strong>Template Engine:</strong> Thymeleaf</li>
+            </ul>
+        </div>
+
+        <div class="card-sobre">
+            <h3>Contato</h3>
+            <p><strong>E-mail:</strong> contato@lexmeta.com</p>
+            <p><strong>GitHub:</strong> github.com/williamnakano</p>
+        </div>
+
+    </div>
+
+    <div class="form-botoes">
+        <a href="/configuracoes" class="botao-voltar">← Voltar</a>
+    </div>
+
+</div>
+
+<script th:src="@{/js/global.js}"></script>
+<script>
+    function abrirModalMeta() {
+        alert('Modal de meta - em breve!');
+    }
+</script>
+
+</body>
+</html>

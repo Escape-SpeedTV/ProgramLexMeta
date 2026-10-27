@@ -158,7 +158,7 @@
                     <td th:text="${processo.responsavel}"></td>
 
                     <td>
-                        <span th:text="${processo.dataCadastro != null ? #temporals.format(processo.dataCadastro, 'dd/MM/yyyy') : '-'}">-</span>
+                        <span th:text="${processo.dataAudiencia != null ? #temporals.format(processo.dataAudiencia, 'dd/MM/yyyy') : '-'}">-</span>
                         <span class="movimentacao-descricao">Petição protocolada</span>
                     </td>
 

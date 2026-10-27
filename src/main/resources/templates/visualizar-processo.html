@@ -103,8 +103,8 @@
                 <span class="info-valor" th:text="${processo.valorRecebido} ?: 'R$ 0,00'">-</span>
             </div>
             <div class="info-item">
-                <span class="info-titulo">Data de Cadastro</span>
-                <span class="info-valor" th:text="${processo.dataCadastro != null ? #temporals.format(processo.dataCadastro, 'dd/MM/yyyy') : '-'}">-</span>
+                <span class="info-titulo">Data de Audiência</span>
+                <span class="info-valor" th:text="${processo.dataAudiencia != null ? #temporals.format(processo.dataAudiencia|, 'dd/MM/yyyy') : '-'}">-</span>
             </div>
         </div>
 

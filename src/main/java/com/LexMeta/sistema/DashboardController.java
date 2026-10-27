@@ -39,7 +39,7 @@ public class  DashboardController {
         List<Processo> processosConcluidosList = processoRepository.findAllByStatus("Concluído");
         int[] concluidosMensal = new int[12];
         for(Processo p : processosConcluidosList) {
-            if (p.getDataCadastro() != null) {
+            if (p.getDataDistribuicao() != null) {
                 int mes = p.getDataDistribuicao().getMonthValue() - 1;
                 concluidosMensal[mes]++;
             }
