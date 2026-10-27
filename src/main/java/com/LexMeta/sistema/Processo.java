@@ -23,7 +23,7 @@ public class Processo {
     private String varaOrgao;
     private LocalDate dataDistribuicao;
     private String valorRecebido;
-    private LocalDate dataCadastro;
+    private LocalDate dataAudiencia;
 
     @Column(length = 2000)
     private String descricao;
@@ -104,11 +104,11 @@ public class Processo {
         this.valorRecebido = valorRecebido;
     }
 
-    public LocalDate getDataCadastro(){
-        return dataCadastro;
+    public LocalDate getDataAudiencia(){
+        return dataAudiencia;
     }
-    public void setDataCadastro(LocalDate dataCadastro){
-        this.dataCadastro = dataCadastro;
+    public void setDataAudiencia(LocalDate dataAudiencia){
+        this.dataAudiencia = dataAudiencia;
     }
 
     public String getDescricao(){
