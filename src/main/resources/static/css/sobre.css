@@ -1,9 +1,30 @@
-.sobre-container {
+.icone-header {
+    width: 45px;
+    height: 45px;
+    background-color: #005b63;
+    color: white;
+    border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.sobre-header h2 {
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 3px;
+}
+
+.sobre-header p {
+    font-size: 13px;
+    color: #666;
+}
+.sobre-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
     gap: 20px;
-    max-width: 900px;
-    margin: 0 auto 30px auto;
+    margin-bottom: 20px;
 }
 
 .card-sobre {
@@ -13,10 +34,121 @@
     padding: 30px;
 }
 
-.card-sobre h2 {
-    font-size: 26px;
+.card-topo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.logo-sobre {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.card-topo h2 {
+    font-size: 24px;
     color: #1a1a1a;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+}
+
+.card-topo p {
+    font-size: 13px;
+    color: #666;
+}
+
+.descricao {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.tabela-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 25px;
+}
+
+.info-linha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.info-linha:last-child {
+    border-bottom: none;
+}
+
+.info-icone {
+    font-size: 16px;
+    color: #005b63;
+    width: 24px;
+    text-align: center;
+}
+
+.info-chave {
+    font-size: 13px;
+    color: #666;
+    flex: 1;
+}
+
+.info-valor {
+    font-size: 13px;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-align: right;
+}
+
+.dev-valor {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.mini-logo {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 3px;
+}
+
+.aviso {
+    display: flex;
+    gap: 10px;
+    background-color: #e0f7fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #006064;
+}
+
+.aviso span {
+    font-size: 16px;
+}
+
+.aviso p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.imagem-destaque {
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.imagem-destaque img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .card-sobre h3 {
@@ -26,39 +158,36 @@
     margin-bottom: 15px;
 }
 
-.card-sobre p {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 8px;
-}
-
-.logo-sobre {
-    width: 120px;
-    margin-bottom: 15px;
-    display: block;
-}
-
-.versao {
-    font-size: 13px;
-    color: #999;
-    margin-bottom: 0;
-}
-
-.lista-tech {
+.lista-recursos {
     list-style: none;
     padding: 0;
+    margin-bottom: 20px;
 }
 
-.lista-tech li {
+.lista-recursos li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 14px;
-    color: #555;
+    color: #333;
     padding: 8px 0;
-    border-bottom: 1px solid #f0f0f0;
 }
 
-.lista-tech li:last-child {
-    border-bottom: none;
+.lista-recursos li span {
+    color: #005b63;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.frase-final {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
 }
 
 .form-botoes {

@@ -32,7 +32,7 @@
     <div class="menu-hamburguer"><span></span><span></span><span></span></div>
     <div class="titulo-secao">
         <h1>Sobre o Sistema</h1>
-        <p>Informações sobre o LexMeta.</p>
+        <p>Versão e informações do sistema</p>
     </div>
     <div class="usuario-dropdown">
         <div class="usuario-icone">
@@ -53,41 +53,72 @@
 </div>
 
 <div class="conteudo">
-    <div class="sobre-container">
+    <div class="sobre-grid">
         <div class="card-sobre">
-            <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo" class="logo-sobre">
-            <h2>LexMeta</h2>
-            <p class="versao">Versão 1.0</p>
+            <div class="card-topo">
+                <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo" class="logo-sobre">
+                <div>
+                    <h2>LEX META</h2>
+                    <p>Sistema de Gestão Jurídica</p>
+                </div>
+            </div>
+
+            <p class="descricao">
+                O LEX META é um sistema desenvolvido para auxiliar na organização e no acompanhamento de processos jurídicos, oferecendo uma gestão mais prática, segura e eficiente para o seu escritório.
+            </p>
+
+            <div class="tabela-info">
+                <div class="info-linha">
+                    <span class="info-icone">📦</span>
+                    <span class="info-chave">Versão do Sistema</span>
+                    <span class="info-valor">1.0</span>
+                </div>
+                <div class="info-linha">
+                    <span class="info-icone">📅</span>
+                    <span class="info-chave">Data de Lançamento</span>
+                    <span class="info-valor">22/04/2025</span>
+                </div>
+                <div class="info-linha">
+                    <span class="info-icone">💻</span>
+                    <span class="info-chave">Desenvolvimento</span>
+                    <span class="info-valor">Java • Spring Boot • MySQL</span>
+                </div>
+                <div class="info-linha">
+                    <span class="info-icone">👤</span>
+                    <span class="info-chave">Desenvolvedor</span>
+                    <span class="info-valor dev-valor">
+                        William Nakano
+                        <img src="/imagens/LogoNakano.png" alt="Logo" class="mini-logo">
+                    </span>
+                </div>
+                <div class="info-linha">
+                    <span class="info-icone">🏢</span>
+                    <span class="info-chave">Cliente</span>
+                    <span class="info-valor">Douglas Palatucci</span>
+                </div>
+            </div>
+
+            <div class="aviso">
+                <span>ℹ️</span>
+                <p>Este sistema foi desenvolvido para uso exclusivo do cliente informado. É proibida a cópia, distribuição ou uso não autorizado.</p>
+            </div>
         </div>
 
         <div class="card-sobre">
-            <h3>Sobre o Sistema</h3>
-            <p>O LexMeta é um sistema de gestão jurídica desenvolvido para automatizar o controle de processos, metas e relatórios de escritórios de advocacia.</p>
-            <p>O sistema substitui o processo manual de geração de dashboards e centraliza as informações em um único ambiente.</p>
-        </div>
+            <div class="imagem-destaque">
+                <img src="/imagens/balanca.jpg" alt="Balança da Justiça">
+            </div>
 
-        <div class="card-sobre">
-            <h3>Desenvolvedor</h3>
-            <p><strong>William Oliveira Nakano</strong></p>
-            <p>Estudante de Análise e Desenvolvimento de Sistemas (ADS)</p>
-            <p>Projeto de portfólio e prática profissional.</p>
-        </div>
-
-        <div class="card-sobre">
-            <h3>Tecnologias Utilizadas</h3>
-            <ul class="lista-tech">
-                <li><strong>Back-end:</strong> Java 21 + Spring Boot</li>
-                <li><strong>Front-end:</strong> HTML5, CSS3, JavaScript</li>
-                <li><strong>Banco de Dados:</strong> MySQL</li>
-                <li><strong>Gráficos:</strong> Chart.js</li>
-                <li><strong>Template Engine:</strong> Thymeleaf</li>
+            <h3>Principais Recursos</h3>
+            <ul class="lista-recursos">
+                <li><span>✔</span> Cadastro e consulta de processos</li>
+                <li><span>✔</span> Organização por área jurídica</li>
+                <li><span>✔</span> Acompanhamento de audiências</li>
+                <li><span>✔</span> Geração de relatórios</li>
+                <li><span>✔</span> Suporte a documentos padronizados</li>
             </ul>
-        </div>
 
-        <div class="card-sobre">
-            <h3>Contato</h3>
-            <p><strong>E-mail:</strong> contato@lexmeta.com</p>
-            <p><strong>GitHub:</strong> github.com/williamnakano</p>
+            <p class="frase-final">Tecnologia e organização<br>a favor da sua advocacia.</p>
         </div>
 
     </div>

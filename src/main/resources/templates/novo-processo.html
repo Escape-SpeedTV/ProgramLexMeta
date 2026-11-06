@@ -144,9 +144,15 @@
 
                     <div class="campo-duplo">
                         <div class="campo">
-                            <label>Vara / Órgão</label>
-                            <input type="text" th:field="*{varaOrgao}" id="campoVaraOrgao" placeholder="Ex: Vara Cível - Fórum Central">
+                            <label>Órgão Julgador (Vara/Juizado)</label>
+                            <input type="text" th:field="*{orgaoJulgador}" id="campoOrgaoJulgador" placeholder="Ex: Vara Cível - Fórum Central">
+
+                            <div class="campo">
+                                <label>Jurisdição (Cidade)</label>
+                                <input type="text" th:field="*{jurisdicao}" id="campoJurisdicao" placeholder="Ex: São Paulo">
+                            </div>
                         </div>
+
                         <div class="campo">
                             <label>Data de Audiência</label>
                             <input type="date" th:field="*{dataAudiencia}">
@@ -429,8 +435,13 @@
                                 </div>
 
                                 <div class="info-item">
-                                    <span class="info-titulo">Vara / Órgão</span>
-                                    <span class="info-valor" id="revisaoVaraOrgao">-</span>
+                                    <span class="info-titulo">Jurisdição (Cidade)</span>
+                                    <span class="info-valor" id="revisaoJurisdicao">-</span>
+                                </div>
+
+                                <div class="info-item">
+                                    <span class="info-titulo">Órgão Julgador</span>
+                                    <span class="info-valor" id="revisaoOrgaoJulgador">-</span>
                                 </div>
 
                                 <div class="info-item">
