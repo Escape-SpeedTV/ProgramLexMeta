@@ -173,7 +173,6 @@ public class ProcessoController {
         processo.setStatus(processoAtualizado.getStatus());
         processo.setPrioridade(processoAtualizado.getPrioridade());
         processo.setResponsavel(processoAtualizado.getResponsavel());
-        processo.setVaraOrgao(processoAtualizado.getVaraOrgao());
         processo.setDataDistribuicao(processoAtualizado.getDataDistribuicao());
         processo.setValorRecebido(processoAtualizado.getValorRecebido());
         processo.setDescricao(processoAtualizado.getDescricao());

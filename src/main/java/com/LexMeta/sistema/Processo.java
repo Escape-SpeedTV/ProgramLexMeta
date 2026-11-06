@@ -20,10 +20,11 @@ public class Processo {
     private String status;
     private String prioridade;
     private String responsavel;
-    private String varaOrgao;
     private LocalDate dataDistribuicao;
     private String valorRecebido;
     private LocalDate dataAudiencia;
+    private String jurisdicao;
+    private String orgaoJulgador;
 
     @Column(length = 2000)
     private String descricao;
@@ -84,12 +85,6 @@ public class Processo {
         this.responsavel = responsavel;
     }
 
-    public String getVaraOrgao(){
-        return varaOrgao;
-    }
-    public void setVaraOrgao(String varaOrgao){
-        this.varaOrgao = varaOrgao;}
-
     public LocalDate getDataDistribuicao(){
         return dataDistribuicao;
     }
@@ -127,6 +122,20 @@ public class Processo {
     }
     public void setAssuntoPrincipal(String assuntoPrincipal){
         this.assuntoPrincipal = assuntoPrincipal;
+    }
+
+    public String getJurisdicao(){
+        return jurisdicao;
+    }
+    public void setJurisdicao(String jurisdicao){
+        this.jurisdicao = jurisdicao;
+    }
+
+    public String getOrgaoJulgador(){
+        return orgaoJulgador;
+    }
+    public void setOrgaoJulgador(String orgaoJulgador){
+        this.orgaoJulgador = orgaoJulgador;
     }
 
     public void setDocumentos(List<Documento> documentos) {

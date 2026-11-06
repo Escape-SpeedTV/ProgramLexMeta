@@ -23,6 +23,7 @@ public class  DashboardController {
         long concluidos = processoRepository.countByStatus("Concluído");
         long emAndamento = processoRepository.countByStatus("Em Andamento");
         long pendentes = processoRepository.countByStatus("Pendente");
+        long imobiliariosEmAndamento = processoRepository.countByAssuntoPrincipalAndStatus("Direito Imobiliário", "Em Andamento");
 
         int mesAtual = java.time.LocalDate.now().getMonthValue();
         int anoAtual = java.time.LocalDate.now().getYear();
@@ -45,8 +46,8 @@ public class  DashboardController {
             }
         }
         int concluidosMesAtual = concluidosMensal[mesAtual - 1];
-        long percentual = (quantidadeMetaAtual > 0) ? (concluidosMesAtual * 100 / quantidadeMetaAtual) : 0;
-        long faltamParaMeta = (quantidadeMetaAtual - concluidosMesAtual) > 0 ? (quantidadeMetaAtual - concluidosMesAtual) : 0;
+        long percentual = (quantidadeMetaAtual > 0) ? (imobiliariosEmAndamento * 100 / quantidadeMetaAtual) : 0;
+        long faltamParaMeta = (quantidadeMetaAtual - imobiliariosEmAndamento) > 0 ? (quantidadeMetaAtual - imobiliariosEmAndamento) : 0;
 
         int[] alcancado = new int[12];
         int[] metaEvolucao = new int[12];

@@ -12,6 +12,7 @@ public interface ProcessoRepository extends JpaRepository<Processo, Long> {
 
     long countByStatus(String status);
     long countByStatusContaining(String status);
+    long countByAssuntoPrincipalAndStatus(String assuntoPrincipal, String status);
 
     List<Processo> findAllByStatus(String status);
 

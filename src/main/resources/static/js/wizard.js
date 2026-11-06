@@ -498,26 +498,27 @@ function popularDocumentoRevisao(){
 
 function popularRevisao(){
     const numeroProcessos = document.getElementById("campoNumeroProcesso")?.value || '-';
-    const numeroProcessoLivre = document.getElementById("campoNumeroProcessoLivre")?.value || '-';
     const assuntoPrincipal = document.getElementById("campoAssuntoPrincipal")?.value || '-';
     const valorCausa = document.getElementById("valorCausa")?.value || "R$0.00";
     const dataDistribuicao = document.getElementById("campoDataDistribuicao")?.value || '-';
-    const varaOrgao = document.getElementById("campoVaraOrgao")?.value || '-';
     const descricao = document.getElementById("campoDescricao")?.value || '-';
     const status = document.getElementById("campoStatus")?.value || '-';
     const prioridade = document.getElementById("campoPrioridade")?.value || '-';
     const responsavel = document.getElementById("campoResponsavel")?.value || '-';
+    const jurisdicao = document.getElementById("campoJurisdicao")?.value || '-';
+    const orgaoJulgador = document.getElementById("campoOrgaoJulgador")?.value || '-';
 
 
     document.getElementById("revisaoNumeroProcesso").textContent = numeroProcessos;
     document.getElementById("revisaoAssuntoPrincipal").textContent = assuntoPrincipal;
     document.getElementById("revisaoValorCausa").textContent = "R$" + valorCausa;
     document.getElementById("revisaoDataDistribuicao").textContent = formatarData(dataDistribuicao);
-    document.getElementById("revisaoVaraOrgao").textContent = varaOrgao;
     document.getElementById("revisaoDescricao").textContent = descricao;
     document.getElementById("revisaoPrioridade").textContent = prioridade;
     document.getElementById("revisaoResponsavel").textContent = responsavel;
     document.getElementById("revisaoStatus").textContent = status;
+    document.getElementById("revisaoJurisdicao").textContent = jurisdicao;
+    document.getElementById("revisaoOrgaoJulgador").textContent = orgaoJulgador;
 
     document.getElementById("resumoNumeroProcesso").textContent = numeroProcessos
     document.getElementById("resumoStatus").textContent = status;

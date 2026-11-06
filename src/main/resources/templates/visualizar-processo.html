@@ -91,8 +91,12 @@
                 <span class="info-valor" th:text="${processo.responsavel}">-</span>
             </div>
             <div class="info-item">
-                <span class="info-titulo">Vara / Órgão</span>
-                <span class="info-valor" th:text="${processo.varaOrgao} ?: 'Não informado'">-</span>
+                <span class="info-titulo">Jurisdição (Cidade)</span>
+                <span class="info-valor" th:text="${processo.jurisdicao} ?: '-'">-</span>
+            </div>
+            <div class="info-item">
+                <span class="info-titulo">Órgão Julgador</span>
+                <span class="info-valor" th:text="${processo.orgaoJulgador} ?: '-'">-</span>
             </div>
             <div class="info-item">
                 <span class="info-titulo">Data de Distribuição</span>
@@ -104,7 +108,7 @@
             </div>
             <div class="info-item">
                 <span class="info-titulo">Data de Audiência</span>
-                <span class="info-valor" th:text="${processo.dataAudiencia != null ? #temporals.format(processo.dataAudiencia|, 'dd/MM/yyyy') : '-'}">-</span>
+                <span class="info-valor" th:text="${processo.dataAudiencia != null ? #temporals.format(processo.dataAudiencia, 'dd/MM/yyyy') : '-'}">-</span>
             </div>
         </div>
 
