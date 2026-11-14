@@ -25,6 +25,9 @@ public class Processo {
     private LocalDate dataAudiencia;
     private String jurisdicao;
     private String orgaoJulgador;
+    private String cpf;
+    private String advogado;
+    private String oab;
 
     @Column(length = 2000)
     private String descricao;
@@ -140,5 +143,26 @@ public class Processo {
 
     public void setDocumentos(List<Documento> documentos) {
         this.documentos = documentos;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+    public void setCpf(String cpf){
+        this.cpf = cpf;
+    }
+
+    public String getAdvogado(){
+        return advogado;
+    }
+    public void setAdvogado(String advogado){
+        this.advogado = advogado;
+    }
+
+    public String getOab(){
+        return oab;
+    }
+    public void setOab(String oab){
+        this.oab = oab;
     }
 }

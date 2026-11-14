@@ -24,6 +24,7 @@ public class Usuario {
 
     private String areaAtuacao;
     private String telefone;
+    private String telefoneSecundario;
     private String caminhoFoto;
     private Boolean ativo = true;
     private String oab;
@@ -77,6 +78,13 @@ public class Usuario {
     }
     public void setTelefone(String telefone){
         this.telefone = telefone;
+    }
+
+    public String getTelefoneSecundario(){
+        return telefoneSecundario;
+    }
+    public void setTelefoneSecundario(String telefoneSecundario){
+        this.telefoneSecundario = telefoneSecundario;
     }
 
     public String getCaminhoFoto(){
