@@ -38,7 +38,7 @@
     </div>
     <div class="usuario-dropdown">
         <div class="usuario-icone">
-            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/usuarioL.webp'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
         </div>
         <div class="usuario-info">
             <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
@@ -132,6 +132,14 @@
                                 <div class="input-com-icone">
                                     <span class="icone-input">📞</span>
                                     <input type="text" th:field="*{telefone}" placeholder="(11) 98765-4321">
+                                </div>
+                            </div>
+
+                            <div class="campo">
+                                <label>Telefone(Secundario)</label>
+                                <div class="input-com-icone">
+                                    <span class="icone-input">📞</span>
+                                    <input type="text" th:field="*{telefoneSecundario}" placeholder="(61)4002-8922">
                                 </div>
                             </div>
                         </div>
@@ -253,6 +261,14 @@
                         <div class="perfil-resumo-info">
                             <span class="perfil-label">Telefone</span>
                             <span class="perfil-valor" th:text="${usuario.telefone} ?: '(11) 98765-4321'">-</span>
+                        </div>
+                    </div>
+
+                    <div class="perfil-resumo-item">
+                        <span class="perfil-icone-resumo">📞</span>
+                        <div class="perfil-resumo-info">
+                            <span class="perfil-label">Telefone(Secundario)</span>
+                            <span class="perfil-valor" th:text="${usuario.telefoneSecundario} ?: '(61)4002-8922'">-</span>
                         </div>
                     </div>
 

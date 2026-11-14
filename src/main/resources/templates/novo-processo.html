@@ -43,7 +43,7 @@
 
     <div class="usuario-dropdown">
         <div class="usuario-icone">
-            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/usuarioL.webp'}" alt="Foto do usuário" style="width: 100%; height: 100%; border-radius: 50%;">
         </div>
 
         <div class="usuario-info">
@@ -97,7 +97,7 @@
                             <p class="subtitulo-form">Preencha os dados básicos do novo processo.</p>
                         </div>
 
-                        <div class="card-importar-pdf">
+                        <div class="card-importar-pdf" id="card-importar-pdf" style="cursor: pointer;" onclick="document.getElementById('input-pdf-import').click()">
                             <img src="/imagens/PDF.png" alt="PDF" class="icone-pdf">
                             <div class="texto-importar">
                                 <h4>Importar PDF do processo</h4>
@@ -105,6 +105,12 @@
                             </div>
                             <span class="seta-importar">›</span>
                         </div>
+
+                        <form id="form-import-pdf" enctype="multipart/form-data" style="display: none;">
+                            <input type="file" id="input-pdf-import" name="arquivo" accept="application/pdf" style="display: none;">
+                        </form>
+
+                        <div id="status-import" style="display: none; margin-bottom: 20px; padding: 12px; border-radius: 8px; font-size: 13px;"></div>
                     </div>
 
                     <div class="campo-duplo">
@@ -232,7 +238,7 @@
                                 </div>
                                 <div class="campo">
                                     <label>CPF</label>
-                                    <input type="text" placeholder="Ex: 123.456.789.00">
+                                    <input type="text" th:field="*{cpf}" id="campoCpf" placeholder="Ex: 123.456.789.00">
                                 </div>
                                 <div class="campo-lixeira">
                                     <img src="/imagens/lixeira.webp" alt="Lixeira">
@@ -600,4 +606,54 @@
 <script th:src="@{/js/wizard.js}"></script>
 <script th:src="@{/js/novo-processo.js}"></script>
 <script th:src="@{/js/global.js}"></script>
+<script>
+    document.getElementById('input-pdf-import').addEventListener('change', async function(e) {
+        const arquivo = e.target.files[0];
+        if (!arquivo) return;
+
+        const status = document.getElementById('status-import');
+        status.style.display = 'block';
+        status.style.backgroundColor = '#e0f7fa';
+        status.style.color = '#006064';
+        status.textContent = '⏳ Lendo o PDF...';
+
+        const formData = new FormData();
+        formData.append('arquivo', arquivo);
+
+        try {
+            const response = await fetch('/novo-processo/importar-pdf', {
+                method: 'POST',
+                body: formData
+            });
+
+            const dados = await response.json();
+
+            if (dados.cliente) document.getElementById('campoCliente').value = dados.cliente;
+            if (dados.numeroProcessoLivre) document.getElementById('campoNumeroProcessoLivre').value = dados.numeroProcessoLivre;
+            if (dados.assuntoPrincipal) document.getElementById('campoAssuntoPrincipal').value = dados.assuntoPrincipal;
+            if (dados.cpf) document.getElementById('campoCpf').value = dados.cpf;
+            if (dados.advogado) {
+                const campoAdvogado = document.querySelector('#lista-advogados .advogado-item input[type="text"]');
+                if (campoAdvogado) campoAdvogado.value = dados.advogado;
+            }
+
+            if (dados.oab) {
+                const campoOab = document.querySelectorAll('#lista-advogados .advogado-item input[type="text"]')[1];
+                if (campoOab) campoOab.value = dados.oab;
+            }
+                status.style.backgroundColor = '#d4edda';
+            status.style.color = '#155724';
+            status.textContent = '✅ Dados extraídos com sucesso! Confira os campos abaixo.';
+
+            setTimeout(() => { status.style.display = 'none'; }, 5000);
+
+        } catch (error) {
+            status.style.backgroundColor = '#f8d7da';
+            status.style.color = '#721c24';
+            status.textContent = '❌ Erro ao ler o PDF. Tente novamente.';
+            console.error(error);
+        }
+        e.target.value = '';
+    });
+</script>
 </body>

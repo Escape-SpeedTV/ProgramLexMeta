@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.io.File;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ProcessoController {
@@ -20,6 +21,9 @@ public class ProcessoController {
 
     @Autowired
     private DocumentoRepository documentoRepository;
+
+    @Autowired
+    private PdfService pdfService;
 
     @GetMapping("/novo-processo")
     public String mostrarFormulario(Model model){
@@ -180,5 +184,20 @@ public class ProcessoController {
 
         processoRepository.save(processo);
         return "redirect:/processos";
+    }
+
+    @PostMapping("/novo-processo/importar-pdf")
+    @ResponseBody
+    public Processo importarPdf(@RequestParam("arquivo") MultipartFile arquivo){
+        try{
+            File tempFile = File.createTempFile("import_", ".pdf");
+            arquivo.transferTo(tempFile);
+            Processo processo = pdfService.extrairDadosDoPdf(tempFile);
+            tempFile.delete();
+            return processo;
+        }catch(Exception e){
+            e.printStackTrace();
+            return new Processo();
+        }
     }
 }

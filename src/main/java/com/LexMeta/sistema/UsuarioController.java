@@ -150,7 +150,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/configuracoes/colabodores/editar")
-    public String editarColaborador (@RequestParam Long id, @RequestParam String nome, @RequestParam String email, @RequestParam(required = false) String oab, @RequestParam(required = false) String areaAtuacao, @RequestParam(required = false) String telefone, @RequestParam(required = false) String novaSenha, HttpSession session){
+    public String editarColaborador (@RequestParam Long id, @RequestParam String nome, @RequestParam String email, @RequestParam(required = false) String oab, @RequestParam(required = false) String areaAtuacao, @RequestParam(required = false) String telefone, String telefoneSecundario,@RequestParam(required = false) String novaSenha, HttpSession session){
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
 
         if(!temPermissao(usuarioLogado)){
@@ -175,6 +175,7 @@ public class UsuarioController {
         usuario.setOab(oab);
         usuario.setAreaAtuacao(areaAtuacao);
         usuario.setTelefone(telefone);
+        usuario.setTelefoneSecundario(telefoneSecundario);
 
         if(novaSenha != null && !novaSenha.isEmpty()){
             usuario.setSenha(novaSenha);
