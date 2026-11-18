@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Contrato</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/contrato.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li class="ativo"><a href="/contrato">Contrato</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer"><span></span><span></span><span></span></div>
+    <div class="titulo-secao">
+        <h1>Gerar Contrato</h1>
+        <p>Preencha os dados para gerar o contrato de honorários.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/configuracoes}"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+    <div th:if="${param.sucesso}" class="alerta-sucesso" style="display: flex; align-items: center; justify-content: space-between;">
+        <span>✅ Contrato salvo com sucesso!</span>
+        <a th:href="@{/contrato/pdf/{id}(id=${contrato.id})}"
+           class="botao-salvar"
+           style="text-decoration: none; padding: 10px 20px;"
+           target="_blank">
+            📄 Baixar Contrato PDF
+        </a>
+    </div>
+    <form th:action="@{/contrato/salvar}" method="post" th:object="${contrato}">
+        <div class="contrato-container">
+            <div class="card-contrato">
+                <h3>Dados do Contratante</h3>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Nome Completo</label>
+                        <input type="text" th:field="*{nome}" required>
+                    </div>
+                    <div class="campo">
+                        <label>Nacionalidade</label>
+                        <input type="text" th:field="*{nacionalidade}" placeholder="Ex: brasileiro(a)">
+                    </div>
+                </div>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Profissão</label>
+                        <input type="text" th:field="*{profissao}" placeholder="Ex: empregada doméstica">
+                    </div>
+                    <div class="campo">
+                        <label>Estado Civil</label>
+                        <input type="text" th:field="*{estadoCivil}" placeholder="Ex: solteiro(a)">
+                    </div>
+                </div>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>CPF</label>
+                        <input type="text" th:field="*{cpf}" placeholder="000.000.000-00">
+                    </div>
+                    <div class="campo">
+                        <label>RG</label>
+                        <input type="text" th:field="*{rg}" placeholder="Ex: 2.911.065">
+                    </div>
+                </div>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Órgão Emissor</label>
+                        <input type="text" th:field="*{orgaoEmissor}" placeholder="Ex: SSP/DF">
+                    </div>
+                    <div class="campo">
+                        <label>CEP</label>
+                        <input type="text" th:field="*{cep}" placeholder="00000-000">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label>Endereço Completo</label>
+                    <input type="text" th:field="*{endereco}" placeholder="Rua, número, bairro, cidade">
+                </div>
+            </div>
+
+            <div class="card-contrato">
+                <h3>Dados do Objeto (Processo)</h3>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Número do Contrato de Compra e Venda</label>
+                        <input type="text" th:field="*{numeroContrato}" placeholder="Ex: 8.7877.1924733-4">
+                    </div>
+                    <div class="campo">
+                        <label>Número do Termo de Reserva</label>
+                        <input type="text" th:field="*{numeroTermoReserva}" placeholder="Ex: 63844">
+                    </div>
+                </div>
+
+                <div class="campo">
+                    <label>Endereço do Imóvel</label>
+                    <input type="text" th:field="*{enderecoImovel}" placeholder="Ex: Quadra 03, Conjunto D, Lote 80">
+                </div>
+            </div>
+
+            <div class="card-contrato">
+                <h3>Dados de Fechamento</h3>
+
+                <div class="campo">
+                    <label>Local (Cidade/UF)</label>
+                    <input type="text" th:field="*{local}" placeholder="Ex: Brasília/DF" required>
+                </div>
+
+                <div class="info-box">
+                    <p>ℹ️ A data e hora de geração serão preenchidas automaticamente no momento da geração do PDF.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-botoes">
+            <a href="/dashboardTelaInicial" class="botao-voltar">← Voltar</a>
+            <button type="submit" class="botao-salvar">💾 Salvar Contrato</button>
+        </div>
+    </form>
+</div>
+
+<script th:src="@{/js/global.js}"></script>
+<script>
+    function abrirModalMeta() {
+        alert('Modal de meta - em breve!');
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+.contrato-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+}
+
+.card-contrato {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 30px;
+}
+
+.card-contrato h3 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.campo {
+    margin-bottom: 15px;
+}
+
+.campo label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.campo input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #333;
+    background-color: white;
+}
+
+.campo input:focus {
+    outline: none;
+    border-color: #005b63;
+}
+
+.campo-duplo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-box {
+    display: flex;
+    gap: 10px;
+    background-color: #e0f7fa;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #006064;
+    margin-top: 15px;
+}
+
+.form-botoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.botao-voltar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    background-color: white;
+    color: #1a1a1a;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.botao-voltar:hover {
+    background-color: #f0f0f0;
+}
+
+.botao-salvar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 25px;
+    background-color: #005b63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botao-salvar:hover {
+    background-color: #003b45;
+}
+
+.alerta-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: 4px solid #28a745;
+}
