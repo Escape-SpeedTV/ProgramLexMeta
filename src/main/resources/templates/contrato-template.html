@@ -1,68 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            font-size: 12px;
-            line-height: 1.6;
-            margin: 40px;
-            text-align: justify;
-        }
-        h1 {
-            text-align: center;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        .clausula {
-            margin-bottom: 15px;
-        }
-        .assinatura {
-            margin-top: 50px;
-            text-align: center;
-        }
-        .linha-assinatura {
-            margin-top: 40px;
-            border-top: 1px solid #000;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <title>Contrato de Honorários</title>
+    <link rel="stylesheet" type="text/css" href="/css/contratoPdf.css" />
 </head>
 <body>
 
-<h1>CONTRATO DE PRESTAÇÃO DE SERVIÇOS ADVOCATÍCIOS</h1>
 
-<p><strong>CONTRATANTE:</strong> {{nome}}, {{nacionalidade}}, {{profissao}}, {{estadoCivil}}, portador(a) do CPF nº {{cpf}} e do RG nº {{rg}} {{orgaoEmissor}}, residente e domiciliado(a) em {{endereco}}, CEP {{cep}}.</p>
+<div class="cabecalho">
+    <img src="/imagens/palatucci.png" alt="Logo Palatucci" />
+</div>
 
-<p><strong>CONTRATADO:</strong> DOUGLAS PALATUCCI DA SILVA, brasileiro, advogado, inscrito na OAB/DF sob o n.º 86.224.</p>
+<h1>Contrato de Prestação de Serviços Advocatícios</h1>
 
-<p class="clausula"><strong>I – DO OBJETO:</strong> 1.1 O presente contrato tem por objeto a prestação de serviços advocatícios pelo Contratado ao Contratante, consistentes no ajuizamento e acompanhamento de Ação de Indenização por Danos Materiais e Danos Morais c/c Declaração de Abusividade Contratual em face de "Nome Empresa" e "Nome Empresa 2", decorrente do atraso injustificado na entrega do imóvel adquirido pelo Contratante por meio do Contrato de Compra e Venda n. {{numeroContrato}} e Termo de Reserva de n. {{numeroTermoReserva}} ({{enderecoImovel}}), visando à reparação de danos materiais (lucros cessantes e restituição de juros de obra) e danos morais.</p>
+<p class="sem-recuo">
+    <span class="negrito">CONTRATANTE:</span> “{{nome}}”, “{{nacionalidade}}”, “{{profissao}}”, “{{estadoCivil}}”, portador(a) do CPF nº {{cpf}} e do RG nº {{rg}} “{{orgaoEmissor}}”, residente e domiciliado(a) “{{endereco}}”, CEP.: {{cep}}.
+</p>
 
-<p class="clausula"><strong>II – DOS HONORÁRIOS ADVOCATÍCIOS:</strong> 2.1 Pelos serviços ora contratados, a Contratante pagará ao Contratado, a título de honorários advocatícios convencionados, o montante equivalente a 30% (trinta por cento) do valor que vier a receber em decorrência da demanda judicial, seja por decisão judicial transitada em julgado, acordo extrajudicial ou judicial, a qualquer tempo, desde que decorrente dos serviços ora contratados.</p>
+<p class="sem-recuo">
+    <span class="negrito">CONTRATADO:</span> DOUGLAS PALATUCCI DA SILVA, brasileiro, advogado, inscrito na OAB/DF sob o n.º 86.224, podendo atuar conjuntamente com outros advogados substabelecidos, com ou sem reserva de poderes.
+</p>
 
-<p class="clausula"><strong>III – DAS OBRIGAÇÕES DAS PARTES:</strong> (texto das obrigações...)</p>
+<div class="clausula-titulo">I – Do Objeto</div>
+<p>
+    1.1 - O presente contrato tem por objeto a prestação de serviços advocatícios pelo <span class="negrito">Contratado</span> ao <span class="negrito">Contratante</span>, consistentes no ajuizamento e acompanhamento de <span class="negrito">Ação de Indenização por Danos Materiais e Danos Morais c/c Declaração de Abusividade Contratual</span> em face de "Nome empresa 1" e "Nome empresa 2", decorrente do atraso injustificado na entrega do imóvel adquirido pelo <span class="negrito">Contratante</span> por meio do <span class="negrito">Contrato de Compra e Venda n. “{{numeroContrato}}” e Termo de Reserva de n. “{{numeroTermoReserva}}” (“{{enderecoImovel}}”)</span>, visando à reparação de danos materiais (lucros cessantes e restituição de juros de obra) e danos morais.
+</p>
 
-<p class="clausula"><strong>IV – DA RESCISÃO ANTECIPADA E DA CLÁUSULA PENAL:</strong> (texto da rescisão...)</p>
+<div class="clausula-titulo">II – Dos Honorários Advocatícios</div>
 
-<p class="clausula"><strong>V – DAS DISPOSIÇÕES FINAIS:</strong> (texto das disposições...)</p>
+<p>
+    2.1 - Pelos serviços ora contratados, a <span class="negrito">Contratante</span> pagará ao <span class="negrito">Contratado</span>, a título de honorários advocatícios convencionados, o montante equivalente a 30% (trinta por cento) do valor que vier a receber em decorrência da demanda judicial, seja por decisão judicial transitada em julgado, acordo extrajudicial ou judicial, a qualquer tempo, desde que decorrente dos serviços ora contratados.
+</p>
+<p>
+    2.2 - O percentual fixado no item 2.1 incidirá sobre o valor bruto da condenação ou do acordo, incluindo principal, correção monetária e juros moratórios, antes de qualquer desconto.
+</p>
+<p>
+    2.3 - Os honorários de sucumbência se eventualmente arbitrados pelo Juízo em favor do <span class="negrito">Contratado</span> pertencem <span class="negrito">exclusivamente</span> ao advogado, nos termos do art. 85, § 14, do CPC e do art. 24 da Lei n.º 8.906/1994, <span class="negrito">não sendo deduzidos nem compensados</span> do percentual convencionado no item 2.1.
+</p>
 
-<p>{{local}}, {{dataHora}}</p>
+<div class="clausula-titulo">III – Da Limitação da Atuação e dos Recursos</div>
+
+<p>
+    3.1. O presente contrato tem validade até o trânsito em julgado da decisão final, abrangendo todas as fases processuais necessárias à obtenção do resultado definitivo, incluindo o protocolo da petição inicial, produção de provas, audiências, manifestações processuais, interposição e acompanhamento de eventuais recursos em qualquer instância, sem qualquer cobrança adicional em razão de recursos ou atuação em instância superior, sendo os honorários previstos na Cláusula Segunda suficientes para remunerar integralmente os serviços prestados em todas as fases do processo.
+</p>
+
+<div class="clausula-titulo">IV – Das Obrigações das Partes</div>
+
+<p class="sem-recuo"><span class="negrito">4.1. Constituem obrigações do Contratado:</span></p>
+<p>a) Representar o contratante com diligência, competência e ética, nos termos do Estatuto da OAB;</p>
+<p>b) Manter o contratante informado sobre o andamento processual, comunicando os atos relevantes em prazo razoável;</p>
+<p>c) Guardar sigilo profissional sobre todas as informações recebidas;</p>
+<p>d) Apresentar ao contratante, quando solicitado, cópias das peças processuais produzidas.</p>
+
+<p class="sem-recuo" style="margin-top: 20px;"><span class="negrito">4.2. Constituem obrigações do Contratante:</span></p>
+<p>a) Fornecer ao contratado todos os documentos, informações e esclarecimentos necessários ao bom andamento da demanda, no prazo que lhe for solicitado;</p>
+<p>b) Comunicar imediatamente ao contratado qualquer contato direto promovido pela parte contrária ou seus prepostos;</p>
+<p>c) Comparecer às audiências e atos processuais que exijam sua presença pessoal, quando devidamente notificado com antecedência razoável;</p>
+<p>d) Efetuar o pagamento dos honorários nos termos pactuados neste instrumento.</p>
+
+<div class="clausula-titulo">V – Da Rescisão Antecipada e da Cláusula Penal</div>
+<p>
+    5.1 - O presente contrato poderá ser rescindido por qualquer das partes, mediante notificação prévia por escrito com antecedência mínima de 10 (dez) dias, respeitados os atos processuais em curso.
+</p>
+
+<p class="sem-recuo">5.2 - Caso o Contratante, a qualquer tempo, venha a:</p>
+<p>a) desistir da ação judicial após sua propositura;</p>
+<p>b) celebrar acordo ou transação sem a prévia ciência e anuência do contratado;</p>
+<p>c) revogar os poderes outorgados ou substituir o patrono sem justa causa; ou</p>
+<p>d) praticar qualquer ato que inviabilize ou frustre o exercício regular da advocacia contratada;</p>
+<p>
+    Ficará obrigado a pagar ao Contratado o equivalente a 10% (dez por cento) sobre o valor da causa ou da indenização pleiteada, a título de cláusula penal compensatória (art. 416 do Código Civil), sem prejuízo do reembolso das despesas já adiantadas e da apuração de eventuais perdas e danos adicionais.
+</p>
+<p>
+    5.3 - A rescisão por iniciativa do Contratado sem justa causa obrigará este ao ressarcimento de eventuais prejuízos comprovados causados ao Contratante, resguardado o direito aos honorários proporcionais pelos serviços já prestados.
+</p>
+
+<div class="clausula-titulo">VI – Da Autonomia Técnica</div>
+<p>
+    6.1 - O Contratado atuará com plena autonomia técnica e científica, nos termos do art. 5.º do Estatuto da OAB (Lei n.º 8.906/1994), sendo vedada ao Contratante qualquer forma de ingerência quanto à estratégia jurídica, às teses adotadas, aos argumentos utilizados e às decisões sobre o mérito da condução processual.
+</p>
+<p>
+    6.2 - O contrato de honorários ora celebrado não implica garantia de resultado, sendo certa a diligência do Contratado e incerto o provimento judicial, nos termos da natureza da atividade advocatícia.
+</p>
+
+<div class="clausula-titulo">VII – Das Disposições Finais</div>
+<p>
+    7.1 - O presente instrumento é regido pelo Estatuto da OAB (Lei n.º 8.906/1994), pelo Código de Ética e Disciplina da OAB, e, subsidiariamente, pelo Código Civil Brasileiro.
+</p>
+<p>
+    7.2 - Qualquer alteração ao presente contrato somente terá validade se formalizada por escrito e assinada por ambas as partes.
+</p>
+<p>
+    7.3 - As partes elegem o foro da Circunscrição Judiciária de Brasília/DF, com exclusão de qualquer outro, por mais privilegiado que seja, para dirimir eventuais controvérsias oriundas do presente contrato.
+</p>
+<p>
+    7.4 - Este instrumento é celebrado em 2 (duas) vias de igual teor e forma, ficando uma via em poder de cada parte.
+</p>
+
+<p class="data-local">
+    “{{local}}”, {{dataHora}}.
+</p>
 
 <div class="assinatura">
     <div class="linha-assinatura"></div>
-    <p>{{nome}}</p>
+    <p class="assinatura-nome">“{{nome}}”</p>
     <p>CPF: {{cpf}}</p>
 
     <div class="linha-assinatura"></div>
-    <p>DOUGLAS PALATUCCI DA SILVA</p>
+    <p class="assinatura-nome">DOUGLAS PALATUCCI DA SILVA</p>
     <p>OAB-DF 86.224</p>
 
-    <p style="margin-top: 40px;">TESTEMUNHAS:</p>
+    <p style="margin-top: 40px; text-indent: 0;">TESTEMUNHAS:</p>
     <div class="linha-assinatura"></div>
+    <p style="text-indent: 0;">1</p>
     <div class="linha-assinatura"></div>
+    <p style="text-indent: 0;">2</p>
+</div>
+
+<div class="rodape">
+    <div class="rodape-conteudo">
+        <span>📞 (61) 99914-4509</span>
+        <span>✉️ palatucci@advdf.com.br</span>
+    </div>
 </div>
 
 </body>
