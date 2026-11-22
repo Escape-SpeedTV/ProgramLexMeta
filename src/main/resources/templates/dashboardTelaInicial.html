@@ -17,6 +17,7 @@
         <ul class="menu-itens">
             <li class="ativo"><a href="/dashboardTelaInicial">Dashboard</a></li>
             <li><a href="/processos">Processos</a></li>
+            <li><a href="/documentos">Documentos</a></li>
             <li><a href="/novo-processo">Novo Processo</a></li>
             <li><a href="#">Relatórios</a></li>
             <li><a href="/configuracoes">Configurações</a></li>
@@ -241,12 +242,13 @@
             </div>
 
             <div class="upload-card">
-                <h3>Importar PDF</h3>
-                <div class="upload-area">
-                    <img src="/imagens/PDF.png" alt="Upload" class="icone-upload">
-                    <p>Arraste e solte o PDF aqui ou</p>
-                    <button class="botao-upload">Selecionar Arquivo</button>
-                    <p class="texto-limite">Tamanho máximo: 20MB</p>
+                <h3>Meta Anual</h3>
+                <div class="upload-area" style="padding: 30px 20px;">
+                    <p style="font-size: 32px; font-weight: bold; color: #005b63; margin-bottom: 5px;" th:text="${metaTotal}">0</p>
+                    <p style="color: #666; font-size: 13px;">processos no ano</p>
+                    <button type="button" class="botao-upload" style="margin-top: 15px;" onclick="abrirModalMetaAnual()">
+                        Definir Meta Anual
+                    </button>
                 </div>
             </div>
         </div>
@@ -270,6 +272,29 @@
 
                 <div class="modal-botoes">
                     <button type="button" class="botao-cancelar" onclick="fecharModalMeta()">Cancelar</button>
+                    <button type="submit" class="botao-salvar">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-meta-anual">
+        <div class="modal-box">
+            <h3>Definir Meta Anual</h3>
+            <p class="modal-subtitulo" th:text="'Defina a meta para o ano de ' + ${anoAtualModal}">
+                Defina a meta para o ano de 2026
+            </p>
+
+            <form th:action="@{/meta-anual/salvar}" method="post">
+                <input type="hidden" name="ano" th:value="${anoAtualModal}">
+
+                <div class="campo">
+                    <label>Quantidade de processos</label>
+                    <input type="number" name="quantidade" th:value="${metaTotal}" min="0" required autofocus>
+                </div>
+
+                <div class="modal-botoes">
+                    <button type="button" class="botao-cancelar" onclick="fecharModalMetaAnual()">Cancelar</button>
                     <button type="submit" class="botao-salvar">Salvar</button>
                 </div>
             </form>
@@ -303,6 +328,18 @@
             if (e.target === this) {
                 fecharModalMeta();
             }
+        });
+    </script>
+
+    <script>
+        function abrirModalMetaAnual() {
+            document.getElementById('modal-meta-anual').style.display = 'flex';
+        }
+        function fecharModalMetaAnual() {
+            document.getElementById('modal-meta-anual').style.display = 'none';
+        }
+        document.getElementById('modal-meta-anual')?.addEventListener('click', function(e) {
+            if (e.target === this) fecharModalMetaAnual();
         });
     </script>
 

@@ -25,9 +25,13 @@ public class ProcessoController {
     @Autowired
     private PdfService pdfService;
 
+    @Autowired
+    private ContratoRepository contratoRepository;
+
     @GetMapping("/novo-processo")
-    public String mostrarFormulario(Model model){
+    public String mostrarFormulario(Model model) {
         model.addAttribute("processo", new Processo());
+        model.addAttribute("contratos", contratoRepository.findAll());
         return "novo-processo";
     }
 
@@ -58,7 +62,6 @@ public class ProcessoController {
                         doc.setTamanho(formatarTamanho(arquivo.getSize()));
                         doc.setDataEnvio(java.time.LocalDateTime.now().toString());
                         doc.setProcesso(processoSalvo);
-
                         documentoRepository.save(doc);
                     }
                 }

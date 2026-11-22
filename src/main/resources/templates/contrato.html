@@ -16,7 +16,7 @@
     <ul class="menu-itens">
         <li><a href="/dashboardTelaInicial">Dashboard</a></li>
         <li><a href="/processos">Processos</a></li>
-        <li class="ativo"><a href="/contrato">Contrato</a></li>
+        <li><a href="/documentos">Documentos</a></li>
         <li><a href="/novo-processo">Novo Processo</a></li>
         <li><a href="/configuracoes">Configurações</a></li>
     </ul>
@@ -62,7 +62,7 @@
             📄 Baixar Contrato PDF
         </a>
     </div>
-    <form th:action="@{/contrato/salvar}" method="post" th:object="${contrato}">
+    <form th:action="${contrato.id != null ? '/contrato/editar/' + contrato.id : '/contrato/salvar'}" method="post" th:object="${contrato}">
         <div class="contrato-container">
             <div class="card-contrato">
                 <h3>Dados do Contratante</h3>
@@ -154,7 +154,7 @@
 
         <div class="form-botoes">
             <a href="/dashboardTelaInicial" class="botao-voltar">← Voltar</a>
-            <button type="submit" class="botao-salvar">💾 Salvar Contrato</button>
+            <button type="submit" class="botao-salvar" th:text="${contrato.id != null ? '💾 Salvar Alterações' : '💾 Salvar Contrato'}">💾 Salvar Contrato</button>
         </div>
     </form>
 </div>

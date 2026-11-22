@@ -15,7 +15,7 @@
 <h1>Contrato de Prestação de Serviços Advocatícios</h1>
 
 <p class="sem-recuo">
-    <span class="negrito">CONTRATANTE:</span> “{{nome}}”, “{{nacionalidade}}”, “{{profissao}}”, “{{estadoCivil}}”, portador(a) do CPF nº {{cpf}} e do RG nº {{rg}} “{{orgaoEmissor}}”, residente e domiciliado(a) “{{endereco}}”, CEP.: {{cep}}.
+    <span class="negrito">CONTRATANTE:</span> {{nome}}, {{nacionalidade}}, {{profissao}}, {{estadoCivil}}, portador(a) do CPF nº {{cpf}} e do RG nº {{rg}} {{orgaoEmissor}}, residente e domiciliado(a) {{endereco}}, CEP.: {{cep}}.
 </p>
 
 <p class="sem-recuo">
@@ -24,19 +24,19 @@
 
 <div class="clausula-titulo">I – Do Objeto</div>
 <p>
-    1.1 - O presente contrato tem por objeto a prestação de serviços advocatícios pelo <span class="negrito">Contratado</span> ao <span class="negrito">Contratante</span>, consistentes no ajuizamento e acompanhamento de <span class="negrito">Ação de Indenização por Danos Materiais e Danos Morais c/c Declaração de Abusividade Contratual</span> em face de "Nome empresa 1" e "Nome empresa 2", decorrente do atraso injustificado na entrega do imóvel adquirido pelo <span class="negrito">Contratante</span> por meio do <span class="negrito">Contrato de Compra e Venda n. “{{numeroContrato}}” e Termo de Reserva de n. “{{numeroTermoReserva}}” (“{{enderecoImovel}}”)</span>, visando à reparação de danos materiais (lucros cessantes e restituição de juros de obra) e danos morais.
+    <span class="negrito">1.1 -</span> O presente contrato tem por objeto a prestação de serviços advocatícios pelo <span class="negrito">Contratado</span> ao <span class="negrito">Contratante</span>, consistentes no ajuizamento e acompanhamento de <span class="negrito">Ação de Indenização por Danos Materiais e Danos Morais c/c Declaração de Abusividade Contratual</span> em face de "Nome empresa 1" e "Nome empresa 2", decorrente do atraso injustificado na entrega do imóvel adquirido pelo <span class="negrito">Contratante</span> por meio do <span class="negrito">Contrato de Compra e Venda n. {{numeroContrato}} e Termo de Reserva de n. {{numeroTermoReserva}} ({{enderecoImovel}})</span>, visando à reparação de danos materiais (lucros cessantes e restituição de juros de obra) e danos morais.
 </p>
 
 <div class="clausula-titulo">II – Dos Honorários Advocatícios</div>
 
 <p>
-    2.1 - Pelos serviços ora contratados, a <span class="negrito">Contratante</span> pagará ao <span class="negrito">Contratado</span>, a título de honorários advocatícios convencionados, o montante equivalente a 30% (trinta por cento) do valor que vier a receber em decorrência da demanda judicial, seja por decisão judicial transitada em julgado, acordo extrajudicial ou judicial, a qualquer tempo, desde que decorrente dos serviços ora contratados.
+    <span class="negrito">2.1 -</span> Pelos serviços ora contratados, a <span class="negrito">Contratante</span> pagará ao <span class="negrito">Contratado</span>, a título de honorários advocatícios convencionados, o montante equivalente a <span class="negrito">30% (trinta por cento) do valor que vier a receber em decorrência da demanda judicial, seja por decisão judicial transitada em julgado, acordo extrajudicial ou judicial, a qualquer tempo, desde que decorrente dos serviços ora contratados.</span>
 </p>
 <p>
-    2.2 - O percentual fixado no item 2.1 incidirá sobre o valor bruto da condenação ou do acordo, incluindo principal, correção monetária e juros moratórios, antes de qualquer desconto.
+    <span class="negrito">2.2 -</span> O percentual fixado no item 2.1 incidirá sobre o valor <span class="negrito">bruto</span> da condenação ou do acordo, incluindo principal, correção monetária e juros moratórios, antes de qualquer desconto.
 </p>
 <p>
-    2.3 - Os honorários de sucumbência se eventualmente arbitrados pelo Juízo em favor do <span class="negrito">Contratado</span> pertencem <span class="negrito">exclusivamente</span> ao advogado, nos termos do art. 85, § 14, do CPC e do art. 24 da Lei n.º 8.906/1994, <span class="negrito">não sendo deduzidos nem compensados</span> do percentual convencionado no item 2.1.
+    <span class="negrito">2.3 -</span> Os honorários de sucumbência se eventualmente arbitrados pelo Juízo em favor do <span class="negrito">Contratado</span> pertencem <span class="negrito">exclusivamente</span> ao advogado, nos termos do art. 85, § 14, do CPC e do art. 24 da Lei n.º 8.906/1994, <span class="negrito">não sendo deduzidos nem compensados</span> do percentual convencionado no item 2.1.
 </p>
 
 <div class="clausula-titulo">III – Da Limitação da Atuação e dos Recursos</div>
@@ -53,7 +53,7 @@
 <p>c) Guardar sigilo profissional sobre todas as informações recebidas;</p>
 <p>d) Apresentar ao contratante, quando solicitado, cópias das peças processuais produzidas.</p>
 
-<p class="sem-recuo" style="margin-top: 20px;"><span class="negrito">4.2. Constituem obrigações do Contratante:</span></p>
+<p class="sem-recuo"><span class="negrito">4.2. Constituem obrigações do Contratante:</span></p>
 <p>a) Fornecer ao contratado todos os documentos, informações e esclarecimentos necessários ao bom andamento da demanda, no prazo que lhe for solicitado;</p>
 <p>b) Comunicar imediatamente ao contratado qualquer contato direto promovido pela parte contrária ou seus prepostos;</p>
 <p>c) Comparecer às audiências e atos processuais que exijam sua presença pessoal, quando devidamente notificado com antecedência razoável;</p>
@@ -99,29 +99,30 @@
 </p>
 
 <p class="data-local">
-    “{{local}}”, {{dataHora}}.
+    {{local}}, {{dataHora}}.
 </p>
 
-<div class="assinatura">
-    <div class="linha-assinatura"></div>
-    <p class="assinatura-nome">“{{nome}}”</p>
-    <p>CPF: {{cpf}}</p>
+<table class="assinaturas">
+    <tr>
+        <td><span class="negrito">{{nome}}</span><br/>CPF: {{cpf}}</td>
+        <td class="col-direita"><span class="negrito">DOUGLAS PALATUCCI DA SILVA</span><br/>OAB-DF 86.224</td>
+    </tr>
+</table>
 
-    <div class="linha-assinatura"></div>
-    <p class="assinatura-nome">DOUGLAS PALATUCCI DA SILVA</p>
-    <p>OAB-DF 86.224</p>
-
-    <p style="margin-top: 40px; text-indent: 0;">TESTEMUNHAS:</p>
-    <div class="linha-assinatura"></div>
-    <p style="text-indent: 0;">1</p>
-    <div class="linha-assinatura"></div>
-    <p style="text-indent: 0;">2</p>
-</div>
+<p class="testemunhas-titulo">TESTEMUNHAS:</p>
+<table class="testemunhas">
+    <tr>
+        <td>1ª</td>
+        <td class="col-direita">2ª</td>
+    </tr>
+</table>
 
 <div class="rodape">
+    <div class="rodape-pagina"></div>
+    <div class="rodape-linha"><img src="/imagens/rodape-linha.png" alt="" /></div>
     <div class="rodape-conteudo">
-        <span>📞 (61) 99914-4509</span>
-        <span>✉️ palatucci@advdf.com.br</span>
+        <span><img src="/imagens/icone-telefone.jpeg" alt="" /> (61) 99914-4509</span>
+        <span><img src="/imagens/icone-email.jpeg" alt="" /> palatucci@advdf.com.br</span>
     </div>
 </div>
 
