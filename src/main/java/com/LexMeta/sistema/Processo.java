@@ -12,6 +12,10 @@ public class Processo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name="contrato_id")
+    private Contrato contrato;
+
     @Column(nullable = false)
     private String numeroProcesso;
     private String numeroProcessoLivre;
@@ -162,7 +166,8 @@ public class Processo {
     public String getOab(){
         return oab;
     }
-    public void setOab(String oab){
-        this.oab = oab;
-    }
+    public void setOab(String oab){this.oab = oab;}
+
+    public Contrato getContrato() { return contrato; }
+    public void setContrato(Contrato contrato) { this.contrato = contrato; }
 }

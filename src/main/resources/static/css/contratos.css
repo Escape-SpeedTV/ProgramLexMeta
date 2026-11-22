@@ -1,0 +1,130 @@
+.contratos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.contratos-header h2 {
+    font-size: 22px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.contratos-header p {
+    font-size: 13px;
+    color: #666;
+}
+
+.botao-novo {
+    background-color: #005b63;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.botao-novo:hover {
+    background-color: #003b45;
+}
+
+.tabela-contratos {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.tabela-contratos table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabela-contratos th {
+    text-align: left;
+    padding: 15px;
+    color: #666;
+    font-weight: bold;
+    font-size: 12px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fafbfc;
+}
+
+.tabela-contratos td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #1a1a1a;
+}
+
+.tabela-contratos tr:hover {
+    background-color: #fafbfc;
+}
+
+.menu-acoes {
+    position: relative;
+    display: inline-block;
+}
+
+.mais-opcoes {
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.mais-opcoes:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-acoes {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    padding: 8px;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.dropdown-acoes.aberto {
+    display: block;
+}
+
+.dropdown-acoes a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    color: #1a1a1a;
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 6px;
+}
+
+.dropdown-acoes a:hover {
+    background-color: #f0f0f0;
+}
+
+.divisoria-acoes {
+    border-top: 1px solid #e5e7eb;
+    margin: 5px 0;
+}
+
+.alerta-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: 4px solid #28a745;
+}

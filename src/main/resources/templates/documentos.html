@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>LexMeta - Documentos</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/documentos.css}">
+</head>
+<body>
+
+<div class="menu-lateral">
+    <div class="menu-logo">
+        <img th:src="${configGlobal != null and configGlobal.caminhoLogo != null ? '/' + configGlobal.caminhoLogo : '/imagens/palatucci.png'}" alt="Logo">
+        <div class="logo-titulo">LexMeta</div>
+    </div>
+    <ul class="menu-itens">
+        <li><a href="/dashboardTelaInicial">Dashboard</a></li>
+        <li><a href="/processos">Processos</a></li>
+        <li class="ativo"><a href="/documentos">Documentos</a></li>
+        <li><a href="/novo-processo">Novo Processo</a></li>
+        <li><a href="/relatorios">Relatórios</a></li>
+        <li><a href="/configuracoes">Configurações</a></li>
+    </ul>
+    <div class="meta-atual">
+        <div class="meta-titulo">Meta Atual</div>
+        <div class="meta-periodo" th:text="${nomeMesAtual} + ' / ' + ${anoAtualModal}">Outubro / 2026</div>
+        <div class="meta-numero" th:text="${quantidadeMetaAtual} + ' processos'">0 processos</div>
+        <button type="button" onclick="abrirModalMeta()">Editar Meta</button>
+    </div>
+</div>
+
+<div class="cabecalho-conteudo">
+    <div class="menu-hamburguer"><span></span><span></span><span></span></div>
+    <div class="titulo-secao">
+        <h1>Documentos</h1>
+        <p>Gerencie contratos, procurações e outros documentos.</p>
+    </div>
+    <div class="usuario-dropdown">
+        <div class="usuario-icone">
+            <img th:src="${session.usuarioLogado != null and session.usuarioLogado.caminhoFoto != null ? '/' + session.usuarioLogado.caminhoFoto : '/imagens/takumi-fujiwara.png'}" alt="Foto">
+        </div>
+        <div class="usuario-info">
+            <span class="usuario-nome" th:text="${session.usuarioLogado != null ? session.usuarioLogado.nome : 'Visitante'}">Visitante</span>
+            <span class="usuario-cargo" th:text="${session.usuarioLogado != null ? session.usuarioLogado.cargo : '-'}">-</span>
+        </div>
+        <span class="seta" id="seta-dropdown">▼</span>
+        <div class="dropdown-menu" id="dropdown-menu">
+            <a th:href="@{/perfil}"><img src="/imagens/usuarioL.webp" alt="Perfil" class="icone-dropdown-img">Meu Perfil</a>
+            <a th:href="@{/configuracoes}"><img src="/imagens/configuracoes.png" alt="Configurações" class="icone-dropdown-img">Configurações</a>
+            <div class="divisoria-dropdown"></div>
+            <a href="/logout" style="color: #d32f2f"><img src="/imagens/Sair.png" alt="Sair" class="icone-dropdown-img">Sair</a>
+        </div>
+    </div>
+</div>
+
+<div class="conteudo">
+
+    <div class="documentos-header">
+        <h2>O que você deseja fazer?</h2>
+        <p>Selecione uma das opções abaixo para começar.</p>
+    </div>
+
+    <div class="documentos-grid">
+
+        <a th:href="@{/contrato}" class="card-documento">
+            <div class="card-documento-icone">📄</div>
+            <h3>Criar Novo Contrato</h3>
+            <p>Gere um novo contrato de honorários advocatícios.</p>
+            <span class="card-documento-seta">›</span>
+        </a>
+
+        <a th:href="@{/contratos}" class="card-documento">
+            <div class="card-documento-icone">📋</div>
+            <h3>Visualizar Contratos</h3>
+            <p>Veja, edite ou exclua os contratos cadastrados.</p>
+            <span class="card-documento-seta">›</span>
+        </a>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/global.js}"></script>
+<script>
+    function abrirModalMeta() {
+        alert('Modal de meta - em breve!');
+    }
+</script>
+
+</body>
+</html>

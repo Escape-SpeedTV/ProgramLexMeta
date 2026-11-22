@@ -15,6 +15,9 @@ public class  DashboardController {
     private ProcessoRepository processoRepository;
 
     @Autowired
+    private MetaAnualRepository metaAnualRepository;
+
+    @Autowired
     private MetaRepository metaRepository;
 
     @GetMapping("/dashboardTelaInicial")
@@ -27,6 +30,11 @@ public class  DashboardController {
 
         int mesAtual = java.time.LocalDate.now().getMonthValue();
         int anoAtual = java.time.LocalDate.now().getYear();
+        Optional<MetaAnual> metaAnualOpt = metaAnualRepository.findByAno(anoAtual);
+        int metaAnual = metaAnualOpt.map(MetaAnual::getQuantidade).orElse(0);
+
+        List<Processo> processosDoAno = processoRepository.findAll().stream().filter(p -> p.getDataAudiencia() != null && p.getDataAudiencia().getYear() == anoAtual && !"Pendente".equals(p.getStatus())).toList();
+        long totalProcessosDoAno = processosDoAno.size();
 
         int[] metaMensal = new int[12];
         List<Meta> metasdoAno = metaRepository.findByAnoOrderByMesAsc(anoAtual);
@@ -46,8 +54,8 @@ public class  DashboardController {
             }
         }
         int concluidosMesAtual = concluidosMensal[mesAtual - 1];
-        long percentual = (quantidadeMetaAtual > 0) ? (imobiliariosEmAndamento * 100 / quantidadeMetaAtual) : 0;
-        long faltamParaMeta = (quantidadeMetaAtual - imobiliariosEmAndamento) > 0 ? (quantidadeMetaAtual - imobiliariosEmAndamento) : 0;
+        long percentual = (metaAnual > 0) ? (imobiliariosEmAndamento * 100 / metaAnual) : 0;
+        long faltamParaMeta = (metaAnual  - imobiliariosEmAndamento) > 0 ? (metaAnual - imobiliariosEmAndamento) : 0;
 
         int[] alcancado = new int[12];
         int[] metaEvolucao = new int[12];
@@ -98,12 +106,13 @@ public class  DashboardController {
         java.text.NumberFormat formatoBR = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR"));
 
 
-        model.addAttribute("metaTotal", meta);
+        model.addAttribute("metaTotal", metaAnual);
         model.addAttribute("percentualConcluido", percentual);
         model.addAttribute("processosConcluidos", concluidos);
         model.addAttribute("emAndamento", emAndamento);
         model.addAttribute("pendentes", pendentes);
         model.addAttribute("faltamParaMeta", faltamParaMeta);
+        model.addAttribute("metaTotalAno", metaTotalAno);
 
         model.addAttribute("valorTotalRecebido", formatoBR.format(valorTotal));
         model.addAttribute("mediaPorProcesso", formatoBR.format(mediaPorProcesso));

@@ -1,0 +1,71 @@
+.documentos-header {
+    margin-bottom: 30px;
+}
+
+.documentos-header h2 {
+    font-size: 24px;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+}
+
+.documentos-header p {
+    font-size: 14px;
+    color: #666;
+}
+
+.documentos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 800px;
+}
+
+.card-documento {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    padding: 30px;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: all 0.2s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 2px solid transparent;
+}
+
+.card-documento:hover {
+    border-color: #005b63;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.card-documento-icone {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.card-documento h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.card-documento p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.card-documento-seta {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 24px;
+    color: #999;
+}
+
+.card-documento:hover .card-documento-seta {
+    color: #005b63;
+}
