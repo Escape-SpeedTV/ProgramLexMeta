@@ -1,0 +1,104 @@
+@page {
+    size: A4;
+    margin: 2cm 2cm 2.5cm 2cm;
+    @bottom-center {
+        content: element(rodape);
+    }
+    @bottom-right {
+        content: "Pág. " counter(page) " de " counter(pages);
+        font-family: 'Times New Roman', serif;
+        font-size: 10px;
+        color: #333;
+    }
+}
+
+body {
+    font-family: 'Times New Roman', serif;
+    font-size: 12pt;
+    line-height: 1.5;
+    color: #000;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cabecalho img {
+    width: 150px;
+    height: auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.clausula-titulo {
+    font-weight: bold;
+    font-size: 12pt;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+p {
+    margin-bottom: 15px;
+    text-indent: 50px;
+}
+
+p.sem-recuo {
+    text-indent: 0;
+}
+
+.negrito {
+    font-weight: bold;
+}
+
+.rodape {
+    position: running(rodape);
+    font-family: 'Times New Roman', serif;
+    font-size: 10pt;
+    color: #333;
+    width: 100%;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+.rodape-conteudo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.assinaturas {
+    margin-top: 60px;
+    text-align: center;
+    text-indent: 0;
+}
+
+.linha-assinatura {
+    border-top: 1px solid #000;
+    width: 300px;
+    margin: 40px auto 5px auto;
+}
+
+.assinatura-nome {
+    font-weight: bold;
+    margin-bottom: 2px;
+}
+
+.data-local {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-indent: 0;
+}
