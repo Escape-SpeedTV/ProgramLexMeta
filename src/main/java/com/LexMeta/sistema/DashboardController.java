@@ -27,11 +27,15 @@ public class  DashboardController {
         long emAndamento = processoRepository.countByStatus("Em Andamento");
         long pendentes = processoRepository.countByStatus("Pendente");
         long imobiliariosEmAndamento = processoRepository.countByAssuntoPrincipalAndStatus("Direito Imobiliário", "Em Andamento");
+        long imobiliariosConcluidos = processoRepository.countByAssuntoPrincipalAndStatus("Direito Imobiliário", "Concluído");
+        long totalImobiliarios = imobiliariosConcluidos + imobiliariosEmAndamento;
 
         int mesAtual = java.time.LocalDate.now().getMonthValue();
         int anoAtual = java.time.LocalDate.now().getYear();
         Optional<MetaAnual> metaAnualOpt = metaAnualRepository.findByAno(anoAtual);
         int metaAnual = metaAnualOpt.map(MetaAnual::getQuantidade).orElse(0);
+        long metaTotalRestante = metaAnual - totalImobiliarios;
+        if (metaTotalRestante < 0) metaTotalRestante = 0;
 
         List<Processo> processosDoAno = processoRepository.findAll().stream().filter(p -> p.getDataAudiencia() != null && p.getDataAudiencia().getYear() == anoAtual && !"Pendente".equals(p.getStatus())).toList();
         long totalProcessosDoAno = processosDoAno.size();
@@ -54,8 +58,8 @@ public class  DashboardController {
             }
         }
         int concluidosMesAtual = concluidosMensal[mesAtual - 1];
-        long percentual = (metaAnual > 0) ? (imobiliariosEmAndamento * 100 / metaAnual) : 0;
-        long faltamParaMeta = (metaAnual  - imobiliariosEmAndamento) > 0 ? (metaAnual - imobiliariosEmAndamento) : 0;
+        long percentual = (metaAnual  > 0) ? (totalImobiliarios * 100 / metaAnual) : 0;
+        long faltamParaMeta = (quantidadeMetaAtual   - imobiliariosEmAndamento) > 0 ? (quantidadeMetaAtual  - imobiliariosEmAndamento) : 0;
 
         int[] alcancado = new int[12];
         int[] metaEvolucao = new int[12];
@@ -106,17 +110,18 @@ public class  DashboardController {
         java.text.NumberFormat formatoBR = java.text.NumberFormat.getCurrencyInstance(new java.util.Locale("pt", "BR"));
 
 
-        model.addAttribute("metaTotal", metaAnual);
+//        model.addAttribute("metaTotal", metaAnual);
         model.addAttribute("percentualConcluido", percentual);
         model.addAttribute("processosConcluidos", concluidos);
         model.addAttribute("emAndamento", emAndamento);
         model.addAttribute("pendentes", pendentes);
         model.addAttribute("faltamParaMeta", faltamParaMeta);
         model.addAttribute("metaTotalAno", metaTotalAno);
-
+        model.addAttribute("metaTotal", metaTotalRestante);
         model.addAttribute("valorTotalRecebido", formatoBR.format(valorTotal));
         model.addAttribute("mediaPorProcesso", formatoBR.format(mediaPorProcesso));
         model.addAttribute("ticketMedioGeral", formatoBR.format(ticketMedioGeral));
+        model.addAttribute("metaAnualPura", metaAnual);
 
         model.addAttribute("meses", new String[]{"Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"});
         model.addAttribute("concluidosMensal", concluidosMensal);
