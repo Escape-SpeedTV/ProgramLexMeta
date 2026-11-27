@@ -91,7 +91,7 @@
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 table {
@@ -117,6 +117,7 @@ td {
     padding: 15px;
     color: #1a1a1a;
     border-bottom: 1px solid #f0f0f0;
+    position: relative;
 }
 
 tr:hover {
@@ -290,6 +291,7 @@ tr:hover {
     min-width: 200px;
     z-index: 100;
     text-align: left;
+    transform: translateX(10px);
 }
 
 .dropdown-acoes.aberto {
