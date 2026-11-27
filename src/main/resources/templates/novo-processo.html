@@ -107,10 +107,7 @@
                             <span class="seta-importar">›</span>
                         </div>
 
-                        <form id="form-import-pdf" enctype="multipart/form-data" style="display: none;">
-                            <input type="file" id="input-pdf-import" name="arquivo" accept="application/pdf" style="display: none;">
-                        </form>
-
+                        <input type="file" id="input-pdf-import" name="arquivo" accept="application/pdf" style="display: none;">
                         <div id="status-import" style="display: none; margin-bottom: 20px; padding: 12px; border-radius: 8px; font-size: 13px;"></div>
                     </div>
 
@@ -304,11 +301,11 @@
                             <div class="linha-campos advogado-item">
                                 <div class="campo">
                                     <label>Nome do Advogado <span style="color: red;">*</span></label>
-                                    <input type="text" placeholder="Ex: Maria Oliveira Santos">
+                                    <input type="text", th:field="*{advogado}" placeholder="Ex: Maria Oliveira Santos">
                                 </div>
                                 <div class="campo">
                                     <label>OAB / UF <span style="color: red;">*</span></label>
-                                    <input type="text" placeholder="Ex: 12345/SP">
+                                    <input type="text" th:field="*{oab}" placeholder="Ex: 12345/SP">
                                 </div>
                                 <div class="campo">
                                     <label>Função</label>

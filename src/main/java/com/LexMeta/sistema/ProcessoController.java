@@ -40,6 +40,17 @@ public class ProcessoController {
         try{
             processo.setDataDistribuicao(java.time.LocalDate.now());
 
+            System.out.println("========== NOVO PROCESSO ==========");
+            System.out.println("Número: " + processo.getNumeroProcesso());
+            System.out.println("Cliente: " + processo.getCliente());
+            System.out.println("CPF: " + processo.getCpf());
+            System.out.println("Advogado: " + processo.getAdvogado());
+            System.out.println("OAB: " + processo.getOab());
+            System.out.println("Assunto: " + processo.getAssuntoPrincipal());
+            System.out.println("Status: " + processo.getStatus());
+            System.out.println("Responsável: " + processo.getResponsavel());
+            System.out.println("===================================");
+
             Processo processoSalvo = processoRepository.save(processo);
 
             if(arquivos != null && arquivos.length > 0){

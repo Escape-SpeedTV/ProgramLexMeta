@@ -32,6 +32,8 @@ public class Processo {
     private String cpf;
     private String advogado;
     private String oab;
+    private String reu;
+    private String cnpjReu;
 
     @Column(length = 2000)
     private String descricao;
@@ -167,6 +169,12 @@ public class Processo {
         return oab;
     }
     public void setOab(String oab){this.oab = oab;}
+
+    public String getReu(){return reu;}
+    public void setReu(String reu){this.reu = reu;}
+
+    public String getCnpjReu(){return cnpjReu;}
+    public void setCnpjReu(String cnpjReu){this.cnpjReu = cnpjReu;}
 
     public Contrato getContrato() { return contrato; }
     public void setContrato(Contrato contrato) { this.contrato = contrato; }
